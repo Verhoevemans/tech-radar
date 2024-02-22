@@ -7,12 +7,13 @@
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
+          "path": "/src/radar",
           "style": "scss"
         }
       },
-      "root": "",
+      "root": "/radar",
       "sourceRoot": "src",
-      "prefix": "app",
+      "prefix": "radar",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:application",
