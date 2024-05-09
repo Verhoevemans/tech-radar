@@ -8,5 +8,5 @@ import { Component } from '@angular/core';
   styleUrl: './analyze.component.scss'
 })
 export class AnalyzeComponent {
-
+  // TODO: remove this component because I don't know what it does!! All components should intuitively tell you what they're purpose is
 }

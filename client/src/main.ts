@@ -1,6 +1,6 @@
 import { bootstrapApplication } from '@angular/platform-browser';
-import { radarConfig } from './radar/radar.config';
-import { RadarComponent } from './radar/radar.component';
+import { appConfig } from './app/app.config';
+import { AppComponent } from './app/app.component';
 
-bootstrapApplication(RadarComponent, radarConfig)
+bootstrapApplication(AppComponent, appConfig)
   .catch((err) => console.error(err));
