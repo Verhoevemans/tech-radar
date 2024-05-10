@@ -13,7 +13,7 @@
       },
       "root": "/src/app",
       "sourceRoot": "src",
-      "prefix": "radar",
+      "prefix": "rad",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:application",

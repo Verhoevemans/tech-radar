@@ -1,17 +1,21 @@
 import { Component, Input } from '@angular/core';
 
-import { AnalyzeComponent } from '../../components/core/analyze/analyze.component';
+import { HeaderComponent } from '../../components/core/header/header.component';
 
 @Component({
-  selector: 'radar-radar',
+  selector: 'rad-radar',
   standalone: true,
   imports: [
-    AnalyzeComponent
+    HeaderComponent
   ],
   templateUrl: './radar.component.html',
   styleUrl: './radar.component.scss'
 })
 export class RadarComponent {
   @Input()
-  public radarName!: string;
+  public domain!: string;
+
+  public get headerTitle(): string {
+    return `${this.domain.toUpperCase()} Radar`;
+  }
 }

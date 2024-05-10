@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'radar-header',
+  selector: 'rad-header',
   standalone: true,
   imports: [],
   templateUrl: './header.component.html',

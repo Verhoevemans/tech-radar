@@ -4,7 +4,7 @@ import { Component, ElementRef, OnInit, Type, ViewChild } from '@angular/core';
 import { ModalService } from './modal.service';
 
 @Component({
-  selector: 'radar-modal',
+  selector: 'rad-modal',
   standalone: true,
   imports: [
     NgComponentOutlet

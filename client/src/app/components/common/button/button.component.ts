@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
-  selector: 'radar-button',
+  selector: 'rad-button',
   standalone: true,
   imports: [],
   templateUrl: './button.component.html',
