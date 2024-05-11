@@ -16,6 +16,6 @@ export class RadarComponent {
   public domain!: string;
 
   public get headerTitle(): string {
-    return `${this.domain.toUpperCase()} Radar`;
+    return `${ this.domain.toUpperCase() } Radar`;
   }
 }

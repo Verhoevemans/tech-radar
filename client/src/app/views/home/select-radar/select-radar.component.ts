@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+
 import { ButtonComponent } from '../../../components/common/button/button.component';
 
 @Component({
@@ -11,7 +13,9 @@ import { ButtonComponent } from '../../../components/common/button/button.compon
   styleUrl: './select-radar.component.scss'
 })
 export class SelectRadarComponent {
-  public openRadar(): void {
-    console.log('Navigate from here!');
+  public constructor(private readonly router: Router) {}
+
+  public openRadar(radar: string): void {
+    this.router.navigate(['radar', radar.toLowerCase()]);
   }
 }

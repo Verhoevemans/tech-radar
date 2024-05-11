@@ -12,10 +12,10 @@ import { SelectRadarComponent } from './select-radar/select-radar.component';
   standalone: true,
   imports: [
     ButtonComponent,
-    HeaderComponent,
-    SelectRadarComponent,
+    CreateRadarComponent,
     FindRadarComponent,
-    CreateRadarComponent
+    HeaderComponent,
+    SelectRadarComponent
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'

@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'rad-header',
@@ -10,4 +11,10 @@ import { Component, Input } from '@angular/core';
 export class HeaderComponent {
   @Input({ required: true })
   public title!: string;
+
+  public constructor(private readonly router: Router) {}
+
+  public toHome(): void {
+    this.router.navigate(['']);
+  }
 }

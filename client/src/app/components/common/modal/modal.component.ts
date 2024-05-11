@@ -13,7 +13,8 @@ import { ModalService } from './modal.service';
   styleUrl: './modal.component.scss'
 })
 export class ModalComponent implements OnInit {
-  @ViewChild('dialog', { static: true }) dialog!: ElementRef<HTMLDialogElement>;
+  @ViewChild('dialog', { static: true })
+  public dialog!: ElementRef<HTMLDialogElement>;
 
   private modalComponent: Component | undefined;
 
@@ -21,19 +22,16 @@ export class ModalComponent implements OnInit {
 
   public ngOnInit() {
     this.modalService.openModal$.subscribe((component: Component) => {
-      console.log('opening modal');
       this.modalComponent = component;
       this.dialog.nativeElement.showModal();
     });
   }
 
   public closeModal(): void {
-    console.log('closeModal()');
     this.dialog.nativeElement.close();
   }
 
   public getModalComponent(): Type<any> {
-    console.log('getModalComponent()');
     return this.modalComponent as Type<any>;
   }
 }
