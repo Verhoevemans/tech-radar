@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 
 import { HeaderComponent } from '../../components/core/header/header.component';
 
+import { RadarMapComponent } from './radar-map/radar-map.component';
 import { TechnologyListComponent } from './technology-list/technology-list.component';
 
 @Component({
@@ -9,6 +10,7 @@ import { TechnologyListComponent } from './technology-list/technology-list.compo
   standalone: true,
   imports: [
     HeaderComponent,
+    RadarMapComponent,
     TechnologyListComponent
   ],
   templateUrl: './radar.component.html',

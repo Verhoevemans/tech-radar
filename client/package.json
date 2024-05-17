@@ -1,6 +1,8 @@
 {
   "name": "radar",
   "version": "0.0.0",
+  "description": "An interactive Technology Radar app",
+  "author": "Jeroen Verhoeven",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -8,7 +10,6 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
-  "private": true,
   "dependencies": {
     "@angular/animations": "^17.2.0",
     "@angular/common": "^17.2.0",
