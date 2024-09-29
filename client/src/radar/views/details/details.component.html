@@ -1,0 +1,6 @@
+<radar-header [title]="headerTitle"></radar-header>
+<p>Here will be the Radar details!</p>
+@for (group of radar.groups; track $index) {
+  <radar-blip-list [title]="group" [blips]="getBlips(group)"></radar-blip-list>
+}
+<radar-map></radar-map>

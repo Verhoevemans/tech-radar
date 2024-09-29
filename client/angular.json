@@ -11,9 +11,9 @@
           "style": "scss"
         }
       },
-      "root": "/src/app",
+      "root": "/src/radar",
       "sourceRoot": "src",
-      "prefix": "rad",
+      "prefix": "radar",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:application",
@@ -69,7 +69,10 @@
               "buildTarget": "radar:build:development"
             }
           },
-          "defaultConfiguration": "development"
+          "defaultConfiguration": "development",
+          "options": {
+            "proxyConfig": "src/proxy.conf.json"
+          }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",

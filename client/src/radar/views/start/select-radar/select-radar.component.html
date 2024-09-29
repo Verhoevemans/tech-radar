@@ -1,0 +1,4 @@
+<p>Here you can select a Radar to navigate to</p>
+@for(radar of radars; track radar.name) {
+  <radar-button [label]="radar.name" (clicked)="openRadar(radar.name)"></radar-button>
+}

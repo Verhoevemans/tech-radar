@@ -1,6 +1,0 @@
-<rad-header [title]="headerTitle"></rad-header>
-<p>Here will be the Radar details!</p>
-@for (group of radar.groups; track $index) {
-  <rad-technology-list [title]="group" [technologies]="getTechnologies(group)"></rad-technology-list>
-}
-<rad-radar-map></rad-radar-map>

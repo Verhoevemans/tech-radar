@@ -1,7 +1,20 @@
+import bodyParser from 'body-parser';
+import dotenv from 'dotenv';
 import express, { Express } from 'express';
-import process from 'process';
+
+import * as process from 'process';
+import radarRoute from './radar/radar.route';
+import connectDatabase from './utils/database';
+
+dotenv.config({ path: `${__dirname}/config/config.env` });
+
+connectDatabase();
 
 const app: Express = express();
+
+app.use(bodyParser.json());
+
+app.use('/api/radars', radarRoute);
 
 const PORT = process.env.PORT || 3000;
 
