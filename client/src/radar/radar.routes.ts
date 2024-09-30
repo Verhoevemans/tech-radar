@@ -5,7 +5,7 @@ import { StartComponent } from './views/start/start.component';
 
 export const routes: Routes = [
   { path: 'home', component: StartComponent },
-  { path: 'radar/:domain', component: DetailsComponent },
+  { path: 'radar/:name', component: DetailsComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' as const },
   { path: '**', redirectTo: 'home' }
 ];

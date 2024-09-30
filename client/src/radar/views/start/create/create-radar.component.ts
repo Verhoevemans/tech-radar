@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
-import { ButtonComponent } from '../../../components/common/button/button.component';
-import { ModalService } from '../../../components/common/modal/modal.service';
+import { ButtonComponent } from '../../../shared/components/common/button/button.component';
+import { ModalService } from '../../../shared/components/common/modal/modal.service';
 
 import { CreateRadarModalComponent } from './create-radar-modal/create-radar-modal.component';
 

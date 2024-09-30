@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { ButtonComponent } from '../../../components/common/button/button.component';
+import { ButtonComponent } from '../../../shared/components/common/button/button.component';
+import { Radar } from '../../../shared/radar.model';
 
 import { SelectRadarService } from './select-radar.service';
 
@@ -15,13 +16,12 @@ import { SelectRadarService } from './select-radar.service';
   styleUrl: './select-radar.component.scss'
 })
 export class SelectRadarComponent implements OnInit {
-  public radars: { name: string }[] = [];
+  public radars: Radar[] = [];
 
   public constructor(private readonly selectRadarService: SelectRadarService,
                      private readonly router: Router) {}
 
   public ngOnInit() {
-    console.log('SelectRadarComponent - ngOnInit()');
     this.selectRadarService.getRadars().subscribe({
       next: (response) => {
         console.log('data was fetched', response);
@@ -31,7 +31,7 @@ export class SelectRadarComponent implements OnInit {
     });
   }
 
-  public openRadar(radar: string): void {
-    this.router.navigate(['radar', radar.toLowerCase()]);
+  public openRadar(radarUrl: string): void {
+    this.router.navigate(['radar', radarUrl]);
   }
 }

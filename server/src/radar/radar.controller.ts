@@ -23,6 +23,11 @@ class RadarController {
         try {
             radar = await Radar.create({
                 name: req.body.name,
+                url: req.body.name
+                    .toLowerCase()
+                    .replace(/[^a-z0-9 -]/g, '')
+                    .trim()
+                    .replace(/\s+/g, '-'),
                 quadrants: req.body.quadrants
             });
         } catch (error) {

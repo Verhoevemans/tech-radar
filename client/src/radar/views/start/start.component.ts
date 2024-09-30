@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
-import { ButtonComponent } from '../../components/common/button/button.component';
-import { HeaderComponent } from '../../components/core/header/header.component';
+import { ButtonComponent } from '../../shared/components/common/button/button.component';
+import { HeaderComponent } from '../../shared/components/core/header/header.component';
 import { CreateRadarComponent } from './create/create-radar.component';
 import { SelectRadarComponent } from './select-radar/select-radar.component';
 

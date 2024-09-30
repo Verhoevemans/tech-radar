@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { ButtonComponent } from '../../../../components/common/button/button.component';
-import { ModalService } from '../../../../components/common/modal/modal.service';
+import { ButtonComponent } from '../../../../shared/components/common/button/button.component';
+import { ModalService } from '../../../../shared/components/common/modal/modal.service';
 
 import { CreateRadarModalService } from './create-radar-modal.service';
 
@@ -33,22 +33,17 @@ export class CreateRadarModalComponent implements OnInit {
               private readonly router: Router) {}
 
   public ngOnInit(): void {
-    console.log('ngOnInit of the CreateRadarModal');
     this.initializeForm();
   }
 
   public createRadar(): void {
-    console.log(this.radarForm);
-
     this.radarForm.markAllAsTouched();
 
     if (this.radarForm.valid) {
       this.createRadarModalService.createRadar(this.nameControl.value, this.quadrants.value).subscribe({
         next: (radar) => {
-          console.log('new radar was created succesfully', radar);
-
           this.modalService.closeModal();
-          this.router.navigate(['radar', radar.data.name.toLowerCase()]);
+          this.router.navigate(['radar', radar.url]);
         },
         error: (error) => console.error(error)
       });
