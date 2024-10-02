@@ -21,4 +21,7 @@
     }
   }
 </form>
+@if(error) {
+  <radar-notification [message]="error"/>
+}
 <radar-button label="Create" (click)="createRadar()"></radar-button>

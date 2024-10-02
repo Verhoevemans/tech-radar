@@ -7,7 +7,7 @@
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
-          "path": "/src/app",
+          "path": "/src/radar",
           "style": "scss"
         }
       },

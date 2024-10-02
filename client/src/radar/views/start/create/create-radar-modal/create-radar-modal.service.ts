@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 
-import { Radar } from '../../../../shared/radar.model';
+import { Radar } from '../../../../shared/models/radar.model';
 
 interface RadarResponse {
   success: boolean,

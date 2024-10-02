@@ -6,18 +6,21 @@ import { ButtonComponent } from '../../../../shared/components/common/button/but
 import { ModalService } from '../../../../shared/components/common/modal/modal.service';
 
 import { CreateRadarModalService } from './create-radar-modal.service';
+import { NotificationComponent } from '../../../../shared/components/common/notification/notification.component';
 
 @Component({
   selector: 'radar-create-modal',
   standalone: true,
   imports: [
     ButtonComponent,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NotificationComponent
   ],
   templateUrl: './create-radar-modal.component.html',
   styleUrl: './create-radar-modal.component.scss'
 })
 export class CreateRadarModalComponent implements OnInit {
+  public error: string | undefined;
   public radarForm!: FormGroup;
 
   get nameControl(): FormControl {
@@ -45,7 +48,12 @@ export class CreateRadarModalComponent implements OnInit {
           this.modalService.closeModal();
           this.router.navigate(['radar', radar.url]);
         },
-        error: (error) => console.error(error)
+        error: (_error) => {
+          this.error = 'Something went wrong when trying to create the Radar. Please try again later.';
+        },
+        complete: () => {
+          this.error = undefined;
+        }
       });
     }
   }
