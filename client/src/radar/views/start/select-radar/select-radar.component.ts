@@ -6,34 +6,40 @@ import { Radar } from '../../../shared/models/radar.model';
 
 import { SelectRadarService } from './select-radar.service';
 import { NotificationComponent } from '../../../shared/components/common/notification/notification.component';
+import { SpinnerComponent } from '../../../shared/components/common/spinner/spinner.component';
 
 @Component({
   selector: 'radar-select',
   standalone: true,
   imports: [
     ButtonComponent,
-    NotificationComponent
+    NotificationComponent,
+    SpinnerComponent
   ],
   templateUrl: './select-radar.component.html',
   styleUrl: './select-radar.component.scss'
 })
 export class SelectRadarComponent implements OnInit {
-  public radars: Radar[] = [];
   public error: string | undefined;
+  public loading = false;
+  public radars: Radar[] = [];
 
   public constructor(private readonly selectRadarService: SelectRadarService,
                      private readonly router: Router) {}
 
   public ngOnInit() {
+    this.loading = true;
     this.selectRadarService.getRadars().subscribe({
       next: (response) => {
         console.log('data was fetched', response);
         this.radars = response.data;
       },
       error: (_error) => {
+        this.loading = false;
         this.error = 'Something went wrong when retrieving the Radars. Please try again later';
       },
       complete: () => {
+        this.loading = false;
         this.error = undefined;
       }
     });

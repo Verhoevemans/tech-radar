@@ -5,7 +5,6 @@
   <div>
     <label for="name">Radar Name:</label>
     <input id="name" type="text" formControlName="name">
-    {{ nameControl.touched }} - {{ nameControl.invalid }}
   </div>
   @if(nameControl.touched && nameControl.invalid) {
     <span><i>This field is required</i></span>
@@ -21,6 +20,9 @@
     }
   }
 </form>
+@if(loading) {
+  <radar-spinner type="save"/>
+}
 @if(error) {
   <radar-notification [message]="error"/>
 }

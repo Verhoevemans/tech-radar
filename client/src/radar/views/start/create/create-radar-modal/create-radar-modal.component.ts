@@ -7,6 +7,7 @@ import { ModalService } from '../../../../shared/components/common/modal/modal.s
 
 import { CreateRadarModalService } from './create-radar-modal.service';
 import { NotificationComponent } from '../../../../shared/components/common/notification/notification.component';
+import { SpinnerComponent } from '../../../../shared/components/common/spinner/spinner.component';
 
 @Component({
   selector: 'radar-create-modal',
@@ -14,13 +15,15 @@ import { NotificationComponent } from '../../../../shared/components/common/noti
   imports: [
     ButtonComponent,
     ReactiveFormsModule,
-    NotificationComponent
+    NotificationComponent,
+    SpinnerComponent
   ],
   templateUrl: './create-radar-modal.component.html',
   styleUrl: './create-radar-modal.component.scss'
 })
 export class CreateRadarModalComponent implements OnInit {
   public error: string | undefined;
+  public loading = false;
   public radarForm!: FormGroup;
 
   get nameControl(): FormControl {
@@ -43,15 +46,18 @@ export class CreateRadarModalComponent implements OnInit {
     this.radarForm.markAllAsTouched();
 
     if (this.radarForm.valid) {
+      this.loading = true;
       this.createRadarModalService.createRadar(this.nameControl.value, this.quadrants.value).subscribe({
         next: (radar) => {
           this.modalService.closeModal();
           this.router.navigate(['radar', radar.url]);
         },
         error: (_error) => {
+          this.loading = false;
           this.error = 'Something went wrong when trying to create the Radar. Please try again later.';
         },
         complete: () => {
+          this.loading = false;
           this.error = undefined;
         }
       });
