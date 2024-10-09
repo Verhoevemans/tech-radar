@@ -4,7 +4,7 @@ import { map, Observable } from 'rxjs';
 
 import { Radar } from '../../../../shared/models/radar.model';
 
-interface RadarResponse {
+interface CreateRadarResponse {
   success: boolean,
   data: Radar
 }
@@ -17,7 +17,7 @@ export class CreateRadarModalService {
 
   public createRadar(name: string, quadrants: string[]): Observable<Radar> {
     return this.httpClient
-      .post<RadarResponse>('api/radars', { name, quadrants })
+      .post<CreateRadarResponse>('api/radars', { name, quadrants })
       .pipe(
         map(response => response.data)
       );

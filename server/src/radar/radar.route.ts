@@ -10,7 +10,7 @@ router.route('/')
     .post(RadarController.createRadar);
 
 // TODO: add routes fot updateRadar and deleteRadar
-router.route('/:radarId')
+router.route('/:radarName')
     .get(radarController.getRadar);
 
 export default router;

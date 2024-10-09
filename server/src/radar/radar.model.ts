@@ -1,9 +1,12 @@
 import * as mongoose from 'mongoose';
 
-interface IRadar {
+import { IBlip } from '../blip/blip.model';
+
+export interface IRadar {
     name: string;
     url: string;
     quadrants: string[];
+    blips: IBlip[];
 }
 
 const RadarSchema = new mongoose.Schema<IRadar>({
@@ -24,6 +27,16 @@ const RadarSchema = new mongoose.Schema<IRadar>({
             'A Radar must have 4 Quadrants'
         ]
     }
+}, {
+    toJSON: { virtuals: true },
+    toObject: { virtuals: true }
+});
+
+RadarSchema.virtual('blips', {
+    ref: 'Blip',
+    localField: '_id',
+    foreignField: 'radar',
+    justOne: false
 });
 
 export default mongoose.model<IRadar>('Radar', RadarSchema);

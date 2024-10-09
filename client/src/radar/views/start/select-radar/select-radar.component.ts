@@ -31,8 +31,8 @@ export class SelectRadarComponent implements OnInit {
     this.loading = true;
     this.selectRadarService.getRadars().subscribe({
       next: (response) => {
-        console.log('data was fetched', response);
-        this.radars = response.data;
+        console.log('GET - Radars', response);
+        this.radars = response;
       },
       error: (_error) => {
         this.loading = false;
