@@ -1,5 +1,7 @@
 import { Component, Input } from '@angular/core';
 
+import { Blip } from '../../../shared/models/blip.model';
+
 @Component({
   selector: 'radar-blip-list',
   standalone: true,
@@ -8,9 +10,9 @@ import { Component, Input } from '@angular/core';
   styleUrl: './blip-list.component.scss'
 })
 export class BlipListComponent {
-  @Input()
-  public title!: string;
+  @Input({ required: true })
+  public quadrant!: string;
 
-  @Input()
-  public blips!: string[];
+  @Input({ required: true })
+  public blips!: Blip[];
 }

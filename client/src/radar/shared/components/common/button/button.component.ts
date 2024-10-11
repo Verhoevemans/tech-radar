@@ -9,10 +9,10 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 })
 export class ButtonComponent {
   @Input({ required: true })
-  label!: string;
+  public label!: string;
 
   @Output()
-  clicked = new EventEmitter<void>();
+  public clicked = new EventEmitter<void>();
 
   public onClick(): void {
     this.clicked.emit();

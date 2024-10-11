@@ -1,3 +1,11 @@
 <radar-header [title]="headerTitle"></radar-header>
-<p>Here will be the Radar details!</p>
-<radar-map></radar-map>
+@if (error) {
+  <radar-notification [message]="error"/>
+} @else if (loading) {
+  <radar-spinner/>
+} @else {
+  @for (quadrant of radar?.quadrants; track $index) {
+    <radar-blip-list [quadrant]="quadrant" [blips]="getBlipsByQuadrant(quadrant)"/>
+  }
+  <radar-map></radar-map>
+}

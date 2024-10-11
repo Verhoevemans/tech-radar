@@ -8,5 +8,4 @@ import { Component } from '@angular/core';
   styleUrl: './blip-details.component.scss'
 })
 export class BlipDetailsComponent {
-
 }
