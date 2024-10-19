@@ -1,0 +1,19 @@
+<h1>
+  Add a new Blip
+</h1>
+<form [formGroup]="blipForm">
+  <div>
+    <label for="name">Blip Name:</label>
+    <input id="name" type="text" formControlName="name">
+  </div>
+  @if (nameControl.touched && nameControl.invalid) {
+    <span><i>This field is required</i></span>
+  }
+  <div>
+    <label for="quadrant">Blip Quadrant:</label>
+    <input id="quadrant" type="text" formControlName="quadrant">
+  </div>
+  @if (quadrantControl.touched && quadrantControl.invalid) {
+    <span><i>This field is required</i></span>
+  }
+</form>

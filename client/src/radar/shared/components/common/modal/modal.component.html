@@ -5,7 +5,7 @@
       <span class="modal__close" (click)="closeModal()">X</span>
     </div>
     <div class="modal__body">
-      <ng-container *ngComponentOutlet="getModalComponent()"></ng-container>
+      <ng-container *ngComponentOutlet="getModalComponent(); injector: dataInjector"></ng-container>
     </div>
   </div>
 </dialog>

@@ -1,0 +1,28 @@
+<h1>
+  Create a new Radar
+</h1>
+<form [formGroup]="radarForm">
+  <div>
+    <label for="name">Radar Name:</label>
+    <input id="name" type="text" formControlName="name">
+  </div>
+  @if (nameControl.touched && nameControl.invalid) {
+    <span><i>This field is required</i></span>
+  }
+  @for (quadrant of quadrants.controls; track quadrant; let i = $index) {
+    <div>
+      <label for="quadrant-{{ i }}">Quadrant {{ i }}:</label>
+      <input id="quadrant-{{ i }}" type="text" [formControl]="getQuadrantControl(i)">
+    </div>
+    @if (getQuadrantControl(i).touched && getQuadrantControl(i).invalid) {
+      <span><i>This field is required</i></span>
+    }
+  }
+</form>
+@if (loading) {
+  <radar-spinner type="save"/>
+}
+@if (error) {
+  <radar-notification [message]="error"/>
+}
+<radar-button label="Create" (click)="createRadar()"></radar-button>

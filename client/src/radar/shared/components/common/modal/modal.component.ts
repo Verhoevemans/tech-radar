@@ -1,6 +1,7 @@
 import { NgComponentOutlet } from '@angular/common';
-import { Component, ElementRef, OnInit, Type, ViewChild } from '@angular/core';
+import { Component, ElementRef, Injector, OnInit, Type, ViewChild } from '@angular/core';
 
+import { MODAL_DATA } from './modal.model';
 import { ModalService } from './modal.service';
 
 @Component({
@@ -16,13 +17,20 @@ export class ModalComponent implements OnInit {
   @ViewChild('dialog', { static: true })
   public dialog!: ElementRef<HTMLDialogElement>;
 
+  public dataInjector: Injector | undefined;
+
   private modalComponent: Component | undefined;
 
   constructor(private readonly modalService: ModalService) {}
 
   public ngOnInit() {
-    this.modalService.openModal$.subscribe((component: Component) => {
+    this.modalService.openModal$.subscribe(({ component, data }) => {
       this.modalComponent = component;
+
+      this.dataInjector = Injector.create({
+        providers: [{ provide: MODAL_DATA, useValue: data }]
+      });
+
       this.dialog.nativeElement.showModal();
     });
 

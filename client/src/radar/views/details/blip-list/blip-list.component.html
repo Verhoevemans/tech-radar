@@ -1,6 +1,9 @@
 <h3>{{ quadrant }}</h3>
+<radar-button label="Add Blip" (click)="addBlip()"/>
 @for (blip of blips; track $index) {
   <div>{{ blip.name }}</div>
 } @empty {
-  <i>No Blips were added in this Quadrant yet</i>
+  <p>
+    <i>No Blips were added in this Quadrant yet</i>
+  </p>
 }
