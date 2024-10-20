@@ -43,6 +43,8 @@ export class BlipDetailsFormComponent implements OnInit {
   }
 
   public createBlip(): void {
+    this.blipForm.markAllAsTouched();
+
     if (this.blipForm.valid) {
       this.blipDetailsFormService.createBlip(this.blipForm.value).subscribe({
         next: (blip) => {
