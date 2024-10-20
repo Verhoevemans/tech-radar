@@ -10,10 +10,26 @@
     <span><i>This field is required</i></span>
   }
   <div>
-    <label for="quadrant">Blip Quadrant:</label>
+    <label for="description">Description:</label>
+    <textarea id="description" formControlName="description"></textarea>
+  </div>
+  <div>
+    <label for="quadrant">Quadrant:</label>
     <input id="quadrant" type="text" formControlName="quadrant">
   </div>
   @if (quadrantControl.touched && quadrantControl.invalid) {
     <span><i>This field is required</i></span>
   }
+  <div>
+    <label for="ring">Radar position:</label>
+    <input id="ring" type="text" formControlName="ring">
+  </div>
+  @if (ringControl.touched && ringControl.invalid) {
+    <span><i>This field is required</i></span>
+  }
+  <div>
+    <label for="link">Resource Url:</label>
+    <input id="link" type="text" formControlName="link">
+  </div>
 </form>
+<radar-button label="Save" (click)="createBlip()"></radar-button>

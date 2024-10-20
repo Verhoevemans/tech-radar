@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 import { ButtonComponent } from '../../shared/components/common/button/button.component';
 import { NotificationComponent } from '../../shared/components/common/notification/notification.component';
@@ -39,9 +40,11 @@ export class DetailsComponent implements OnInit {
     return `${ this.name.toUpperCase() } Radar`;
   }
 
-  public constructor(private readonly detailsService: DetailsService) {}
+  public constructor(private readonly detailsService: DetailsService,
+                     private readonly route: ActivatedRoute) {}
 
   public ngOnInit(): void {
+    this.detailsService.setRadarName(this.route.snapshot.paramMap.get('name')!);
     this.loading = true;
     this.detailsService.getRadarDetails(this.name).subscribe({
       next: (response) => {
