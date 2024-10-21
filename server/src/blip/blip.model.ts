@@ -1,6 +1,7 @@
 import mongoose, { ObjectId } from 'mongoose';
 
-export type Ring = 'hold' | 'assess' | 'trial' | 'adopt';
+const rings = ['hold', 'assess', 'trial', 'adopt'] as const;
+export type Ring = (typeof rings)[number];
 
 export interface IBlip {
     name: string;
@@ -25,7 +26,11 @@ const BlipSchema = new mongoose.Schema<IBlip>({
     },
     ring: {
         type: String,
-        required: [true, 'Blip Ring is required']
+        required: [true, 'Blip Ring is required'],
+        validate: [
+            (ring: Ring) => rings.includes(ring),
+            'Given value for Ring is of unknown type, must be "hold", "assess", "trial" or "adopt"'
+        ]
     },
     link: {
         type: String

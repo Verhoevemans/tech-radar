@@ -3,7 +3,7 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 
 import { ButtonComponent } from '../../../../shared/components/common/button/button.component';
 import { ModalService } from '../../../../shared/components/common/modal/modal.service';
-import { Blip } from '../../../../shared/models/blip.model';
+import { Blip, rings } from '../../../../shared/models/blip.model';
 
 import { BlipDetailsFormService } from './blip-details-form.service';
 
@@ -22,6 +22,7 @@ export class BlipDetailsFormComponent implements OnInit {
   public blip!: Blip;
 
   public blipForm!: FormGroup;
+  public rings = rings;
 
   get nameControl(): FormControl {
     return this.blipForm.get('name') as FormControl;

@@ -22,7 +22,11 @@
   }
   <div>
     <label for="ring">Radar position:</label>
-    <input id="ring" type="text" formControlName="ring">
+    <select id="ring" class="capitalized" formControlName="ring">
+      @for (ring of rings; track $index) {
+        <option [value]="ring">{{ ring }}</option>
+      }
+    </select>
   </div>
   @if (ringControl.touched && ringControl.invalid) {
     <span><i>This field is required</i></span>
