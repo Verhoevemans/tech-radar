@@ -36,4 +36,10 @@
     <input id="link" type="text" formControlName="link">
   </div>
 </form>
+@if (loading) {
+  <radar-spinner type="save"/>
+}
+@if (error) {
+  <radar-notification [message]="error"/>
+}
 <radar-button label="Save" (click)="createBlip()"></radar-button>

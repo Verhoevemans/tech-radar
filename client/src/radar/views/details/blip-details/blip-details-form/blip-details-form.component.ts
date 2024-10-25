@@ -3,6 +3,8 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 
 import { ButtonComponent } from '../../../../shared/components/common/button/button.component';
 import { ModalService } from '../../../../shared/components/common/modal/modal.service';
+import { NotificationComponent } from '../../../../shared/components/common/notification/notification.component';
+import { SpinnerComponent } from '../../../../shared/components/common/spinner/spinner.component';
 import { Blip, rings } from '../../../../shared/models/blip.model';
 
 import { BlipDetailsFormService } from './blip-details-form.service';
@@ -12,7 +14,9 @@ import { BlipDetailsFormService } from './blip-details-form.service';
   standalone: true,
   imports: [
     ReactiveFormsModule,
-    ButtonComponent
+    ButtonComponent,
+    NotificationComponent,
+    SpinnerComponent
   ],
   templateUrl: './blip-details-form.component.html',
   styleUrl: './blip-details-form.component.scss'
@@ -22,6 +26,8 @@ export class BlipDetailsFormComponent implements OnInit {
   public blip!: Blip;
 
   public blipForm!: FormGroup;
+  public error: string | undefined;
+  public loading = false;
   public rings = rings;
 
   get nameControl(): FormControl {
@@ -47,11 +53,21 @@ export class BlipDetailsFormComponent implements OnInit {
     this.blipForm.markAllAsTouched();
 
     if (this.blipForm.valid) {
+      this.loading = true;
       this.blipDetailsFormService.createBlip(this.blipForm.value).subscribe({
         next: (blip) => {
           // TODO: how do I update the state in the DetailsComponent?
           console.log('blip was created', blip);
+          // TODO: shouldn't the blip-details component close the modal, instead of this form-component?
           this.modalService.closeModal();
+        },
+        error: (_error) => {
+          this.loading = false;
+          this.error = 'Something went wrong when trying to create the Blip. Please try again later.';
+        },
+        complete: () => {
+          this.loading = false;
+          this.error = undefined;
         }
       });
     }
