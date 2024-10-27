@@ -4,8 +4,14 @@
 } @else if (loading) {
   <radar-spinner/>
 } @else {
-  @for (quadrant of radar?.quadrants; track $index) {
-    <radar-blip-list [quadrant]="quadrant" [blips]="getBlipsByQuadrant(quadrant)"/>
-  }
-  <radar-map></radar-map>
+  <div class="quadrants">
+    @for (quadrant of radar?.quadrants; track $index) {
+      <div class="quadrant">
+        <radar-blip-list [quadrant]="quadrant" [blips]="getBlipsByQuadrant(quadrant)"/>
+      </div>
+    }
+  </div>
+  <div class="map">
+    <radar-map [radar]="radar"></radar-map>
+  </div>
 }

@@ -1,0 +1,24 @@
+:host {
+  .quadrants {
+    display: flex;
+    flex-wrap: wrap;
+    height: 90vh;
+
+    .quadrant {
+      flex: 50%;
+
+      &:nth-child(even) {
+        text-align: right;
+      }
+    }
+  }
+
+  .map {
+    position: absolute;
+    top: 20%;
+    width: 99vw;
+    display: flex;
+    justify-content: center;
+    z-index: -1;
+  }
+}
