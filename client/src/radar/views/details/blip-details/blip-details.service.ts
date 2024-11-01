@@ -2,8 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 
-import { Blip } from '../../../../shared/models/blip.model';
-import { DetailsService } from '../../details.service';
+import { Blip } from '../../../shared/models/blip.model';
+import { DetailsService } from '../details.service';
 
 interface CreateBlipResponse {
   success: boolean,
@@ -13,7 +13,7 @@ interface CreateBlipResponse {
 @Injectable({
   providedIn: 'root'
 })
-export class BlipDetailsFormService {
+export class BlipDetailsService {
   constructor(private readonly httpClient: HttpClient, private readonly detailsService: DetailsService) {}
 
   public createBlip(blip: Blip): Observable<Blip> {

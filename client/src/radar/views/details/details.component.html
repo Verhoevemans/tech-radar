@@ -1,17 +1,19 @@
-<radar-header [title]="headerTitle"></radar-header>
-@if (error) {
-  <radar-notification [message]="error"/>
-} @else if (loading) {
+<radar-header [title]="headerTitle"/>
+@if (loading) {
   <radar-spinner/>
-} @else {
-  <div class="quadrants">
-    @for (quadrant of radar?.quadrants; track $index) {
-      <div class="quadrant">
-        <radar-blip-list [quadrant]="quadrant" [blips]="getBlipsByQuadrant(quadrant)"/>
-      </div>
-    }
-  </div>
-  <div class="map">
-    <radar-map [radar]="radar"></radar-map>
-  </div>
+} @else if (error) {
+  <radar-notification [message]="error"/>
 }
+<div class="quadrants">
+  @for (quadrant of radar?.quadrants; track $index) {
+    <div class="quadrant">
+      <radar-blip-list [quadrant]="quadrant"
+                       [blips]="getBlipsByQuadrant(quadrant)"
+                       (onBlipAdded)="updateRadar()"
+      />
+    </div>
+  }
+</div>
+<div class="map">
+  <radar-map [radar]="radar"/>
+</div>

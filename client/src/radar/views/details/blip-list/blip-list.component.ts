@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 import { ButtonComponent } from '../../../shared/components/common/button/button.component';
 import { ModalService } from '../../../shared/components/common/modal/modal.service';
@@ -21,10 +21,20 @@ export class BlipListComponent {
   @Input({ required: true })
   public blips!: Blip[];
 
+  @Output()
+  private onBlipAdded = new EventEmitter<void>();
+
   public constructor(private readonly modalService: ModalService) {}
 
   public addBlip(): void {
     const blip: Blip = { quadrant: this.quadrant } as Blip;
-    this.modalService.openModal(BlipDetailsComponent as Component, { data: blip });
+    this.modalService.openModal(BlipDetailsComponent as Component, 'Create New Blip', {
+      data: blip,
+      onClose: this.onCloseModal.bind(this)
+    });
+  }
+
+  private onCloseModal(): void {
+    this.onBlipAdded.emit();
   }
 }

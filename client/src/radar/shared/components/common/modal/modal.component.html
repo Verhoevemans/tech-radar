@@ -1,7 +1,7 @@
 <dialog #dialog (click)="closeModal()" class="modal">
   <div (click)="$event.stopPropagation()">
     <div class="modal__header">
-      <h3>Header</h3>
+      <h3>{{ title }}</h3>
       <span class="modal__close" (click)="closeModal()">X</span>
     </div>
     <div class="modal__body">

@@ -7,11 +7,11 @@ import { ModalData } from './modal.model';
   providedIn: 'root'
 })
 export class ModalService {
-  public openModal$ = new Subject<{ component: Component, data?: ModalData }>();
+  public openModal$ = new Subject<{ component: Component, title: string, data?: ModalData }>();
   public closeModal$ = new Subject<void>();
 
-  public openModal(component: Component, data?: ModalData): void {
-    this.openModal$.next({ component, data });
+  public openModal(component: Component, title: string, data?: ModalData): void {
+    this.openModal$.next({ component, title, data });
   }
 
   public closeModal(): void {

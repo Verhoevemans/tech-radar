@@ -1,1 +1,6 @@
-<radar-blip-details-form [blip]="blip"/>
+@if (loading) {
+  <radar-spinner type="save"/>
+} @else if (error) {
+  <radar-notification [message]="error"/>
+}
+<radar-blip-details-form [blip]="blip" (onSubmit)="createBlip($event)"/>

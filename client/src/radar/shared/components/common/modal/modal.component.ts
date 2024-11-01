@@ -18,13 +18,15 @@ export class ModalComponent implements OnInit {
   public dialog!: ElementRef<HTMLDialogElement>;
 
   public dataInjector: Injector | undefined;
+  public title!: string;
 
   private modalComponent: Component | undefined;
 
   constructor(private readonly modalService: ModalService) {}
 
   public ngOnInit() {
-    this.modalService.openModal$.subscribe(({ component, data }) => {
+    this.modalService.openModal$.subscribe(({ component, title, data }) => {
+      this.title = title;
       this.modalComponent = component;
 
       this.dataInjector = Injector.create({

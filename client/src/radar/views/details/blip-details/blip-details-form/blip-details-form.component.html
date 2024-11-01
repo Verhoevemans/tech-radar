@@ -1,6 +1,3 @@
-<h1>
-  Add a new Blip
-</h1>
 <form [formGroup]="blipForm">
   <div>
     <label for="name">Blip Name:</label>
@@ -36,10 +33,4 @@
     <input id="link" type="text" formControlName="link">
   </div>
 </form>
-@if (loading) {
-  <radar-spinner type="save"/>
-}
-@if (error) {
-  <radar-notification [message]="error"/>
-}
-<radar-button label="Save" (click)="createBlip()"></radar-button>
+<radar-button label="Save" (click)="submitForm()"></radar-button>

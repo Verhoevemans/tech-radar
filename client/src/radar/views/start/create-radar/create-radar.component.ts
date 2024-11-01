@@ -18,6 +18,6 @@ export class CreateRadarComponent {
   public constructor(private readonly modalService: ModalService) {}
 
   public openCreateRadarForm(): void {
-    this.modalService.openModal(CreateRadarFormComponent as Component);
+    this.modalService.openModal(CreateRadarFormComponent as Component, 'Create New Radar');
   }
 }

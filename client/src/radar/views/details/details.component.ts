@@ -45,6 +45,20 @@ export class DetailsComponent implements OnInit {
 
   public ngOnInit(): void {
     this.detailsService.setRadarName(this.route.snapshot.paramMap.get('name')!);
+    this.getRadarDetails();
+  }
+
+  public getBlipsByQuadrant(quadrant: string): Blip[] {
+    return this.radar
+      ? this.radar.blips.filter(blip => blip.quadrant === quadrant)
+      : [];
+  }
+
+  public updateRadar(): void {
+    this.getRadarDetails();
+  }
+
+  private getRadarDetails(): void {
     this.loading = true;
     this.detailsService.getRadarDetails(this.name).subscribe({
       next: (response) => {
@@ -60,11 +74,5 @@ export class DetailsComponent implements OnInit {
         this.error = undefined;
       }
     });
-  }
-
-  public getBlipsByQuadrant(quadrant: string): Blip[] {
-    return this.radar
-      ? this.radar.blips.filter(blip => blip.quadrant === quadrant)
-      : [];
   }
 }

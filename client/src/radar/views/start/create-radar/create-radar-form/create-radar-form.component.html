@@ -1,6 +1,3 @@
-<h1>
-  Create a new Radar
-</h1>
 <form [formGroup]="radarForm">
   <div>
     <label for="name">Radar Name:</label>
@@ -21,8 +18,7 @@
 </form>
 @if (loading) {
   <radar-spinner type="save"/>
-}
-@if (error) {
+} @else if (error) {
   <radar-notification [message]="error"/>
 }
 <radar-button label="Create" (click)="createRadar()"></radar-button>
