@@ -1,4 +1,4 @@
-export const rings = ['hold', 'assess', 'trial', 'adopt'] as const;
+export const rings = ['adopt', 'trial', 'assess', 'hold'] as const;
 export type Ring = (typeof rings)[number];
 
 export interface Blip {

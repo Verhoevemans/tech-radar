@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DetailsComponent } from './details.component';
+import { RadarDetailsComponent } from './radar-details.component';
 
-describe('MainComponent', () => {
-  let component: DetailsComponent;
-  let fixture: ComponentFixture<DetailsComponent>;
+describe('RadarDetailsComponent', () => {
+  let component: RadarDetailsComponent;
+  let fixture: ComponentFixture<RadarDetailsComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [DetailsComponent]
+      imports: [RadarDetailsComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(DetailsComponent);
+    fixture = TestBed.createComponent(RadarDetailsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

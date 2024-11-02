@@ -12,7 +12,7 @@ interface RadarDetailsResponse {
 @Injectable({
   providedIn: 'root'
 })
-export class DetailsService {
+export class RadarDetailsService {
   private radarName: string | undefined;
 
   constructor(private readonly httpClient: HttpClient) {}

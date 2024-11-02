@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 
 import { Blip } from '../../../shared/models/blip.model';
-import { DetailsService } from '../details.service';
+import { RadarDetailsService } from '../radar-details.service';
 
 interface CreateBlipResponse {
   success: boolean,
@@ -14,7 +14,7 @@ interface CreateBlipResponse {
   providedIn: 'root'
 })
 export class BlipDetailsService {
-  constructor(private readonly httpClient: HttpClient, private readonly detailsService: DetailsService) {}
+  constructor(private readonly httpClient: HttpClient, private readonly detailsService: RadarDetailsService) {}
 
   public createBlip(blip: Blip): Observable<Blip> {
     const radarName = this.detailsService.getRadarName();

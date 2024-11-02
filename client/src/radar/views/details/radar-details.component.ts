@@ -10,7 +10,7 @@ import { Radar } from '../../shared/models/radar.model';
 
 import { BlipDetailsComponent } from './blip-details/blip-details.component';
 import { BlipListComponent } from './blip-list/blip-list.component';
-import { DetailsService } from './details.service';
+import { RadarDetailsService } from './radar-details.service';
 import { RadarMapComponent } from './radar-map/radar-map.component';
 
 @Component({
@@ -25,10 +25,10 @@ import { RadarMapComponent } from './radar-map/radar-map.component';
     NotificationComponent,
     SpinnerComponent
   ],
-  templateUrl: './details.component.html',
-  styleUrl: './details.component.scss'
+  templateUrl: './radar-details.component.html',
+  styleUrl: './radar-details.component.scss'
 })
-export class DetailsComponent implements OnInit {
+export class RadarDetailsComponent implements OnInit {
   @Input()
   public name!: string;
 
@@ -40,7 +40,7 @@ export class DetailsComponent implements OnInit {
     return `${ this.name.toUpperCase() } Radar`;
   }
 
-  public constructor(private readonly detailsService: DetailsService,
+  public constructor(private readonly detailsService: RadarDetailsService,
                      private readonly route: ActivatedRoute) {}
 
   public ngOnInit(): void {
@@ -49,6 +49,7 @@ export class DetailsComponent implements OnInit {
   }
 
   public getBlipsByQuadrant(quadrant: string): Blip[] {
+    console.log('getBlipsByQuadrant()');
     return this.radar
       ? this.radar.blips.filter(blip => blip.quadrant === quadrant)
       : [];

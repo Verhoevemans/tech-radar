@@ -22,8 +22,10 @@ export class RadarMapComponent {
       case 2:
         return `translate(${-50}, ${50})`;
       case 3:
-      default:
         return `translate(${50}, ${50})`;
+      default:
+        console.error(`Cannot determine position of Blip with unknown quadrant: "${blip.name}" (${blip.quadrant})`);
+        return 'scale(0)';
     }
   }
 }
