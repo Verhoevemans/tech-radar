@@ -49,7 +49,6 @@ export class RadarDetailsComponent implements OnInit {
   }
 
   public getBlipsByQuadrant(quadrant: string): Blip[] {
-    console.log('getBlipsByQuadrant()');
     return this.radar
       ? this.radar.blips.filter(blip => blip.quadrant === quadrant)
       : [];

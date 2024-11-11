@@ -3,6 +3,7 @@ export type Ring = (typeof rings)[number];
 
 export interface Blip {
   name: string,
+  id: string,
   description?: string,
   quadrant: string,
   ring: Ring,

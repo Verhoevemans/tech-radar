@@ -1,19 +1,25 @@
-<svg width="60cqmin" height="60cqmin" viewBox="-100 -100 200 200">
-  <g>
-    <circle r="98" cx="0" cy="0" stroke="black" fill="none"></circle>
-    <circle r="75" cx="0" cy="0" stroke="black" fill="none"></circle>
-    <circle r="50" cx="0" cy="0" stroke="black" fill="none"></circle>
-    <circle r="25" cx="0" cy="0" stroke="black" fill="none"></circle>
-    <line x1="-100" y1="0" x2="100" y2="0" stroke="black"></line>
-    <line x1="0" y1="-100" x2="0" y2="100" stroke="black"></line>
-    <polyline points="-100,0 100,0" fill="black"></polyline>
-  </g>
-  <g>
-    @for (blip of radar?.blips; track $index) {
-      <g [attr.transform]="getPosition(blip)">
-        <circle r="3" stroke="black" fill="none"></circle>
-        <text font-family="Tahoma" font-size="0.5em">{{blip.name}}</text>
-      </g>
-    }
-  </g>
-</svg>
+@if (radar) {
+  <svg width="60cqmin" height="60cqmin" viewBox="-100 -100 200 200">
+    <g>
+      <circle r="98" cx="0" cy="0" stroke="black" fill="none"></circle>
+      <text font-family="Tahoma" font-size="0.5em" x="0" y="-82">Hold</text>
+      <circle r="76" cx="0" cy="0" stroke="black" fill="none"></circle>
+      <text font-family="Tahoma" font-size="0.5em" x="0" y="-57">Assess</text>
+      <circle r="54" cx="0" cy="0" stroke="black" fill="none"></circle>
+      <text font-family="Tahoma" font-size="0.5em" x="0" y="-32">Trial</text>
+      <circle r="32" cx="0" cy="0" stroke="black" fill="none"></circle>
+      <text font-family="Tahoma" font-size="0.5em" x="0" y="-7">Adopt</text>
+      <line x1="-100" y1="0" x2="100" y2="0" stroke="black"></line>
+      <line x1="0" y1="-100" x2="0" y2="100" stroke="black"></line>
+      <polyline points="-100,0 100,0" fill="black"></polyline>
+    </g>
+    <g>
+      @for (blip of radar?.blips; track $index) {
+        <g [attr.transform]="getBlipPosition(blip)">
+          <circle r="2" stroke="black" fill="none"></circle>
+          <text font-family="Tahoma" font-size="0.3em">{{blip.name}}</text>
+        </g>
+      }
+    </g>
+  </svg>
+}
