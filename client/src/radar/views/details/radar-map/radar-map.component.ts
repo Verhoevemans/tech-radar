@@ -1,7 +1,8 @@
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 
 import { Blip, Ring } from '../../../shared/models/blip.model';
 import { Radar } from '../../../shared/models/radar.model';
+import { RadarDetailsService } from '../radar-details.service';
 
 @Component({
   selector: 'radar-map',
@@ -9,16 +10,25 @@ import { Radar } from '../../../shared/models/radar.model';
   templateUrl: './radar-map.component.html',
   styleUrl: './radar-map.component.scss'
 })
-export class RadarMapComponent implements OnChanges {
+export class RadarMapComponent implements OnChanges, OnInit {
   @Input({ required: true })
   public radar: Radar | undefined;
 
   public blipPositions = new Map<string, { x: number, y: number }>();
+  public higlightedBlipId: string | undefined;
+
+  constructor(private readonly radarDetailsService: RadarDetailsService) {}
 
   public ngOnChanges(changes: SimpleChanges): void {
     if (changes['radar'].currentValue) {
       this.setBlipPositions();
     }
+  }
+
+  public ngOnInit(): void {
+    this.radarDetailsService.highlightedBlipId.subscribe((id) => {
+      this.higlightedBlipId = id;
+    })
   }
 
   public getBlipPosition(blip: Blip): string {
@@ -28,6 +38,10 @@ export class RadarMapComponent implements OnChanges {
     } else {
       return 'scale(0)';
     }
+  }
+
+  public onBlipHover(id: string | undefined): void {
+    this.radarDetailsService.highLightBlip(id);
   }
 
   private setBlipPositions(): void {
@@ -45,7 +59,7 @@ export class RadarMapComponent implements OnChanges {
   private getBlipPositionAngle(quadrant: string): number | undefined {
     switch (this.radar?.quadrants.indexOf(quadrant)) {
       case 0:
-        return (Math.random() * 80 + 185) * (Math.PI / 180);
+        return (Math.random() * 80 + 185) * Math.PI / 180;
       case 1:
         return (Math.random() * 80 + 95) * Math.PI / 180;
       case 2:

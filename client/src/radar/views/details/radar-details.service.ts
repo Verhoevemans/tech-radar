@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, Observable } from 'rxjs';
+import { map, Observable, Subject } from 'rxjs';
 
 import { Radar } from '../../shared/models/radar.model';
 
@@ -14,6 +14,8 @@ interface RadarDetailsResponse {
 })
 export class RadarDetailsService {
   private radarName: string | undefined;
+
+  public highlightedBlipId = new Subject<string | undefined>();
 
   constructor(private readonly httpClient: HttpClient) {}
 
@@ -31,5 +33,9 @@ export class RadarDetailsService {
 
   public setRadarName(name: string): void {
     this.radarName = name;
+  }
+
+  public highLightBlip(id: string | undefined): void {
+    this.highlightedBlipId.next(id);
   }
 }

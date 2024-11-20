@@ -1,5 +1,5 @@
 @if (radar) {
-  <svg width="60cqmin" height="60cqmin" viewBox="-100 -100 200 200">
+  <svg width="100%" height="100%" viewBox="-100 -100 200 200">
     <g>
       <circle r="98" cx="0" cy="0" stroke="black" fill="none"></circle>
       <text font-family="Tahoma" font-size="0.5em" x="0" y="-82">Hold</text>
@@ -16,7 +16,13 @@
     <g>
       @for (blip of radar?.blips; track $index) {
         <g [attr.transform]="getBlipPosition(blip)">
-          <circle r="2" stroke="black" fill="none"></circle>
+          <circle r="2"
+                  stroke="black"
+                  fill="white"
+                  [attr.class]="blip.id === higlightedBlipId ? 'highlight' : ''"
+                  (mouseenter)="onBlipHover(blip.id)"
+                  (mouseleave)="onBlipHover(undefined)">
+          </circle>
           <text font-family="Tahoma" font-size="0.3em">{{blip.name}}</text>
         </g>
       }
