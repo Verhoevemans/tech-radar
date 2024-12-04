@@ -24,4 +24,13 @@ export class BlipDetailsService {
         map(response => response.data)
       );
   }
+
+  public updateBlip(blip: Blip): Observable<Blip> {
+    const radarName = this.detailsService.getRadarName();
+    return this.httpClient
+      .put<CreateBlipResponse>(`api/radars/${radarName}/blips/${blip.id}`, { blip })
+      .pipe(
+        map(response => response.data)
+      );
+  }
 }

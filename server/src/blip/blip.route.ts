@@ -8,4 +8,7 @@ router.route('/')
     .get(BlipController.getBlips)
     .post(BlipController.createBlip);
 
+router.route('/:id')
+    .put(BlipController.updateBlip);
+
 export default router;

@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { ButtonComponent } from '../../shared/components/common/button/button.component';
+import { ModalService } from '../../shared/components/common/modal/modal.service';
 import { NotificationComponent } from '../../shared/components/common/notification/notification.component';
 import { SpinnerComponent } from '../../shared/components/common/spinner/spinner.component';
 import { HeaderComponent } from '../../shared/components/core/header/header.component';
@@ -41,6 +42,7 @@ export class RadarDetailsComponent implements OnInit {
   }
 
   public constructor(private readonly detailsService: RadarDetailsService,
+                     private readonly modalService: ModalService,
                      private readonly route: ActivatedRoute) {}
 
   public ngOnInit(): void {
@@ -54,8 +56,11 @@ export class RadarDetailsComponent implements OnInit {
       : [];
   }
 
-  public updateRadar(): void {
-    this.getRadarDetails();
+  public openBlipDetailsModal(blip: Blip): void {
+    this.modalService.openModal(BlipDetailsComponent as Component, 'Blip Details', {
+      data: blip,
+      onClose: this.getRadarDetails.bind(this)
+    });
   }
 
   private getRadarDetails(): void {

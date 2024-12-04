@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 
 import { Blip, Ring } from '../../../shared/models/blip.model';
 import { Radar } from '../../../shared/models/radar.model';
@@ -13,6 +13,9 @@ import { RadarDetailsService } from '../radar-details.service';
 export class RadarMapComponent implements OnChanges, OnInit {
   @Input({ required: true })
   public radar: Radar | undefined;
+
+  @Output()
+  public openBlipDetails = new EventEmitter<Blip>();
 
   public blipPositions = new Map<string, { x: number, y: number }>();
   public higlightedBlipId: string | undefined;
@@ -42,6 +45,10 @@ export class RadarMapComponent implements OnChanges, OnInit {
 
   public onBlipHover(id: string | undefined): void {
     this.radarDetailsService.highLightBlip(id);
+  }
+
+  public onBlipClick(blip: Blip): void {
+    this.openBlipDetails.emit(blip);
   }
 
   private setBlipPositions(): void {

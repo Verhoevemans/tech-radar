@@ -9,11 +9,11 @@
     <div class="quadrant">
       <radar-blip-list [quadrant]="quadrant"
                        [blips]="getBlipsByQuadrant(quadrant)"
-                       (onBlipAdded)="updateRadar()"
+                       (openBlipDetails)="openBlipDetailsModal($event)"
       />
     </div>
   }
 </div>
 <div class="map">
-  <radar-map [radar]="radar"/>
+  <radar-map [radar]="radar" (openBlipDetails)="openBlipDetailsModal($event)"/>
 </div>

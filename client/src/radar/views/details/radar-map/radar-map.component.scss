@@ -1,7 +1,15 @@
 :host {
   display: block;
 
-  .highlight {
+  text {
+    display: none;
+
+    &.tooltip {
+      display: block;
+    }
+  }
+
+  circle.highlight {
     fill: antiquewhite;
     stroke: burlywood;
   }

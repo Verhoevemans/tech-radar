@@ -38,6 +38,7 @@ export class BlipDetailsFormComponent implements OnInit {
   }
 
   public ngOnInit(): void {
+    console.log('BlipDetailsFormComponent', this.blip);
     this.initializeForm();
   }
 
@@ -52,6 +53,7 @@ export class BlipDetailsFormComponent implements OnInit {
   private initializeForm(): void {
     this.blipForm = new FormGroup({
       name: new FormControl(this.blip.name, Validators.required),
+      id: new FormControl(this.blip.id),
       description: new FormControl(this.blip.description),
       quadrant: new FormControl(this.blip.quadrant, Validators.required),
       ring: new FormControl(this.blip.ring, Validators.required),

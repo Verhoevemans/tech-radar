@@ -14,16 +14,22 @@
       <polyline points="-100,0 100,0" fill="black"></polyline>
     </g>
     <g>
-      @for (blip of radar?.blips; track $index) {
+      @for (blip of radar.blips; track $index) {
         <g [attr.transform]="getBlipPosition(blip)">
+          <text [attr.class]="blip.id === higlightedBlipId ? 'tooltip' : ''"
+                [attr.transform]="'translate(0,-3)'"
+                font-family="Tahoma"
+                font-size="0.3em">
+            {{blip.name}}
+          </text>
           <circle r="2"
                   stroke="black"
                   fill="white"
                   [attr.class]="blip.id === higlightedBlipId ? 'highlight' : ''"
+                  (click)="onBlipClick(blip)"
                   (mouseenter)="onBlipHover(blip.id)"
                   (mouseleave)="onBlipHover(undefined)">
           </circle>
-          <text font-family="Tahoma" font-size="0.3em">{{blip.name}}</text>
         </g>
       }
     </g>

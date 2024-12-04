@@ -22,6 +22,7 @@ import { BlipDetailsService } from './blip-details.service';
 })
 export class BlipDetailsComponent {
   public blip: Blip;
+  public edit: boolean;
   public error: string | undefined;
   public loading = false;
 
@@ -31,20 +32,25 @@ export class BlipDetailsComponent {
                      @Inject(MODAL_DATA) public modalData: ModalData,
                      private readonly modalService: ModalService) {
     this.blip = modalData.data;
+    this.edit = !!this.blip.id;
     this.modalCloseCallback = modalData.onClose!;
   }
 
-  public createBlip(blip: Blip): void {
+  public saveBlip(blip: Blip): void {
     this.loading = true;
-    this.blipDetailsService.createBlip(blip).subscribe({
+    const apiRequest = this.edit
+      ? this.blipDetailsService.updateBlip.bind(this.blipDetailsService)
+      : this.blipDetailsService.createBlip.bind(this.blipDetailsService);
+
+    apiRequest(blip).subscribe({
       next: (blip) => {
-        console.log('blip was created', blip);
+        console.log('blip was saved', blip);
         this.modalCloseCallback();
         this.modalService.closeModal();
       },
       error: (_error) => {
         this.loading = false;
-        this.error = 'Something went wrong when trying to create the Blip. Please try again later.';
+        this.error = 'Something went wrong when trying to save the Blip. Please try again later.';
       },
       complete: () => {
         this.loading = false;

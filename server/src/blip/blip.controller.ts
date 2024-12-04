@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from 'express';
 
 import Radar from '../radar/radar.model';
 
-import Blip from './blip.model';
+import Blip, { IBlip } from './blip.model';
 
 class BlipController {
     /*
@@ -20,7 +20,7 @@ class BlipController {
             radar = await Radar.findOne({ url: req.params.radarName });
         } catch (error) {
             console.log('failed to find Radar', error);
-            return res.status(400).json({
+            return res.status(404).json({
                 success: false
             });
         }
@@ -29,7 +29,7 @@ class BlipController {
             blips = await Blip.find({ radar: radar!._id });
         } catch (error) {
             console.log('failed to find Blip', error);
-            return res.status(400).json({
+            return res.status(404).json({
                 success: false
             });
         }
@@ -56,7 +56,7 @@ class BlipController {
             radar = await Radar.findOne({ url: req.params.radarName });
         } catch (error) {
             console.log('failed to find Radar', error);
-            return res.status(400).json({
+            return res.status(404).json({
                 success: false
             });
         }
@@ -65,7 +65,7 @@ class BlipController {
             blip = await Blip.create({ radar: radar!._id, ...req.body.blip })
         } catch (error) {
             console.log('failed to create Blip', error);
-            return res.status(400).json({
+            return res.status(500).json({
                 success: false
             });
         }
@@ -75,6 +75,34 @@ class BlipController {
             data: blip
         });
     };
+
+    /*
+    * @description  Update an existing Blip by Blip ID
+    * @path-param   radarName: string
+    * @path-param   id: string
+    * @req-param    blip: object
+    * @route        POST /api/radars/:radarName/blips/:id
+    **/
+    public async updateBlip(req: Request, res: Response, nexr: NextFunction): Promise<Response> {
+        console.log(`updateBlip() - for Radar ${req.params.radarName} with Blip: ${req.body.blip}`);
+
+        let blip: IBlip | null;
+
+        try {
+            blip = await Blip.findByIdAndUpdate(req.params.id, req.body.blip);
+        } catch (error) {
+            console.log('failed to update Blip', req.body.blip.name, error);
+            return res.status(500).json({
+                success: false,
+                error
+            });
+        }
+
+        return res.status(200).json({
+            success: true,
+            data: blip
+        });
+    }
 }
 
 export default new BlipController();
