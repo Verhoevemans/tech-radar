@@ -1,0 +1,23 @@
+// Colors
+$black: #000;
+//$grey-dark: #2e3136;
+$grey-dark: #232323;
+$grey-light: #595e67;
+$white-light: #e3e2e2;
+$yellow: #ffe000;
+//$yellow: #e1bf00;
+
+// Typography
+$font-family-main: 'Montserrat', serif;
+$font-family-alt: 'Manrope', serif;
+
+// Borders
+$border-radius-small: 12px;
+$border-radius-medium: 18px;
+$border-radius-large: 24px;
+
+// Shadows
+$shadow-down-small: inset 3px 3px 8px $black, inset -2px -2px 6px $grey-light;
+$shadow-up-small: 4px 4px 8px $black, -1px -1px 4px $grey-light;
+$shadow-up-medium: 5px 5px 3px $black, -2px -2px 3px $grey-light;
+$shadow-up-large: 8px 8px 8px $black, -4px -4px 4px $grey-light;

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
-import { ModalComponent } from './shared/components/common/modal/modal.component';
+import { ModalComponent } from './shared/components/core/modal/modal.component';
 
 @Component({
   selector: 'radar-root',

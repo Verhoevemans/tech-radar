@@ -1,19 +1,7 @@
 <form [formGroup]="radarForm">
-  <div>
-    <label for="name">Radar Name:</label>
-    <input id="name" type="text" formControlName="name">
-  </div>
-  @if (nameControl.touched && nameControl.invalid) {
-    <span><i>This field is required</i></span>
-  }
+  <radar-input [control]="nameControl" [label]="'Radar Name'"/>
   @for (quadrant of quadrants.controls; track quadrant; let i = $index) {
-    <div>
-      <label for="quadrant-{{ i }}">Quadrant {{ i }}:</label>
-      <input id="quadrant-{{ i }}" type="text" [formControl]="getQuadrantControl(i)">
-    </div>
-    @if (getQuadrantControl(i).touched && getQuadrantControl(i).invalid) {
-      <span><i>This field is required</i></span>
-    }
+    <radar-input id="quadrant-{{ i }}" [control]="getQuadrantControl(i)" [label]="'Quadrant ' + (i + 1)"/>
   }
 </form>
 @if (loading) {
@@ -21,4 +9,4 @@
 } @else if (error) {
   <radar-notification [message]="error"/>
 }
-<radar-button label="Create" (click)="createRadar()"></radar-button>
+<radar-button label="Create" (click)="createRadar()" [type]="'secondary'" [size]="'large'" class="submit"/>

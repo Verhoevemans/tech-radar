@@ -2,6 +2,9 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 import { ButtonComponent } from '../../../../shared/components/common/button/button.component';
+import { InputComponent } from '../../../../shared/components/common/input/input.component';
+import { SelectComponent } from '../../../../shared/components/common/select/select.component';
+import { TextareaComponent } from '../../../../shared/components/common/textarea/textarea.component';
 import { Blip, rings } from '../../../../shared/models/blip.model';
 
 @Component({
@@ -9,7 +12,10 @@ import { Blip, rings } from '../../../../shared/models/blip.model';
   standalone: true,
   imports: [
     ReactiveFormsModule,
-    ButtonComponent
+    ButtonComponent,
+    InputComponent,
+    TextareaComponent,
+    SelectComponent
   ],
   templateUrl: './blip-details-form.component.html',
   styleUrl: './blip-details-form.component.scss'
@@ -23,18 +29,26 @@ export class BlipDetailsFormComponent implements OnInit {
 
   public blipForm!: FormGroup;
 
-  public rings = rings;
+  public rings = rings.concat();
 
-  get nameControl(): FormControl {
+  public get nameControl(): FormControl {
     return this.blipForm.get('name') as FormControl;
   }
 
-  get quadrantControl(): FormControl {
+  public get descriptionControl(): FormControl {
+    return this.blipForm.get('description') as FormControl;
+  }
+
+  public get quadrantControl(): FormControl {
     return this.blipForm.get('quadrant') as FormControl;
   }
 
-  get ringControl(): FormControl {
+  public get ringControl(): FormControl {
     return this.blipForm.get('ring') as FormControl;
+  }
+
+  public get linkControl(): FormControl {
+    return this.blipForm.get('link') as FormControl;
   }
 
   public ngOnInit(): void {

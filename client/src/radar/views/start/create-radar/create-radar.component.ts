@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 
 import { ButtonComponent } from '../../../shared/components/common/button/button.component';
-import { ModalService } from '../../../shared/components/common/modal/modal.service';
+import { ModalService } from '../../../shared/components/core/modal/modal.service';
 
 import { CreateRadarFormComponent } from './create-radar-form/create-radar-form.component';
 
 @Component({
-  selector: 'radar-create',
+  selector: 'radar-create-radar',
   standalone: true,
   imports: [
     ButtonComponent

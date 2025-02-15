@@ -1,9 +1,9 @@
 import { Component, Inject } from '@angular/core';
 
-import { MODAL_DATA, ModalData } from '../../../shared/components/common/modal/modal.model';
-import { ModalService } from '../../../shared/components/common/modal/modal.service';
 import { NotificationComponent } from '../../../shared/components/common/notification/notification.component';
 import { SpinnerComponent } from '../../../shared/components/common/spinner/spinner.component';
+import { MODAL_DATA, ModalData } from '../../../shared/components/core/modal/modal.model';
+import { ModalService } from '../../../shared/components/core/modal/modal.service';
 import { Blip } from '../../../shared/models/blip.model';
 
 import { BlipDetailsFormComponent } from './blip-details-form/blip-details-form.component';

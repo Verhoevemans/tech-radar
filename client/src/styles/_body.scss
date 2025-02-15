@@ -1,0 +1,17 @@
+body {
+  background-color: $grey-dark;
+  color: $white-light;
+  font-family: $font-family-main;
+
+  ::backdrop {
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: $font-family-main;
+  }
+
+  label {
+    font-weight: 600;
+  }
+}

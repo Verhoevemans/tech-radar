@@ -1,36 +1,10 @@
 <form [formGroup]="blipForm">
+  <radar-input [control]="nameControl" [label]="'Blip name'"/>
+  <radar-textarea [control]="descriptionControl" [label]="'Description'"/>
+  <radar-input [control]="quadrantControl" [label]="'Quadrant'"/>
+  <radar-select [control]="ringControl" [label]="'Radar position'" [options]="rings"></radar-select>
   <div>
-    <label for="name">Blip Name:</label>
-    <input id="name" type="text" formControlName="name">
-  </div>
-  @if (nameControl.touched && nameControl.invalid) {
-    <span><i>This field is required</i></span>
-  }
-  <div>
-    <label for="description">Description:</label>
-    <textarea id="description" formControlName="description"></textarea>
-  </div>
-  <div>
-    <label for="quadrant">Quadrant:</label>
-    <input id="quadrant" type="text" formControlName="quadrant">
-  </div>
-  @if (quadrantControl.touched && quadrantControl.invalid) {
-    <span><i>This field is required</i></span>
-  }
-  <div>
-    <label for="ring">Radar position:</label>
-    <select id="ring" class="capitalized" formControlName="ring">
-      @for (ring of rings; track $index) {
-        <option [value]="ring">{{ ring }}</option>
-      }
-    </select>
-  </div>
-  @if (ringControl.touched && ringControl.invalid) {
-    <span><i>This field is required</i></span>
-  }
-  <div>
-    <label for="link">Resource Url:</label>
-    <input id="link" type="text" formControlName="link">
+    <radar-input [control]="linkControl" [label]="'Resource Url'"/>
   </div>
 </form>
 <radar-button label="Save" (click)="submitForm()"></radar-button>

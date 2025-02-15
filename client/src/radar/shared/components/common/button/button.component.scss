@@ -1,0 +1,49 @@
+@use 'sass:color';
+
+@import 'base-variables';
+
+:host {
+  display: inline;
+
+  &.submit {
+    display: flex;
+    justify-content: center;
+  }
+
+  button {
+    border: none;
+    border-radius: $border-radius-medium;
+    cursor: pointer;
+    font-family: $font-family-main;
+    font-size: 15px;
+    font-weight: 600;
+    margin: 12px;
+    padding: 12px;
+    text-transform: uppercase;
+    width: 160px;
+
+    &.large {
+      width: 260px;
+    }
+
+    &.primary {
+      background-color: $grey-dark;
+      box-shadow: $shadow-up-small;
+      color: $white-light;
+
+      &:hover {
+        background-color: color.scale($grey-dark, $lightness: 7%);
+      }
+    }
+
+    &.secondary {
+      background-color: $yellow;
+      box-shadow: $shadow-up-small;
+      color: $grey-dark;
+
+      &:hover {
+        background-color: color.scale($yellow, $lightness: 7%);
+      }
+    }
+  }
+}

@@ -2,10 +2,10 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { ButtonComponent } from '../../shared/components/common/button/button.component';
-import { ModalService } from '../../shared/components/common/modal/modal.service';
 import { NotificationComponent } from '../../shared/components/common/notification/notification.component';
 import { SpinnerComponent } from '../../shared/components/common/spinner/spinner.component';
 import { HeaderComponent } from '../../shared/components/core/header/header.component';
+import { ModalService } from '../../shared/components/core/modal/modal.service';
 import { Blip } from '../../shared/models/blip.model';
 import { Radar } from '../../shared/models/radar.model';
 

@@ -9,7 +9,7 @@ import { NotificationComponent } from '../../../shared/components/common/notific
 import { SpinnerComponent } from '../../../shared/components/common/spinner/spinner.component';
 
 @Component({
-  selector: 'radar-select',
+  selector: 'radar-select-radar',
   standalone: true,
   imports: [
     ButtonComponent,

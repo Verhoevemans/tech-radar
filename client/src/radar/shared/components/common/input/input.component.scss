@@ -1,0 +1,33 @@
+@import 'base-variables';
+
+:host {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+
+  label {
+    padding: 10px 13px 2px;
+    text-transform: uppercase;
+  }
+
+  input {
+    background-color: transparent;
+    border: none;
+    border-radius: $border-radius-medium;
+    box-shadow: $shadow-down-small;
+    color: $white-light;
+    font-family: $font-family-main;
+    font-size: 16px;
+    font-weight: 500;
+    margin: 4px 12px 12px;
+    outline: none;
+    padding: 18px;
+  }
+
+  .error {
+    align-self: flex-end;
+    font-family: $font-family-main;
+    font-style: italic;
+    margin: -8px 30px 8px;
+  }
+}

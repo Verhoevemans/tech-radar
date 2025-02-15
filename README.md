@@ -1,7 +1,30 @@
-# Tech Radar
+# Technology Radar
 
-This is an interactive Technology Radar application. 
+### What is the Technology Radar
+
+The Technology Radar is a tool to analyze technological trends
+
+The Radar represents a map on which technologies can be displayed and ranked according to their relevance in their respective fields.
+The closer a technology is mapped to the center of the Radar, the more relevant that technology is.
+This relevance is represented by rings on the Radar
+
 The goal is to analyze and assess technological trends within different disciplines of the IT community.
+
+### How to use the Technology Radar
+
+*The radar can be used to read trends:*
+
+*The radar can be used to collect input:*
+The Technology Radar is an application through which all the input for the different Radars can be collected. 
+
+*The radar can be used to organize interactive sessions with users to collect input and opinions:* lFurthermore, the Technology is an interactive application, which can be used to collect inputs and opinions from users. 
+
+### How this project is set up
+
+*Find further documentation via a list of links:*
+
+*Project structure:* there is a client and a server folder
+
 
 TODO: fix this README
 

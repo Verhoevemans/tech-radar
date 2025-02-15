@@ -1,5 +1,8 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
+type ButtonType = 'primary' | 'secondary';
+type ButtonSize = 'small' | 'medium' | 'large';
+
 @Component({
   selector: 'radar-button',
   standalone: true,
@@ -10,6 +13,12 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 export class ButtonComponent {
   @Input({ required: true })
   public label!: string;
+
+  @Input()
+  public type: ButtonType = 'primary';
+
+  @Input()
+  public size: ButtonSize = 'medium';
 
   @Output()
   public clicked = new EventEmitter<void>();

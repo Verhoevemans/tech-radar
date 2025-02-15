@@ -1,0 +1,9 @@
+<label for="radar-select">{{label}}</label>
+<select id="radar-select" [formControl]="control">
+  @for (option of options; track $index) {
+    <option [value]="option">{{option}}</option>
+  }
+</select>
+@if (control.touched && control.invalid) {
+  <span><i>This field is required</i></span>
+}
