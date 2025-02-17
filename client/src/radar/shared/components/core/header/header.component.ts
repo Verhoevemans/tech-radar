@@ -9,8 +9,8 @@ import { Router } from '@angular/router';
   styleUrl: './header.component.scss'
 })
 export class HeaderComponent {
-  @Input({ required: true })
-  public title!: string;
+  @Input()
+  public title: string | undefined;
 
   public constructor(private readonly router: Router) {}
 

@@ -21,3 +21,10 @@ $shadow-down-small: inset 3px 3px 8px $black, inset -2px -2px 6px $grey-light;
 $shadow-up-small: 4px 4px 8px $black, -1px -1px 4px $grey-light;
 $shadow-up-medium: 5px 5px 3px $black, -2px -2px 3px $grey-light;
 $shadow-up-large: 8px 8px 8px $black, -4px -4px 4px $grey-light;
+
+// Screen sizes
+$screen-width-xs: 480px;
+$screen-width-s: 768px;
+$screen-width-m: 992px;
+$screen-width-l: 1200px;
+$screen-width-xl: 1800px;

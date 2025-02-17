@@ -1,3 +1,6 @@
 <h1>
-  <span (click)="toHome()">Home</span> | {{ title }}
+  <span class="home" (click)="toHome()">TECHNOLOGY RADAR</span>
+  @if (title) {
+    <span> | {{ title }}</span>
+  }
 </h1>

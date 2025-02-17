@@ -38,7 +38,7 @@ export class RadarDetailsComponent implements OnInit {
   public radar: Radar | undefined;
 
   public get headerTitle(): string {
-    return `${ this.name.toUpperCase() } Radar`;
+    return this.name.toUpperCase();
   }
 
   public constructor(private readonly detailsService: RadarDetailsService,

@@ -1,0 +1,9 @@
+:host {
+  display: block;
+
+  .radar-selection {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}

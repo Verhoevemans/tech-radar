@@ -4,9 +4,11 @@
   <radar-spinner/>
 } @else {
   <p>Here you can select a Radar to navigate to</p>
-  @for (radar of radars; track radar.url) {
-    <radar-button [label]="radar.name" (clicked)="openRadar(radar.url)"></radar-button>
-  } @empty {
-    <radar-notification message="No Radars exist yet, please Create the first Radar"/>
-  }
+  <div class="radar-selection">
+    @for (radar of radars; track radar.url) {
+      <radar-button [label]="radar.name" (clicked)="openRadar(radar.url)"></radar-button>
+    } @empty {
+      <radar-notification message="No Radars exist yet, please Create the first Radar"/>
+    }
+  </div>
 }
