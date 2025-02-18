@@ -1,6 +1,15 @@
+@import 'base-variables';
+
 :host {
-  border: 1px solid black;
-  display: block;
-  margin: 6px 0;
-  padding: 12px;
+  border: none;
+  border-radius: $border-radius-large;
+  box-shadow: $shadow-up-small;
+  display: flex;
+  align-items: center;
+  margin: 12px;
+  padding: 16px 48px;
+
+  .notification__icon {
+    margin-right: 24px;
+  }
 }
