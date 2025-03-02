@@ -10,7 +10,7 @@
     text-transform: uppercase;
   }
 
-  input {
+  .radar-input {
     background-color: transparent;
     border: none;
     border-radius: $border-radius-medium;
@@ -19,7 +19,7 @@
     font-family: $font-family-main;
     font-size: 16px;
     font-weight: 500;
-    margin: 4px 12px 12px;
+    margin: 4px $margin-small $margin-small;
     outline: none;
     padding: 18px;
   }

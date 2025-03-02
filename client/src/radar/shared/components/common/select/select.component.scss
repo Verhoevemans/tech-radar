@@ -1,3 +1,5 @@
+@use 'sass:color';
+
 @import 'base-variables';
 
 :host {
@@ -8,5 +10,86 @@
   label {
     padding: 10px 13px 2px;
     text-transform: uppercase;
+  }
+
+  .radar-select {
+    &__arrow {
+      border-bottom: 3px solid $white-light;
+      border-right: 3px solid $white-light;
+      height: 10px;
+      margin-top: 54px;
+      position: absolute;
+      right: 50px;
+      transform: rotate(45deg);
+      transition: all 300ms;
+      width: 10px;
+
+      &--down {
+        margin-top: 60px;
+        transform: rotate(225deg);
+      }
+    }
+
+    &__dropdown {
+      display: none;
+
+      &--open {
+        display: block;
+      }
+
+      &--option-list {
+        background-color: $grey-dark;
+        border: none;
+        border-radius: $border-radius-medium;
+        box-shadow: $shadow-up-small;
+        cursor: pointer;
+        margin-left: 12px;
+        margin-top: -4px;
+        position: absolute;
+        width: calc(100% - ($padding-medium * 2) - ($margin-small * 2));
+        z-index: 1;
+      }
+
+      &--option {
+        padding: 18px;
+
+        &:hover {
+          background-color: color.scale($grey-dark, $lightness: 7%);
+        }
+
+        &:first-child {
+          border-top-left-radius: $border-radius-medium;
+          border-top-right-radius: $border-radius-medium;
+        }
+
+        &:last-child {
+          border-bottom-left-radius: $border-radius-medium;
+          border-bottom-right-radius: $border-radius-medium;
+        }
+      }
+
+      &--click-mask {
+        height: 100vh;
+        left: 0;
+        position: fixed;
+        top: 0;
+        width: 100vw;
+      }
+    }
+
+    &__selection {
+      background-color: transparent;
+      border: none;
+      border-radius: $border-radius-medium;
+      box-shadow: $shadow-down-small;
+      cursor: pointer;
+      color: $white-light;
+      font-family: $font-family-main;
+      font-size: 16px;
+      font-weight: 500;
+      margin: 4px 12px 12px;
+      outline: none;
+      padding: 18px;
+    }
   }
 }

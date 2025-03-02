@@ -10,7 +10,7 @@
     justify-content: center;
   }
 
-  button {
+  .radar-button {
     border: none;
     border-radius: $border-radius-medium;
     cursor: pointer;
@@ -22,11 +22,11 @@
     text-transform: uppercase;
     width: 160px;
 
-    &.large {
+    &--large {
       width: 260px;
     }
 
-    &.primary {
+    &--primary {
       background-color: $grey-dark;
       box-shadow: $shadow-up-small;
       color: $white-light;
@@ -36,7 +36,7 @@
       }
     }
 
-    &.secondary {
+    &--secondary {
       background-color: $yellow;
       box-shadow: $shadow-up-small;
       color: $grey-dark;

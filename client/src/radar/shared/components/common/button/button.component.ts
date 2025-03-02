@@ -23,6 +23,14 @@ export class ButtonComponent {
   @Output()
   public clicked = new EventEmitter<void>();
 
+  public get typeClass(): string {
+    return `radar-button--${this.type}`;
+  }
+
+  public get sizeClass(): string {
+    return `radar-button--${this.size}`;
+  }
+
   public onClick(): void {
     this.clicked.emit();
   }

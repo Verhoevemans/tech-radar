@@ -21,5 +21,21 @@ export class SelectComponent {
 
   @Input({ required: true })
   public options!: string[];
+
+  public showOptions = false;
+
   protected readonly rings = rings;
+
+  public closeOptions(): void {
+    this.showOptions = false;
+  }
+
+  public openOptions(): void {
+    this.showOptions = true;
+  }
+
+  public selectOption(option: string): void {
+    this.control.patchValue(option);
+    this.closeOptions();
+  }
 }
