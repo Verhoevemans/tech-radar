@@ -3,8 +3,6 @@
   <radar-textarea [control]="descriptionControl" [label]="'Description'"/>
   <radar-input [control]="quadrantControl" [label]="'Quadrant'"/>
   <radar-select [control]="ringControl" [label]="'Radar position'" [options]="rings"></radar-select>
-  <div>
-    <radar-input [control]="linkControl" [label]="'Resource Url'"/>
-  </div>
+  <radar-input [control]="linkControl" [label]="'Resource Url'"/>
 </form>
-<radar-button label="Save" (click)="submitForm()"></radar-button>
+<radar-button label="Save" (click)="submitForm()" [type]="'secondary'" [size]="'large'" class="submit"></radar-button>

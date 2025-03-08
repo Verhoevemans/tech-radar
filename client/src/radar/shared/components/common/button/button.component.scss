@@ -17,8 +17,8 @@
     font-family: $font-family-main;
     font-size: 15px;
     font-weight: 600;
-    margin: 12px;
-    padding: 12px;
+    margin: $margin-small;
+    padding: $padding-small;
     text-transform: uppercase;
     width: 160px;
 
@@ -32,17 +32,44 @@
       color: $white-light;
 
       &:hover {
-        background-color: color.scale($grey-dark, $lightness: 7%);
+        background-color: color.scale($grey-dark, $lightness: 3%);
+        box-shadow: $shadow-up-small--light;
+      }
+
+      &:active {
+        box-shadow: $shadow-down-small;
       }
     }
 
     &--secondary {
       background-color: $yellow;
-      box-shadow: $shadow-up-small;
+      box-shadow: $shadow-secondary-up-small;
       color: $grey-dark;
 
       &:hover {
         background-color: color.scale($yellow, $lightness: 7%);
+      }
+
+      &:active {
+        box-shadow: $shadow-secondary-down-small;
+      }
+    }
+
+    &--icon {
+      background-color: $grey-dark;
+      border-radius: $border-radius-small;
+      box-shadow: $shadow-up-small;
+      color: $white-light;
+      padding: 20px 24px;
+      width: 60px;
+
+      &:hover {
+        background-color: color.scale($grey-dark, $lightness: 3%);
+        box-shadow: $shadow-up-small--light;
+      }
+
+      &:active {
+        box-shadow: $shadow-down-small;
       }
     }
   }

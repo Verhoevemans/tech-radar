@@ -1,3 +1,8 @@
 <button class="radar-button" (click)="onClick()" [class]="[typeClass, sizeClass]">
-  {{ label }}
+  @if (type === 'icon') {
+    <!-- TODO: show Icon based on label name -->
+    X
+  } @else {
+    {{ label }}
+  }
 </button>

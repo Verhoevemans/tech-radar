@@ -6,7 +6,7 @@
   <p>Here you can select a Radar to navigate to</p>
   <div class="radar__selection">
     @for (radar of radars; track radar.url) {
-      <radar-button [label]="radar.name" (clicked)="openRadar(radar.url)"></radar-button>
+      <radar-tile [title]="radar.name" (clicked)="openRadar(radar.url)"></radar-tile>
     } @empty {
       <radar-notification message="No Radars exist yet, please Create the first Radar"/>
     }

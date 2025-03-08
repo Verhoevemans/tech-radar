@@ -1,6 +1,8 @@
 import { NgComponentOutlet } from '@angular/common';
 import { Component, ElementRef, Injector, OnInit, Type, ViewChild } from '@angular/core';
 
+import { ButtonComponent } from '../../common/button/button.component';
+
 import { MODAL_DATA } from './modal.model';
 import { ModalService } from './modal.service';
 
@@ -8,7 +10,8 @@ import { ModalService } from './modal.service';
   selector: 'radar-modal',
   standalone: true,
   imports: [
-    NgComponentOutlet
+    NgComponentOutlet,
+    ButtonComponent
   ],
   templateUrl: './modal.component.html',
   styleUrl: './modal.component.scss'

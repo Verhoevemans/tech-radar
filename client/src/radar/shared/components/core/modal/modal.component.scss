@@ -17,21 +17,8 @@
     align-items: center;
     box-shadow: 0 2px 8px black;
     display: flex;
-    justify-content: center;
-    padding: 15px 35px  ;
-
-    .modal__close {
-      border-radius: $border-radius-small;
-      box-shadow: $shadow-up-small;
-      cursor: pointer;
-      margin-left: auto;
-      padding: 20px 24px;
-
-      &:hover {
-        background-color: color.scale($grey-dark, $lightness: 4%);
-        box-shadow: $shadow-up-medium;
-      }
-    }
+    justify-content: space-between;
+    padding: 15px 30px;
   }
 
   .modal__body {

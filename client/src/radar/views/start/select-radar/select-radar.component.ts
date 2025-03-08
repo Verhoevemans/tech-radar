@@ -7,6 +7,7 @@ import { Radar } from '../../../shared/models/radar.model';
 import { SelectRadarService } from './select-radar.service';
 import { NotificationComponent } from '../../../shared/components/common/notification/notification.component';
 import { SpinnerComponent } from '../../../shared/components/common/spinner/spinner.component';
+import { TileComponent } from '../../../shared/components/common/tile/tile.component';
 
 @Component({
   selector: 'radar-select-radar',
@@ -14,7 +15,8 @@ import { SpinnerComponent } from '../../../shared/components/common/spinner/spin
   imports: [
     ButtonComponent,
     NotificationComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    TileComponent
   ],
   templateUrl: './select-radar.component.html',
   styleUrl: './select-radar.component.scss'
