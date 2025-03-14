@@ -47,8 +47,6 @@ export class CreateRadarFormComponent implements OnInit {
   public createRadar(): void {
     this.radarForm.markAllAsTouched();
 
-    console.log('createRadar()', this.radarForm);
-
     if (this.radarForm.valid) {
       this.loading = true;
       this.createRadarFormService.createRadar(this.nameControl.value, this.quadrants.value).subscribe({

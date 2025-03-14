@@ -7,8 +7,9 @@
   <div class="radar__selection">
     @for (radar of radars; track radar.url) {
       <radar-tile [title]="radar.name" (clicked)="openRadar(radar.url)"></radar-tile>
-    } @empty {
-      <radar-notification message="No Radars exist yet, please Create the first Radar"/>
     }
   </div>
+  @if (radars.length === 0) {
+    <radar-notification message="No Radars exist yet, please Create the first Radar"/>
+  }
 }

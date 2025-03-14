@@ -40,5 +40,15 @@
       opacity: 1;
       transform: translateY(100%);
     }
+
+    &:active::after {
+      border-radius: $border-radius-medium;
+      box-shadow: $shadow-down-medium;
+      content: '';
+      height: 230px;
+      position: absolute;
+      top: 3px;
+      width: 218px;
+    }
   }
 }
