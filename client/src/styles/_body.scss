@@ -34,4 +34,12 @@ body {
   label {
     font-weight: 600;
   }
+
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus {
+    -webkit-text-fill-color: $white-light;
+    background-color: transparent;
+    transition: background-color 5000s ease-in-out 0s;
+  }
 }

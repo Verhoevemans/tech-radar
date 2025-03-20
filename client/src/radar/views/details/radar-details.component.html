@@ -7,10 +7,12 @@
 <div class="quadrants">
   @for (quadrant of radar?.quadrants; track $index) {
     <div class="quadrant">
-      <radar-blip-list [quadrant]="quadrant"
-                       [blips]="getBlipsByQuadrant(quadrant)"
-                       (openBlipDetails)="openBlipDetailsModal($event)"
-      />
+      <div class="panel">
+        <radar-blip-list [quadrant]="quadrant"
+                         [blips]="getBlipsByQuadrant(quadrant)"
+                         (openBlipDetails)="openBlipDetailsModal($event)"
+        />
+      </div>
     </div>
   }
 </div>
