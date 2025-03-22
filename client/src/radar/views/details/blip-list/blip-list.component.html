@@ -1,19 +1,21 @@
 <h3>{{ quadrant }}</h3>
 <radar-button label="Add Blip" (click)="onBlipAdd()"/>
-@for (blips of blipsPerRing; track $index) {
-  @if (blips.length > 0) {
-    <h4>{{ rings[$index] }}</h4>
-    @for (blip of blips; track $index) {
-      <div (mouseenter)="onBlipHover(blip.id)"
-           (mouseleave)="onBlipHover(undefined)"
-           (click)="onBlipClick(blip)"
-           [class]="blip.id === higlightedBlipId ? 'highlight' : ''">
-        {{ blip.name }}
-      </div>
+<div class="blip-list">
+  @for (blips of blipsPerRing; track $index) {
+    @if (blips.length > 0) {
+      <h4>{{ rings[$index] }}</h4>
+      @for (blip of blips; track $index) {
+        <div (mouseenter)="onBlipHover(blip.id)"
+             (mouseleave)="onBlipHover(undefined)"
+             (click)="onBlipClick(blip)"
+             [class]="blip.id === higlightedBlipId ? 'highlight' : ''">
+          {{ blip.name }}
+        </div>
+      }
     }
+  } @empty {
+    <p>
+      <i>No Blips were added in this Quadrant yet</i>
+    </p>
   }
-} @empty {
-  <p>
-    <i>No Blips were added in this Quadrant yet</i>
-  </p>
-}
+</div>

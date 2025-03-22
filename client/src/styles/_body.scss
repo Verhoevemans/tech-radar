@@ -4,24 +4,7 @@ body {
   background-color: $grey-dark;
   color: $white-light;
   font-family: $font-family-main;
-  margin: 0 4%;
-
-  @media (min-width: $screen-width-s) {
-    margin: 0 6%;
-  }
-
-  @media (min-width: $screen-width-m) {
-    margin: 0 8%;
-  }
-
-  @media (min-width: $screen-width-l) {
-    margin: 0 10%;
-  }
-
-  @media (min-width: $screen-width-xl) {
-    max-width: 1440px;
-    margin: 0 auto;
-  }
+  margin: 0 2%;
 
   ::backdrop {
     background-color: rgba(0, 0, 0, 0.4);

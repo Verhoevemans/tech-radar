@@ -1,54 +1,21 @@
 @import 'base-variables';
 
 :host {
-  .panel {
-    background-color: #282828;
-    border-radius: $border-radius-small;
-    box-shadow: 4px 4px 26px black;
-    margin: $margin-small;
-    width: 35%;
-    height: 85%;
-    padding: $padding-large;
-  }
+  .radar-details {
+    display: grid;
+    grid-gap: $margin-medium;
+    grid-template: 1fr 1fr / 2fr 1fr 1fr;
 
-  .quadrants {
-    display: flex;
-    flex-wrap: wrap;
-    height: 90vh;
-
-    .quadrant {
-      flex: 45%;
-
-      &:nth-child(even) {
-        text-align: right;
-        justify-items: end;
-      }
-    }
-  }
-
-  .map {
-    left: 20%;
-    position: absolute;
-    top: 20%;
-    display: flex;
-    justify-content: center;
-    width: 60vw;
-    height: 60vh;
-
-    @media (min-width: $screen-width-s) {
-      // TODO
+    .map {
+      grid-row: 1 / span 2;
     }
 
-    @media (min-width: $screen-width-m) {
-      // TODO
-    }
-
-    @media (min-width: $screen-width-l) {
-      // TODO
-    }
-
-    @media (min-width: $screen-width-xl) {
-      // TODO
+    .panel {
+      background-color: #282828;
+      border-radius: $border-radius-small;
+      box-shadow: 4px 4px 26px black;
+      height: calc(100% - ($padding-large * 2));
+      padding: $padding-large;
     }
   }
 }

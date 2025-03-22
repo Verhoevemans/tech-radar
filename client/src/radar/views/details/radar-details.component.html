@@ -4,18 +4,16 @@
 } @else if (error) {
   <radar-notification [message]="error"/>
 }
-<div class="quadrants">
+<div class="radar-details">
+  <div class="map">
+    <radar-map [radar]="radar" (openBlipDetails)="openBlipDetailsModal($event)"/>
+  </div>
   @for (quadrant of radar?.quadrants; track $index) {
-    <div class="quadrant">
-      <div class="panel">
-        <radar-blip-list [quadrant]="quadrant"
-                         [blips]="getBlipsByQuadrant(quadrant)"
-                         (openBlipDetails)="openBlipDetailsModal($event)"
-        />
-      </div>
+    <div class="panel">
+      <radar-blip-list [quadrant]="quadrant"
+                       [blips]="getBlipsByQuadrant(quadrant)"
+                       (openBlipDetails)="openBlipDetailsModal($event)"
+      />
     </div>
   }
-</div>
-<div class="map">
-  <radar-map [radar]="radar" (openBlipDetails)="openBlipDetailsModal($event)"/>
 </div>

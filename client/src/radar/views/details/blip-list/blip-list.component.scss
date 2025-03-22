@@ -1,7 +1,13 @@
 :host {
   display: block;
 
-  .highlight {
-    background-color: antiquewhite;
+  .blip-list {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+
+    .highlight {
+      background-color: antiquewhite;
+    }
   }
 }
