@@ -12,7 +12,7 @@
     <div class="panel">
       <radar-blip-list [quadrant]="quadrant"
                        [blips]="getBlipsByQuadrant(quadrant)"
-                       (openBlipDetails)="openBlipDetailsModal($event)"
+                       (openBlipDetails)="openBlipDetailsModal($event.blip, $event.edit)"
       />
     </div>
   }

@@ -56,9 +56,9 @@ export class RadarDetailsComponent implements OnInit {
       : [];
   }
 
-  public openBlipDetailsModal(blip: Blip): void {
+  public openBlipDetailsModal(blip: Blip, edit = false): void {
     this.modalService.openModal(BlipDetailsComponent as Component, 'Blip Details', {
-      data: blip,
+      data: { blip, edit },
       onClose: this.getRadarDetails.bind(this)
     });
   }

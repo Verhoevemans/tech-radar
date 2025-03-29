@@ -24,6 +24,9 @@ export class BlipDetailsFormComponent implements OnInit {
   @Input({ required: true })
   public blip!: Blip;
 
+  @Input()
+  public edit = false;
+
   @Output()
   private onSubmit = new EventEmitter<Blip>();
 
@@ -54,6 +57,10 @@ export class BlipDetailsFormComponent implements OnInit {
   public ngOnInit(): void {
     console.log('BlipDetailsFormComponent', this.blip);
     this.initializeForm();
+  }
+
+  public editForm(): void {
+    this.edit = true;
   }
 
   public submitForm(): void {

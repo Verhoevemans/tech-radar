@@ -22,6 +22,10 @@
     margin: 4px $margin-small $margin-small;
     outline: none;
     padding: 18px;
+
+    &:read-only {
+      box-shadow: none;
+    }
   }
 
   .error {

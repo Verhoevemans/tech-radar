@@ -23,5 +23,9 @@
     outline: none;
     padding: 18px;
     resize: none;
+
+    &:read-only {
+      box-shadow: none;
+    }
   }
 }

@@ -1,8 +1,14 @@
 <form [formGroup]="blipForm">
-  <radar-input [control]="nameControl" [label]="'Blip name'"/>
-  <radar-textarea [control]="descriptionControl" [label]="'Description'"/>
-  <radar-input [control]="quadrantControl" [label]="'Quadrant'"/>
-  <radar-select [control]="ringControl" [label]="'Radar position'" [options]="rings"></radar-select>
-  <radar-input [control]="linkControl" [label]="'Resource Url'"/>
+  <radar-input [control]="nameControl" [label]="'Blip name'" [readonly]="!edit"/>
+  <radar-textarea [control]="descriptionControl" [label]="'Description'" [readonly]="!edit"/>
+  <radar-input [control]="quadrantControl" [label]="'Quadrant'" [readonly]="!edit"/>
+  <radar-select [control]="ringControl" [label]="'Radar position'" [options]="rings" [readonly]="!edit"/>
+  <radar-input [control]="linkControl" [label]="'Resource Url'" [readonly]="!edit"/>
 </form>
-<radar-button label="Save" (click)="submitForm()" [type]="'secondary'" [size]="'large'" class="submit"></radar-button>
+<div class="center">
+  @if (edit) {
+    <radar-button label="Save" (click)="submitForm()" [type]="'secondary'" [size]="'large'"></radar-button>
+  } @else {
+    <radar-button label="Edit" (click)="editForm()" [type]="'primary'" [size]="'large'"/>
+  }
+</div>

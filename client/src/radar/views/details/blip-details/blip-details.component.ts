@@ -31,14 +31,14 @@ export class BlipDetailsComponent {
   public constructor(private readonly blipDetailsService: BlipDetailsService,
                      @Inject(MODAL_DATA) public modalData: ModalData,
                      private readonly modalService: ModalService) {
-    this.blip = modalData.data;
-    this.edit = !!this.blip.id;
+    this.blip = modalData.data.blip;
+    this.edit = modalData.data.edit;
     this.modalCloseCallback = modalData.onClose!;
   }
 
   public saveBlip(blip: Blip): void {
     this.loading = true;
-    const apiRequest = this.edit
+    const apiRequest = this.blip.id
       ? this.blipDetailsService.updateBlip.bind(this.blipDetailsService)
       : this.blipDetailsService.createBlip.bind(this.blipDetailsService);
 

@@ -28,6 +28,10 @@
         margin-top: 60px;
         transform: rotate(225deg);
       }
+
+      &.read-only {
+        display: none;
+      }
     }
 
     &__dropdown {
@@ -90,6 +94,11 @@
       margin: 4px 12px 12px;
       outline: none;
       padding: 18px;
+
+      &.read-only {
+        box-shadow: none;
+        cursor: text;
+      }
     }
   }
 

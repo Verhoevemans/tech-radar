@@ -22,6 +22,9 @@ export class SelectComponent {
   @Input({ required: true })
   public options!: string[];
 
+  @Input()
+  public readonly = false;
+
   public showOptions = false;
 
   protected readonly rings = rings;
@@ -31,7 +34,9 @@ export class SelectComponent {
   }
 
   public openOptions(): void {
-    this.showOptions = true;
+    if (!this.readonly) {
+      this.showOptions = true;
+    }
   }
 
   public selectOption(option: string): void {

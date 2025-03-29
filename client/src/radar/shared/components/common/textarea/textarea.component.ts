@@ -16,4 +16,7 @@ export class TextareaComponent {
 
   @Input({ required: true })
   public label!: string;
+
+  @Input()
+  public readonly = false;
 }

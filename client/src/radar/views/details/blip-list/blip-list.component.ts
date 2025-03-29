@@ -21,7 +21,7 @@ export class BlipListComponent implements OnChanges, OnInit {
   public blips!: Blip[];
 
   @Output()
-  public openBlipDetails = new EventEmitter<Blip>();
+  public openBlipDetails = new EventEmitter<{ blip: Blip, edit: boolean}>();
 
   public blipsPerRing!: Blip[][];
   public higlightedBlipId: string | undefined;
@@ -48,11 +48,11 @@ export class BlipListComponent implements OnChanges, OnInit {
   }
 
   public onBlipClick(blip: Blip): void {
-    this.openBlipDetails.emit(blip);
+    this.openBlipDetails.emit({ blip, edit: false });
   }
 
   public onBlipAdd(): void {
     const blip = { quadrant: this.quadrant } as Blip;
-    this.openBlipDetails.emit(blip);
+    this.openBlipDetails.emit({ blip, edit: true });
   }
 }
