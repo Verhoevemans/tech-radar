@@ -11,11 +11,9 @@
     }
 
     .panel {
-      background-color: #282828;
+      background-color: $grey-dark;
       border-radius: $border-radius-small;
-      box-shadow: 4px 4px 26px black;
-      height: calc(100% - ($padding-large * 2));
-      padding: $padding-large;
+      box-shadow: 4px 4px 26px black, inset 2px 2px #4c4e50;
     }
   }
 }

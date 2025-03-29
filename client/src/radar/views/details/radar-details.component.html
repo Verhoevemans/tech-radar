@@ -5,7 +5,7 @@
   <radar-notification [message]="error"/>
 }
 <div class="radar-details">
-  <div class="map">
+  <div class="map panel">
     <radar-map [radar]="radar" (openBlipDetails)="openBlipDetailsModal($event)"/>
   </div>
   @for (quadrant of radar?.quadrants; track $index) {

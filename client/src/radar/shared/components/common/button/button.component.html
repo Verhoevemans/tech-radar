@@ -1,7 +1,7 @@
 <button class="radar-button" (click)="onClick()" [class]="[typeClass, sizeClass]">
   @if (type === 'icon') {
     <!-- TODO: show Icon based on label name -->
-    X
+    {{ label }}
   } @else {
     {{ label }}
   }

@@ -1,10 +1,31 @@
+@import 'base-variables';
+
 :host {
   display: block;
+  height: 100%;
+
+  .list-title {
+    align-items: center;
+    display: flex;
+    height: 12%;
+    justify-content: space-between;
+    padding: 12px 24px;
+  }
 
   .blip-list {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
+    height: calc(88% - (3 * 24px));
+    padding: 24px;
+
+    &__header {
+      margin: $margin-small 0 0;
+
+      &:first-child {
+        margin: 0;
+      }
+    }
 
     .highlight {
       background-color: antiquewhite;

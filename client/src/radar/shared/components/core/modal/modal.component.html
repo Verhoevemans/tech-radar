@@ -2,7 +2,7 @@
   <div (click)="$event.stopPropagation()">
     <div class="modal__header">
       <h2>{{ title }}</h2>
-      <radar-button [type]="'icon'" [label]="'X'" (clicked)="closeModal()"></radar-button>
+      <radar-button [type]="'icon'" [label]="'X'" (clicked)="closeModal()">X</radar-button>
     </div>
     <div class="modal__body">
       <ng-container *ngComponentOutlet="getModalComponent(); injector: dataInjector"></ng-container>

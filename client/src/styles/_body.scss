@@ -4,6 +4,7 @@ body {
   background-color: $grey-dark;
   color: $white-light;
   font-family: $font-family-main;
+  font-size: 14px;
   margin: 0 2%;
 
   ::backdrop {
@@ -12,9 +13,6 @@ body {
 
   h1, h2, h3, h4, h5, h6 {
     font-family: $font-family-main;
-  }
-
-  label {
     font-weight: 600;
   }
 
