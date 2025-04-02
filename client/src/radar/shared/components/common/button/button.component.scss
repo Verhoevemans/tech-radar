@@ -7,12 +7,12 @@
 
   .radar-button {
     border: none;
-    border-radius: $border-radius-medium;
+    border-radius: $border-radius-large;
     cursor: pointer;
     font-family: $font-family-main;
     font-size: 15px;
     font-weight: 600;
-    margin: $margin-small;
+    margin: $margin-small 0;
     padding: $padding-small;
     text-transform: uppercase;
     width: 160px;
@@ -60,7 +60,6 @@
 
     &--icon {
       background-color: $grey-dark;
-      border-radius: $border-radius-small;
       box-shadow: $shadow-up-small;
       color: $white-light;
       padding: 14px 18px;

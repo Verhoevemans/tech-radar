@@ -9,4 +9,6 @@
 } @else if (error) {
   <radar-notification [message]="error"/>
 }
-<radar-button label="Create" (click)="createRadar()" [type]="'secondary'" [size]="'large'" class="center"/>
+<div class="form-footer">
+  <radar-button label="Create" (click)="createRadar()" [type]="'secondary'" [size]="'large'"/>
+</div>

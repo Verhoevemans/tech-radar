@@ -6,14 +6,13 @@
   align-items: stretch;
 
   label {
-    padding: 10px 13px 2px;
-    text-transform: uppercase;
+    padding: 10px 22px 2px;
   }
 
   .radar-input {
     background-color: transparent;
     border: none;
-    border-radius: $border-radius-medium;
+    border-radius: $border-radius-small;
     box-shadow: $shadow-down-small;
     color: $white-light;
     font-family: $font-family-main;
@@ -31,6 +30,6 @@
   .error {
     align-self: flex-end;
     font-style: italic;
-    margin: -8px 30px 8px;
+    margin: -8px 30px;
   }
 }

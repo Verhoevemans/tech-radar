@@ -11,16 +11,16 @@
   overflow: visible;
   padding: 0;
   // TODO: create responsive width for Modal
-  width: 500px;
+  width: 450px;
 
   .modal__header {
     align-items: center;
     display: flex;
     justify-content: space-between;
-    padding: 15px 30px;
+    padding: 25px 40px;
   }
 
   .modal__body {
-    padding: $padding-medium;
+    padding: $padding-large;
   }
 }

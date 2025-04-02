@@ -5,7 +5,7 @@
   <radar-select [control]="ringControl" [label]="'Radar position'" [options]="rings" [readonly]="!edit"/>
   <radar-input [control]="linkControl" [label]="'Resource Url'" [readonly]="!edit"/>
 </form>
-<div class="center">
+<div class="form-footer">
   @if (edit) {
     <radar-button label="Save" (click)="submitForm()" [type]="'secondary'" [size]="'large'"></radar-button>
   } @else {

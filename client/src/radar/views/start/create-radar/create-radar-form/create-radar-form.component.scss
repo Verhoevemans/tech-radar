@@ -1,8 +1,11 @@
+@import 'base-variables';
+
 :host {
   display: block;
 
-  .center {
+  .form-footer {
     display: flex;
     justify-content: center;
+    margin-top: $padding-large;
   }
 }
