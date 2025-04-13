@@ -7,8 +7,8 @@
 </form>
 <div class="form-footer">
   @if (edit) {
-    <radar-button label="Save" (click)="submitForm()" [type]="'secondary'" [size]="'large'"></radar-button>
+    <radar-button label="Save" (clicked)="submitForm()" [type]="'secondary'" [size]="'large'"></radar-button>
   } @else {
-    <radar-button label="Edit" (click)="editForm()" [type]="'primary'" [size]="'large'"/>
+    <radar-button label="Edit" (clicked)="editForm()" [type]="'primary'" [size]="'large'"/>
   }
 </div>

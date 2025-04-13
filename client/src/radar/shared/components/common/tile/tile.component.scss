@@ -5,7 +5,6 @@
 
   .radar-tile {
     background-color: $grey-dark;
-    border-radius: $border-radius-medium;
     box-shadow: $shadow-up-small;
     cursor: pointer;
     display: flex;
@@ -42,13 +41,12 @@
     }
 
     &:active::after {
-      border-radius: $border-radius-medium;
       box-shadow: $shadow-down-medium;
       content: '';
-      height: 230px;
+      height: 100%;
       position: absolute;
-      top: 3px;
-      width: 218px;
+      top: 0;
+      width: 100%;
     }
   }
 }

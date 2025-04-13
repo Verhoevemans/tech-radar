@@ -1,6 +1,6 @@
 <div class="list-title">
   <h3>{{ quadrant }}</h3>
-  <radar-button label="+" [type]="'icon'" (click)="onBlipAdd()"/>
+  <radar-button label="+" [type]="'icon'" (clicked)="onBlipAdd()"/>
 </div>
 <div class="blip-list">
   @for (blips of blipsPerRing; track $index) {
