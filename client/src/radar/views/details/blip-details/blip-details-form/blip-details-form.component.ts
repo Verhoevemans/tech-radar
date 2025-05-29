@@ -28,6 +28,9 @@ export class BlipDetailsFormComponent implements OnInit {
   public edit = false;
 
   @Output()
+  private onVote = new EventEmitter<Blip>();
+
+  @Output()
   private onSubmit = new EventEmitter<Blip>();
 
   public blipForm!: FormGroup;
@@ -55,12 +58,19 @@ export class BlipDetailsFormComponent implements OnInit {
   }
 
   public ngOnInit(): void {
-    console.log('BlipDetailsFormComponent', this.blip);
     this.initializeForm();
+  }
+
+  public cancelEdit(): void {
+    this.edit = false;
   }
 
   public editForm(): void {
     this.edit = true;
+  }
+
+  public startVote(): void {
+    this.onVote.next(this.blipForm.value);
   }
 
   public submitForm(): void {

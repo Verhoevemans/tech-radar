@@ -3,4 +3,8 @@
 } @else if (error) {
   <radar-notification [message]="error"/>
 }
-<radar-blip-details-form [blip]="blip" [edit]="edit" (onSubmit)="saveBlip($event)"/>
+<radar-blip-details-form [blip]="blip"
+                         [edit]="edit"
+                         (onSubmit)="saveBlip($event)"
+                         (onVote)="startVote($event)"
+/>

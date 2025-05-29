@@ -1,0 +1,6 @@
+<div>
+  @for (ring of rings; track $index) {
+    <!-- TODO: add styling for clicked button -->
+    <radar-button [label]="ring" (clicked)="onVote(ring)"/>
+  }
+</div>

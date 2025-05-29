@@ -5,6 +5,7 @@ import { SpinnerComponent } from '../../../shared/components/common/spinner/spin
 import { MODAL_DATA, ModalData } from '../../../shared/components/core/modal/modal.model';
 import { ModalService } from '../../../shared/components/core/modal/modal.service';
 import { Blip } from '../../../shared/models/blip.model';
+import { BlipVotesService } from '../blip-votes/blip-votes.service';
 
 import { BlipDetailsFormComponent } from './blip-details-form/blip-details-form.component';
 import { BlipDetailsService } from './blip-details.service';
@@ -30,7 +31,8 @@ export class BlipDetailsComponent {
 
   public constructor(private readonly blipDetailsService: BlipDetailsService,
                      @Inject(MODAL_DATA) public modalData: ModalData,
-                     private readonly modalService: ModalService) {
+                     private readonly modalService: ModalService,
+                     private readonly blipVotesService: BlipVotesService) {
     this.blip = modalData.data.blip;
     this.edit = modalData.data.edit;
     this.modalCloseCallback = modalData.onClose!;
@@ -58,4 +60,8 @@ export class BlipDetailsComponent {
       }
     });
   }
+
+  public startVote(blip: Blip): void {
+    this.blipVotesService.startVotingSession(blip.id);
+  };
 }

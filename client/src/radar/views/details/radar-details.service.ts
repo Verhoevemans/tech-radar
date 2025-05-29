@@ -27,15 +27,15 @@ export class RadarDetailsService {
       );
   }
 
+  public highLightBlip(id: string | undefined): void {
+    this.highlightedBlipId.next(id);
+  }
+
   public getRadarName(): string | undefined {
     return this.radarName;
   }
 
   public setRadarName(name: string): void {
     this.radarName = name;
-  }
-
-  public highLightBlip(id: string | undefined): void {
-    this.highlightedBlipId.next(id);
   }
 }

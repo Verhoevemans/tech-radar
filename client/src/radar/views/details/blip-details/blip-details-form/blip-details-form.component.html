@@ -7,8 +7,12 @@
 </form>
 <div class="form-footer">
   @if (edit) {
-    <radar-button label="Save" (clicked)="submitForm()" [type]="'secondary'" [size]="'large'"></radar-button>
+    @if (blip.id) {
+      <radar-button label="Cancel" (clicked)="cancelEdit()" [type]="'primary'"/>
+    }
+    <radar-button label="Save" (clicked)="submitForm()" [type]="'secondary'"/>
   } @else {
-    <radar-button label="Edit" (clicked)="editForm()" [type]="'primary'" [size]="'large'"/>
+    <radar-button label="Vote" (clicked)="startVote()" [type]="'primary'"/>
+    <radar-button label="Edit" (clicked)="editForm()" [type]="'primary'"/>
   }
 </div>
