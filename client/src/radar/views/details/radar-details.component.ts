@@ -73,11 +73,6 @@ export class RadarDetailsComponent implements OnInit, OnDestroy {
       : [];
   }
 
-  public sendMessage(): void {
-    this.blipVotesService.sendMessage(this.message.value);
-    this.message.reset();
-  }
-
   public openBlipDetailsModal(blip: Blip, edit = false): void {
     this.modalService.openModal(BlipDetailsComponent as Component, 'Blip Details', {
       data: { blip, edit },

@@ -3,12 +3,31 @@ import WebSocket from 'ws';
 export interface Session {
     url: string;
     connections: WebSocket[];
+    blipId?: string;
 }
 
-export interface VotesResponse {
+export type VotingEventType = 'start' | 'stop' | 'vote';
+
+export type VotingEvent =
+    | VotingEventStart
+    | VotingEventStop
+    | VotingEventVote;
+
+export interface VotingEventBase {
     participants: number;
-    type: string;
+    type: VotingEventType;
     blipId: string;
-    vote?: string;
-    message?: string;
+}
+
+export interface VotingEventStart extends VotingEventBase {
+    type: 'start';
+}
+
+export interface VotingEventStop extends VotingEventBase {
+    type: 'stop';
+}
+
+export interface VotingEventVote extends VotingEventBase {
+    type: 'vote';
+    vote: string;
 }

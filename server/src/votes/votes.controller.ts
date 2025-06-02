@@ -1,11 +1,15 @@
 import express from 'express';
 import WebSocket from 'ws';
 
-import { Session, VotesResponse } from './votes.model';
+import { Session, VotingEvent, VotingEventStart, VotingEventVote } from './votes.model';
 
 const sessions:  Session[] = [];
 
 class VotesController {
+    public constructor() {
+        this.votes = this.votes.bind(this);
+    }
+
     /*
     * @description  Create WebSocket Connection and event listeners
     * @path-param   radarName: string
@@ -23,24 +27,32 @@ class VotesController {
             sessions.push({ url: radarName, connections: [websocket] });
         }
 
+        if (session?.blipId) {
+            const response: VotingEventStart = {
+                participants: session.connections.length,
+                type: 'start',
+                blipId: session.blipId
+            };
+            websocket.send(JSON.stringify(response));
+        }
+
         websocket.on('message', (websocketData, isBinary) => {
             console.log('websocket message received', websocketData);
 
-            const connections = sessions.find(session => session.url === radarName)?.connections;
-            console.log('number of clients on this route:', connections?.length);
+            const data: VotingEvent = JSON.parse(websocketData.toString());
+            const session = sessions.find(session => session.url === radarName)!;
 
-            const data = JSON.parse(websocketData.toString());
-            const response: VotesResponse = {
-                participants: connections?.length || 0,
-                type: data.type,
-                blipId: data.blipId,
-                vote: data.vote,
-                message: data.message
-            };
-
-            connections?.forEach(connection => {
-                connection.send(JSON.stringify(response));
-            });
+            switch (data.type) {
+                case 'start':
+                    this.handleStartEvent(data, session);
+                    break;
+                case 'vote':
+                    this.handleVoteEvent(data, session);
+                    break;
+                case 'stop':
+                default:
+                    this.handleStopEvent(session);
+            }
         });
 
         websocket.on('close', () => {
@@ -48,6 +60,25 @@ class VotesController {
             const connections = sessions.find(session => session.url === radarName)?.connections;
             connections?.splice(connections?.indexOf(websocket), 1);
             // TODO: figure out how to remove a vote from a user that leaves the session?
+        });
+    }
+
+    private handleStartEvent(data: VotingEventStart, session: Session): void {
+        session.blipId = data.blipId;
+        const response = { ...data, participants: session.connections.length };
+        session.connections.forEach(connection => {
+            connection.send(JSON.stringify(response));
+        });
+    }
+
+    private handleStopEvent(session: Session): void {
+        session.blipId = undefined;
+    }
+
+    private handleVoteEvent(data: VotingEventVote, session: Session): void {
+        const response = { ...data, participants: session.connections.length };
+        session.connections.forEach(connection => {
+            connection.send(JSON.stringify(response));
         });
     }
 }
