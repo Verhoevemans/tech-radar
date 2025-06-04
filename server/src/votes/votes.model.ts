@@ -1,8 +1,15 @@
 import WebSocket from 'ws';
 
+import { Ring } from '../blip/blip.model';
+
+export interface Connection {
+    websocket: WebSocket;
+    vote?: Ring;
+}
+
 export interface Session {
     url: string;
-    connections: WebSocket[];
+    connections: Connection[];
     blipId?: string;
 }
 
@@ -14,9 +21,10 @@ export type VotingEvent =
     | VotingEventVote;
 
 export interface VotingEventBase {
-    participants: number;
     type: VotingEventType;
     blipId: string;
+    participants: number;
+    votes: (Ring | undefined)[];
 }
 
 export interface VotingEventStart extends VotingEventBase {
@@ -29,5 +37,5 @@ export interface VotingEventStop extends VotingEventBase {
 
 export interface VotingEventVote extends VotingEventBase {
     type: 'vote';
-    vote: string;
+    vote: Ring;
 }
