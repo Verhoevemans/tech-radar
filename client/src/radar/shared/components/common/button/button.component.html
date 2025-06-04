@@ -1,4 +1,7 @@
-<button class="radar-button" (click)="onClick()" [class]="[typeClass, sizeClass]">
+<button class="radar-button"
+        (click)="onClick()"
+        [class]="[typeClass, sizeClass]"
+        [class.active]="isActive">
   @if (type === 'icon') {
     <!-- TODO: show Icon based on label name -->
     {{ label }}

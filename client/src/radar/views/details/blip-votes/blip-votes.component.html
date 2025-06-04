@@ -1,6 +1,17 @@
-<div>
+<div class="blip-vote__options">
   @for (ring of rings; track $index) {
-    <!-- TODO: add styling for clicked button -->
-    <radar-button [label]="ring" (clicked)="onVote(ring)"/>
+    <radar-button [label]="ring"
+                  (clicked)="onVote(ring)"
+                  [isActive]="selectedRing === ring"
+    />
+  }
+</div>
+<div class="blip-vote__selection">
+  @if (selectedRing) {
+    <p>
+      You voted for: <em>{{selectedRing}}</em>
+      <br/>
+      You can change your vote while the session is active
+    </p>
   }
 </div>

@@ -23,7 +23,7 @@ export interface VotingEventSessionStop extends VotingEventBase {
 
 export interface VotingEventVote extends VotingEventBase {
   type: 'vote';
-  vote: Ring;
+  vote?: Ring;
 }
 
 export interface VotingEventMessage extends VotingEventBase {

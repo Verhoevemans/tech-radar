@@ -31,7 +31,7 @@
         box-shadow: $shadow-up-small--light;
       }
 
-      &:active {
+      &:active, &.active {
         box-shadow: $shadow-down-small;
       }
     }

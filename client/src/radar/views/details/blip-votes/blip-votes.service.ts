@@ -20,14 +20,14 @@ export class BlipVotesService {
   }
 
   public stopVotingSession(): void {
-    this.votingConnection && this.votingConnection.complete();
+    this.votingConnection && this.votingConnection.next({ type: 'stop' });
   }
 
   public sendMessage(message: string): void {
     this.votingConnection && this.votingConnection.next({ type: 'message', message });
   }
 
-  public sendVote(vote: Ring): void {
+  public sendVote(vote?: Ring): void {
     this.votingConnection && this.votingConnection.next({ type: 'vote', vote });
   }
 }

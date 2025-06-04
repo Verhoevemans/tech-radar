@@ -20,6 +20,9 @@ export class ButtonComponent {
   @Input()
   public size: ButtonSize = 'medium';
 
+  @Input()
+  public isActive = false;
+
   @Output()
   public clicked = new EventEmitter<void>();
 

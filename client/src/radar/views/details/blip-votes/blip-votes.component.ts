@@ -19,6 +19,7 @@ export class BlipVotesComponent implements OnDestroy {
   // TODO: is blipId still needed..?
   public blipId: string;
   public rings = rings;
+  public selectedRing: Ring | undefined;
 
   public constructor(@Inject(MODAL_DATA) public modalData: ModalData,
                      private readonly blipVotesService: BlipVotesService) {
@@ -30,6 +31,11 @@ export class BlipVotesComponent implements OnDestroy {
   }
 
   public onVote(ring: Ring): void {
-    this.blipVotesService.sendVote(ring);
+    if (ring === this.selectedRing) {
+      this.selectedRing = undefined;
+    } else {
+      this.selectedRing = ring;
+    }
+    this.blipVotesService.sendVote(this.selectedRing);
   }
 }
