@@ -107,8 +107,6 @@ export class RadarDetailsComponent implements OnInit, OnDestroy {
           this.modalService.openModal(BlipVotesComponent as Component, 'Vote!', {
             data: event.blipId
           });
-        } else if (event.type === 'message') {
-          this.messages.push(`an event was send: ${event.message}`);
         } else if (event.type === 'vote') {
           console.log('A Vote was cast!', event.vote);
         }

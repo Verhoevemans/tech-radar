@@ -1,0 +1,39 @@
+@import 'base-variables';
+
+:host {
+  display: block;
+  margin-top: -28px;
+  min-height: 300px;
+
+  .radar-tabs {
+    border-radius: $border-radius-medium $border-radius-medium 0 0;
+    box-shadow: $shadow-down-small;
+    display: flex;
+    margin-bottom: $margin-small;
+
+    &__tab {
+      border-radius: $border-radius-small $border-radius-small 0 0;
+      cursor: pointer;
+      display: flex;
+      flex-grow: 1;
+      justify-content: center;
+      margin: $margin-medium $margin-medium 0;
+
+      &.active {
+        background-color: $grey-dark;
+        box-shadow: $shadow-up-small;
+        position: relative;
+
+        &::after {
+          background-color: $grey-dark;
+          bottom: -12px;
+          content: "";
+          height: 12px;
+          left: -20px;
+          right: -20px;
+          position: absolute;
+        }
+      }
+    }
+  }
+}

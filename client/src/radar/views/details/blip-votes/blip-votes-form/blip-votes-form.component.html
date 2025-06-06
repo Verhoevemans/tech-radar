@@ -1,0 +1,17 @@
+<div class="blip-votes-form__options">
+  @for (ring of rings; track $index) {
+    <radar-button [label]="ring"
+                  (clicked)="onVote(ring)"
+                  [isActive]="selectedRing === ring"
+    />
+  }
+</div>
+<div class="blip-votes-form__selection">
+  @if (selectedRing) {
+    <p>
+      You voted for: <em>{{selectedRing}}</em>
+      <br/>
+      You can change your vote while the session is active
+    </p>
+  }
+</div>

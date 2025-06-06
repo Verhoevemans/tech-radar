@@ -1,25 +1,31 @@
 import { Component, Inject, OnDestroy } from '@angular/core';
 
-import { MODAL_DATA, ModalData } from '../../../shared/components/core/modal/modal.model';
 import { ButtonComponent } from '../../../shared/components/common/button/button.component';
-import { Ring, rings } from '../../../shared/models/blip.model';
+import { TabComponent } from '../../../shared/components/common/tab/tab.component';
+import { MODAL_DATA, ModalData } from '../../../shared/components/core/modal/modal.model';
 
 import { BlipVotesService } from './blip-votes.service';
+import { BlipVotesFormComponent } from './blip-votes-form/blip-votes-form.component';
+import { BlipVotesScoresComponent } from './blip-votes-scores/blip-votes-scores.component';
+
+type Tab = 'vote' | 'result';
 
 @Component({
   selector: 'radar-blip-votes',
   standalone: true,
   imports: [
-    ButtonComponent
+    BlipVotesFormComponent,
+    BlipVotesScoresComponent,
+    ButtonComponent,
+    TabComponent
   ],
   templateUrl: './blip-votes.component.html',
   styleUrl: './blip-votes.component.scss'
 })
 export class BlipVotesComponent implements OnDestroy {
-  // TODO: is blipId still needed..?
+  public activeTab: Tab = 'vote';
   public blipId: string;
-  public rings = rings;
-  public selectedRing: Ring | undefined;
+  public tabs = ['vote', 'result'];
 
   public constructor(@Inject(MODAL_DATA) public modalData: ModalData,
                      private readonly blipVotesService: BlipVotesService) {
@@ -30,12 +36,7 @@ export class BlipVotesComponent implements OnDestroy {
     this.blipVotesService.stopVotingSession();
   }
 
-  public onVote(ring: Ring): void {
-    if (ring === this.selectedRing) {
-      this.selectedRing = undefined;
-    } else {
-      this.selectedRing = ring;
-    }
-    this.blipVotesService.sendVote(this.selectedRing);
+  public setActiveTab(tab: Tab) {
+    this.activeTab = tab;
   }
 }

@@ -1,0 +1,13 @@
+.blip-votes-form {
+  &__options {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+  }
+
+  &__selection {
+    display: block;
+    height: 32px;
+    margin: 14px 12px;
+  }
+}

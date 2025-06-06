@@ -1,17 +1,7 @@
-<div class="blip-vote__options">
-  @for (ring of rings; track $index) {
-    <radar-button [label]="ring"
-                  (clicked)="onVote(ring)"
-                  [isActive]="selectedRing === ring"
-    />
+<radar-tab [tabOptions]="tabs" (tabSelected)="setActiveTab($event)">
+  @if (activeTab === 'vote') {
+    <radar-blip-votes-form/>
+  } @else if (activeTab === 'result') {
+    <radar-blip-votes-scores/>
   }
-</div>
-<div class="blip-vote__selection">
-  @if (selectedRing) {
-    <p>
-      You voted for: <em>{{selectedRing}}</em>
-      <br/>
-      You can change your vote while the session is active
-    </p>
-  }
-</div>
+</radar-tab>

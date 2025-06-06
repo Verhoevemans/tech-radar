@@ -3,18 +3,18 @@ import { Ring } from './blip.model';
 export type VotingEvent =
   | VotingEventSessionStart
   | VotingEventSessionStop
-  | VotingEventVote
-  | VotingEventMessage;
+  | VotingEventVote;
 
 interface VotingEventBase {
   type: VotingEventType;
 }
 
-export type VotingEventType = 'start' | 'stop' | 'vote' | 'message';
+export type VotingEventType = 'start' | 'stop' | 'vote';
 
 export interface VotingEventSessionStart extends VotingEventBase {
   type: 'start';
   blipId: string;
+  votes?: (Ring | undefined)[];
 }
 
 export interface VotingEventSessionStop extends VotingEventBase {
@@ -24,9 +24,9 @@ export interface VotingEventSessionStop extends VotingEventBase {
 export interface VotingEventVote extends VotingEventBase {
   type: 'vote';
   vote?: Ring;
+  votes?: (Ring | undefined)[];
 }
 
-export interface VotingEventMessage extends VotingEventBase {
-  type: 'message';
-  message: string;
+export interface VotingResults {
+  votes: (Ring | undefined)[];
 }
