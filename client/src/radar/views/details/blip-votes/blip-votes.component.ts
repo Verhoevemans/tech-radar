@@ -6,7 +6,7 @@ import { MODAL_DATA, ModalData } from '../../../shared/components/core/modal/mod
 
 import { BlipVotesService } from './blip-votes.service';
 import { BlipVotesFormComponent } from './blip-votes-form/blip-votes-form.component';
-import { BlipVotesScoresComponent } from './blip-votes-scores/blip-votes-scores.component';
+import { BlipVotesResultsComponent } from './blip-votes-results/blip-votes-results.component';
 
 type Tab = 'vote' | 'result';
 
@@ -15,7 +15,7 @@ type Tab = 'vote' | 'result';
   standalone: true,
   imports: [
     BlipVotesFormComponent,
-    BlipVotesScoresComponent,
+    BlipVotesResultsComponent,
     ButtonComponent,
     TabComponent
   ],

@@ -1,0 +1,13 @@
+:host {
+  display: block;
+
+  .blip-votes-results {
+    &__score {
+      display: flex;
+
+      h3 {
+        min-width: 80px;
+      }
+    }
+  }
+}

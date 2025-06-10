@@ -102,6 +102,7 @@ export class RadarDetailsComponent implements OnInit, OnDestroy {
     this.blipVotesService.createVotingConnection(this.name).subscribe({
       next: (event: VotingEvent): void => {
         console.log('we have something!!', event);
+
         if (event.type === 'start') {
           console.log('socket event says start, opening vote modal!');
           this.modalService.openModal(BlipVotesComponent as Component, 'Vote!', {

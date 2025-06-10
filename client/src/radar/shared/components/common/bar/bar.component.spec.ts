@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BlipVotesScoresComponent } from './blip-votes-scores.component';
+import { BarComponent } from './bar.component';
 
-describe('BlipVotesScoresComponent', () => {
-  let component: BlipVotesScoresComponent;
-  let fixture: ComponentFixture<BlipVotesScoresComponent>;
+describe('BarComponent', () => {
+  let component: BarComponent;
+  let fixture: ComponentFixture<BarComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [BlipVotesScoresComponent]
+      imports: [BarComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(BlipVotesScoresComponent);
+    fixture = TestBed.createComponent(BarComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
