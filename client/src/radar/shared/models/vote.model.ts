@@ -1,5 +1,7 @@
 import { Ring } from './blip.model';
 
+export type Vote = Ring | undefined;
+
 export type VotingEvent =
   | VotingEventSessionStart
   | VotingEventSessionStop
@@ -14,7 +16,7 @@ export type VotingEventType = 'start' | 'stop' | 'vote';
 export interface VotingEventSessionStart extends VotingEventBase {
   type: 'start';
   blipId: string;
-  votes?: (Ring | undefined)[];
+  votes?: Vote[];
 }
 
 export interface VotingEventSessionStop extends VotingEventBase {
@@ -24,9 +26,11 @@ export interface VotingEventSessionStop extends VotingEventBase {
 export interface VotingEventVote extends VotingEventBase {
   type: 'vote';
   vote?: Ring;
-  votes?: (Ring | undefined)[];
+  votes?: Vote[];
 }
 
 export interface VotingResults {
-  votes: (Ring | undefined)[];
+  votes: Vote[];
 }
+
+

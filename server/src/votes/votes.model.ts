@@ -1,3 +1,4 @@
+import mongoose from 'mongoose';
 import WebSocket from 'ws';
 
 import { Ring } from '../blip/blip.model';
@@ -11,6 +12,11 @@ export interface Session {
     url: string;
     connections: Connection[];
     blipId?: string;
+}
+
+export interface IVotingResult {
+    votes: (Ring | undefined)[];
+    result: Ring;
 }
 
 export type VotingEventType = 'start' | 'stop' | 'vote';
@@ -39,3 +45,15 @@ export interface VotingEventVote extends VotingEventBase {
     type: 'vote';
     vote: Ring;
 }
+
+export const VotingResultSchema = new mongoose.Schema<IVotingResult>({
+    votes: {
+        type: [String]
+    },
+    result: {
+        type: String,
+        required: [true, 'Vote Result is required']
+    }
+});
+
+export const VotingResult = mongoose.model<IVotingResult>('VotingResult', VotingResultSchema);

@@ -3,5 +3,6 @@
   <div class="blip-votes-results__score">
     <h3>{{ring}}:</h3>
     <radar-bar [total]="votes.length" [value]="getVotesForRing(ring)"/>
+    <radar-button label=">" [type]="'icon'" (clicked)="selectResult(ring)"/>
   </div>
 }

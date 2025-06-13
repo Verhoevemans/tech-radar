@@ -2,12 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 
-import { Radar } from '../../../../shared/models/radar.model';
-
-interface CreateRadarResponse {
-  success: boolean,
-  data: Radar
-}
+import { Radar, RadarAPIResponse } from '../../../../shared/models/radar.model';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +12,7 @@ export class CreateRadarFormService {
 
   public createRadar(name: string, quadrants: string[]): Observable<Radar> {
     return this.httpClient
-      .post<CreateRadarResponse>('api/radars', { name, quadrants })
+      .post<RadarAPIResponse>('api/radars', { name, quadrants })
       .pipe(
         map(response => response.data)
       );

@@ -9,3 +9,8 @@ export interface Blip {
   ring: Ring,
   link?: string
 }
+
+export interface BlipAPIResponse {
+  success: boolean,
+  data: Blip
+}

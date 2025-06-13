@@ -21,7 +21,7 @@ export class BlipListComponent implements OnChanges, OnInit {
   public blips!: Blip[];
 
   @Output()
-  public openBlipDetails = new EventEmitter<{ blip: Blip, edit: boolean}>();
+  public openBlipDetails = new EventEmitter<{ blip: Blip, edit: boolean }>();
 
   public blipsPerRing!: Blip[][];
   public higlightedBlipId: string | undefined;

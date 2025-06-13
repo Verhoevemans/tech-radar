@@ -1,5 +1,7 @@
 import mongoose, { ObjectId } from 'mongoose';
 
+import { IVotingResult, VotingResultSchema } from '../votes/votes.model';
+
 const rings = ['hold', 'assess', 'trial', 'adopt'] as const;
 export type Ring = (typeof rings)[number];
 
@@ -9,6 +11,7 @@ export interface IBlip {
     quadrant: string;
     ring: Ring;
     link: string;
+    votingResults: IVotingResult[];
     radar: ObjectId
 }
 
@@ -34,6 +37,10 @@ const BlipSchema = new mongoose.Schema<IBlip>({
     },
     link: {
         type: String
+    },
+    votingResults: {
+        type: [VotingResultSchema],
+        ref: 'votingResults'
     },
     radar: {
         type: mongoose.Schema.Types.ObjectId,

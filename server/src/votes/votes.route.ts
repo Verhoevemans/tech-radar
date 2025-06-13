@@ -7,4 +7,7 @@ const router = express.Router({ mergeParams: true }) as expressWs.Router;
 
 router.ws('/', VotesController.votes);
 
+router.route('/blips/:id')
+    .put(VotesController.saveVotes);
+
 export default router;

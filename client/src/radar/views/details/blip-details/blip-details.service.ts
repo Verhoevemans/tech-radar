@@ -2,13 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 
-import { Blip } from '../../../shared/models/blip.model';
+import { Blip, BlipAPIResponse } from '../../../shared/models/blip.model';
 import { RadarDetailsService } from '../radar-details.service';
-
-interface CreateBlipResponse {
-  success: boolean,
-  data: Blip
-}
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +14,7 @@ export class BlipDetailsService {
   public createBlip(blip: Blip): Observable<Blip> {
     const radarName = this.detailsService.getRadarName();
     return this.httpClient
-      .post<CreateBlipResponse>(`api/radars/${radarName}/blips`, { blip })
+      .post<BlipAPIResponse>(`api/radars/${radarName}/blips`, { blip })
       .pipe(
         map(response => response.data)
       );
@@ -28,7 +23,7 @@ export class BlipDetailsService {
   public updateBlip(blip: Blip): Observable<Blip> {
     const radarName = this.detailsService.getRadarName();
     return this.httpClient
-      .put<CreateBlipResponse>(`api/radars/${radarName}/blips/${blip.id}`, { blip })
+      .put<BlipAPIResponse>(`api/radars/${radarName}/blips/${blip.id}`, { blip })
       .pipe(
         map(response => response.data)
       );

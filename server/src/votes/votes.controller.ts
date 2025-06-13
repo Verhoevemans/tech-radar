@@ -1,11 +1,13 @@
-import express from 'express';
+import { Request, Response } from 'express';
 import WebSocket from 'ws';
 
-import { Session, VotingEvent, VotingEventStart, VotingEventVote } from './votes.model';
+import Blip, { IBlip } from '../blip/blip.model';
 
-const sessions:  Session[] = [];
+import { Session, VotingEvent, VotingEventStart, VotingEventVote, VotingResult } from './votes.model';
 
 class VotesController {
+    private sessions:  Session[] = [];
+
     public constructor() {
         this.votes = this.votes.bind(this);
     }
@@ -15,16 +17,16 @@ class VotesController {
     * @path-param   radarName: string
     * @route        WS /api/radars/:radarName/votes
     **/
-    public votes(websocket: WebSocket, req: express.Request): void {
+    public votes(websocket: WebSocket, req: Request): void {
         console.log('votes() - for Radar', req.params.radarName);
 
         const radarName: string = req.params.radarName;
-        const session = sessions.find(session => session.url === radarName);
+        const session = this.sessions.find(session => session.url === radarName);
 
         if (session) {
             session.connections.push({ websocket });
         } else {
-            sessions.push({ url: radarName, connections: [{ websocket }] });
+            this.sessions.push({ url: radarName, connections: [{ websocket }] });
         }
 
         if (session?.blipId) {
@@ -41,7 +43,7 @@ class VotesController {
             console.log('websocket message received', websocketData);
 
             const data: VotingEvent = JSON.parse(websocketData.toString());
-            const session = sessions.find(session => session.url === radarName)!;
+            const session = this.sessions.find(session => session.url === radarName)!;
 
             switch (data.type) {
                 case 'start':
@@ -59,7 +61,7 @@ class VotesController {
         websocket.on('close', () => {
             console.log('websocket connection closed');
 
-            const session = sessions.find(session => session.url === radarName)!;
+            const session = this.sessions.find(session => session.url === radarName)!;
             const connection = session.connections.filter(connection => connection.websocket === websocket)[0];
             session.connections.splice(session.connections.indexOf(connection), 1);
 
@@ -71,6 +73,39 @@ class VotesController {
             session.connections.forEach(connection => {
                 connection.websocket.send(JSON.stringify(response));
             });
+        });
+    }
+
+    /*
+    * @description  Save vote results to Blip by Blip ID
+    * @path-param   radarName: string
+    * @path-param   id: string
+    * @req-param    votingResult: object
+    * @route        PUT /api/radars/:radarName/votes/blips/:id
+    **/
+    public async saveVotes(req: Request, res: Response): Promise<Response> {
+        console.log(`saveVotes() - for Radar ${req.params.radarName} for Blip: ${req.params.id}`);
+
+        let blip: IBlip | null;
+        const votingResult = req.body.votingResult;
+
+        try {
+            await Blip.findByIdAndUpdate(req.params.id, {
+                ring: votingResult.result,
+                $push: { votingResults: votingResult }
+            });
+            blip = await Blip.findById(req.params.id);
+        } catch (error) {
+            console.log('failed to update Blip', req.params.id, error);
+            return res.status(500).json({
+                success: false,
+                error
+            });
+        }
+
+        return res.status(200).json({
+            success: true,
+            data: blip
         });
     }
 

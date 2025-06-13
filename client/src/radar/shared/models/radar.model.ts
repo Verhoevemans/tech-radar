@@ -6,3 +6,13 @@ export interface Radar {
   quadrants: string[],
   blips: Blip[]
 }
+
+export interface RadarAPIResponse {
+  success: boolean,
+  data: Radar
+}
+
+export interface RadarsAPIResponse {
+  success: boolean,
+  data: Radar[]
+}
