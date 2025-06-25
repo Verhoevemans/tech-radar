@@ -23,30 +23,25 @@ import { SelectRadarService } from './select-radar.service';
   styleUrl: './select-radar.component.scss'
 })
 export class SelectRadarComponent implements OnInit {
-  public status: Signal<Status> = this.store.status;
-  public radars: Signal<Radar[]> = this.store.radars;
+  public status: Signal<Status> = this.store.state.select(state => state.status());
+  public radars: Signal<Radar[]> = this.store.state.select(state => state.radars());
 
   public constructor(private readonly selectRadarService: SelectRadarService,
                      private readonly store: StartStore,
                      private readonly router: Router) {}
 
-  public ngOnInit() {
-    this.store.setStatus('loading');
+  public ngOnInit(): void {
+    this.store.state.update('status', 'loading');
     this.selectRadarService.getRadars().subscribe({
       next: (response) => {
         console.log('GET - Radars', response);
-        this.store.setRadars(response);
-        /*
-        * TODO: the real update function should look like and be implemented like this:
-        *  this.store.update('radars', response);
-        *  this.store.update('status', 'success');
-        * */
+        this.store.state.update('radars', response);
       },
       error: (_error) => {
-        this.store.setStatus('error');
+        this.store.state.update('status', 'error');
       },
       complete: () => {
-        this.store.setStatus('success');
+        this.store.state.update('status', 'success');
       }
     });
   }
