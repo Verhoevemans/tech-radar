@@ -1,8 +1,8 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output, Signal, SimpleChanges } from '@angular/core';
 
 import { Blip, Ring } from '../../../shared/models/blip.model';
 import { Radar } from '../../../shared/models/radar.model';
-import { RadarDetailsService } from '../radar-details.service';
+import { RadarDetailsStore } from '../radar-details.store';
 
 @Component({
   selector: 'radar-map',
@@ -10,7 +10,7 @@ import { RadarDetailsService } from '../radar-details.service';
   templateUrl: './radar-map.component.html',
   styleUrl: './radar-map.component.scss'
 })
-export class RadarMapComponent implements OnChanges, OnInit {
+export class RadarMapComponent implements OnChanges {
   @Input({ required: true })
   public radar: Radar | undefined;
 
@@ -18,20 +18,15 @@ export class RadarMapComponent implements OnChanges, OnInit {
   public openBlipDetails = new EventEmitter<Blip>();
 
   public blipPositions = new Map<string, { x: number, y: number }>();
-  public higlightedBlipId: string | undefined;
+  public higlightedBlipId: Signal<string | undefined> = this.store.state.select(state => state.highlightedBlipId());
 
-  constructor(private readonly radarDetailsService: RadarDetailsService) {}
+  constructor(private readonly store: RadarDetailsStore) {}
 
+  // TODO: should radar be a Signal instead of an input??
   public ngOnChanges(changes: SimpleChanges): void {
     if (changes['radar'].currentValue) {
       this.setBlipPositions();
     }
-  }
-
-  public ngOnInit(): void {
-    this.radarDetailsService.highlightedBlipId.subscribe((id) => {
-      this.higlightedBlipId = id;
-    })
   }
 
   public getBlipPosition(blip: Blip): string {
@@ -44,7 +39,7 @@ export class RadarMapComponent implements OnChanges, OnInit {
   }
 
   public onBlipHover(id: string | undefined): void {
-    this.radarDetailsService.highLightBlip(id);
+    this.store.state.update('highlightedBlipId', id);
   }
 
   public onBlipClick(blip: Blip): void {

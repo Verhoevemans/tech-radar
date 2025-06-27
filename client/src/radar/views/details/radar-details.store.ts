@@ -5,17 +5,19 @@ import { createStore, Store } from '../../shared/utils/store';
 
 export type Status = 'loading' | 'success' | 'error';
 
-interface StartState {
-  radars: Radar[],
+interface RadarDetailsState {
+  highlightedBlipId: string | undefined,
+  radar: Radar | undefined,
   status: Status
 }
 
 @Injectable({
   providedIn: 'root'
 })
-export class StartStore {
-  public readonly state: Store<StartState> = createStore({
-    radars: [],
+export class RadarDetailsStore {
+  public readonly state: Store<RadarDetailsState> = createStore({
+    highlightedBlipId: undefined,
+    radar: undefined,
     status: 'success'
   });
 }

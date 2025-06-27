@@ -1,6 +1,4 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { FormControl, FormsModule } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { Component, Input, OnDestroy, OnInit, Signal } from '@angular/core';
 
 import { ButtonComponent } from '../../shared/components/common/button/button.component';
 import { InputComponent } from '../../shared/components/common/input/input.component';
@@ -17,21 +15,21 @@ import { BlipListComponent } from './blip-list/blip-list.component';
 import { BlipVotesComponent } from './blip-votes/blip-votes.component';
 import { BlipVotesService } from './blip-votes/blip-votes.service';
 import { RadarDetailsService } from './radar-details.service';
+import { RadarDetailsStore, Status } from './radar-details.store';
 import { RadarMapComponent } from './radar-map/radar-map.component';
 
 @Component({
   selector: 'radar-details',
   standalone: true,
   imports: [
+    BlipDetailsComponent,
     BlipListComponent,
     ButtonComponent,
     HeaderComponent,
-    RadarMapComponent,
-    BlipDetailsComponent,
-    NotificationComponent,
-    SpinnerComponent,
     InputComponent,
-    FormsModule
+    NotificationComponent,
+    RadarMapComponent,
+    SpinnerComponent
   ],
   templateUrl: './radar-details.component.html',
   styleUrl: './radar-details.component.scss'
@@ -40,25 +38,19 @@ export class RadarDetailsComponent implements OnInit, OnDestroy {
   @Input()
   public name!: string;
 
-  public error: string | undefined;
-  public loading = false;
-  public radar: Radar | undefined;
-
-  public messages: string[] = [];
-  public message = new FormControl();
+  public status: Signal<Status> = this.store.state.select(state => state.status());
+  public radar: Signal<Radar | undefined> = this.store.state.select(state => state.radar());
 
   public get headerTitle(): string {
     return this.name.toUpperCase();
   }
 
-  public constructor(private readonly detailsService: RadarDetailsService,
+  public constructor(private readonly blipVotesService: BlipVotesService,
+                     private readonly detailsService: RadarDetailsService,
                      private readonly modalService: ModalService,
-                     private readonly route: ActivatedRoute,
-                     private readonly blipVotesService: BlipVotesService) {}
+                     private readonly store: RadarDetailsStore) {}
 
   public ngOnInit(): void {
-    // TODO: this setRadarName can be done with the @Input prop name?
-    this.detailsService.setRadarName(this.route.snapshot.paramMap.get('name')!);
     this.getRadarDetails();
     this.setupVotingSessionConnection();
   }
@@ -68,9 +60,7 @@ export class RadarDetailsComponent implements OnInit, OnDestroy {
   }
 
   public getBlipsByQuadrant(quadrant: string): Blip[] {
-    return this.radar
-      ? this.radar.blips.filter(blip => blip.quadrant === quadrant)
-      : [];
+    return this.radar()?.blips.filter(blip => blip.quadrant === quadrant) || [];
   }
 
   public openBlipDetailsModal(blip: Blip, edit = false): void {
@@ -81,19 +71,16 @@ export class RadarDetailsComponent implements OnInit, OnDestroy {
   }
 
   private getRadarDetails(): void {
-    this.loading = true;
+    this.store.state.update('status', 'loading');
     this.detailsService.getRadarDetails(this.name).subscribe({
       next: (response) => {
-        console.log('GET - Radar Details', response);
-        this.radar = response;
+        this.store.state.update('radar', response);
       },
       error: (_error) => {
-        this.loading = false;
-        this.error = 'Something went wrong when retrieving the Radar Details. Please try again later';
+        this.store.state.update('status', 'error');
       },
       complete: () => {
-        this.loading = false;
-        this.error = undefined;
+        this.store.state.update('status', 'success');
       }
     });
   }
@@ -101,15 +88,13 @@ export class RadarDetailsComponent implements OnInit, OnDestroy {
   private setupVotingSessionConnection(): void {
     this.blipVotesService.createVotingConnection(this.name).subscribe({
       next: (event: VotingEvent): void => {
-        console.log('we have something!!', event);
-
         if (event.type === 'start') {
-          console.log('socket event says start, opening vote modal!');
-          const blip = this.detailsService.getBlipById(event.blipId);
+          const blip = this.radar()?.blips.find(blip => blip.id === event.blipId);
           this.modalService.openModal(BlipVotesComponent as Component, `Vote position for: ${blip?.name}`, {
             data: event.blipId
           });
         } else if (event.type === 'vote') {
+          // TODO: listen to event type STOP
           console.log('A Vote was cast!', event.vote);
         }
       },

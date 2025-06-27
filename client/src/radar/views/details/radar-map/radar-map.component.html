@@ -16,7 +16,7 @@
     <g>
       @for (blip of radar.blips; track $index) {
         <g [attr.transform]="getBlipPosition(blip)">
-          <text [attr.class]="blip.id === higlightedBlipId ? 'tooltip' : ''"
+          <text [attr.class]="blip.id === higlightedBlipId() ? 'tooltip' : ''"
                 [attr.transform]="'translate(0,-3)'"
                 font-family="Tahoma"
                 font-size="0.3em">
@@ -25,7 +25,7 @@
           <circle r="2"
                   stroke="black"
                   fill="white"
-                  [attr.class]="blip.id === higlightedBlipId ? 'highlight' : ''"
+                  [attr.class]="blip.id === higlightedBlipId() ? 'highlight' : ''"
                   (click)="onBlipClick(blip)"
                   (mouseenter)="onBlipHover(blip.id)"
                   (mouseleave)="onBlipHover(undefined)">

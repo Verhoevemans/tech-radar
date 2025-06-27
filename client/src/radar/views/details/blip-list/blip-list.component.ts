@@ -1,8 +1,8 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output, Signal, SimpleChanges } from '@angular/core';
 
 import { ButtonComponent } from '../../../shared/components/common/button/button.component';
 import { Blip, rings } from '../../../shared/models/blip.model';
-import { RadarDetailsService } from '../radar-details.service';
+import { RadarDetailsStore } from '../radar-details.store';
 
 @Component({
   selector: 'radar-blip-list',
@@ -13,7 +13,7 @@ import { RadarDetailsService } from '../radar-details.service';
   templateUrl: './blip-list.component.html',
   styleUrl: './blip-list.component.scss'
 })
-export class BlipListComponent implements OnChanges, OnInit {
+export class BlipListComponent implements OnChanges {
   @Input({ required: true })
   public quadrant!: string;
 
@@ -24,11 +24,12 @@ export class BlipListComponent implements OnChanges, OnInit {
   public openBlipDetails = new EventEmitter<{ blip: Blip, edit: boolean }>();
 
   public blipsPerRing!: Blip[][];
-  public higlightedBlipId: string | undefined;
+  public higlightedBlipId: Signal<string | undefined> = this.store.state.select(state => state.highlightedBlipId());
   public rings = rings;
 
-  public constructor(private readonly radarDetailsService: RadarDetailsService) {}
+  public constructor(private readonly store: RadarDetailsStore) {}
 
+  // TODO: should Blips be Signals instead of an input??
   public ngOnChanges(changes: SimpleChanges): void {
     if (changes['blips'].currentValue) {
       this.blipsPerRing = rings.map(ring => {
@@ -37,14 +38,8 @@ export class BlipListComponent implements OnChanges, OnInit {
     }
   }
 
-  public ngOnInit(): void {
-    this.radarDetailsService.highlightedBlipId.subscribe((id) => {
-      this.higlightedBlipId = id;
-    });
-  }
-
   public onBlipHover(id: string | undefined): void {
-    this.radarDetailsService.highLightBlip(id);
+    this.store.state.update('highlightedBlipId', id);
   }
 
   public onBlipClick(blip: Blip): void {

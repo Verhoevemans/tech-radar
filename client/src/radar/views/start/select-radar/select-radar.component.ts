@@ -34,7 +34,6 @@ export class SelectRadarComponent implements OnInit {
     this.store.state.update('status', 'loading');
     this.selectRadarService.getRadars().subscribe({
       next: (response) => {
-        console.log('GET - Radars', response);
         this.store.state.update('radars', response);
       },
       error: (_error) => {

@@ -1,14 +1,14 @@
 <radar-header [title]="headerTitle"/>
-@if (loading) {
+@if (status() === 'loading') {
   <radar-spinner/>
-} @else if (error) {
-  <radar-notification [message]="error"/>
+} @else if (status() === 'error') {
+  <radar-notification [message]="'Something went wrong when retrieving the Radar Details. Please try again later'"/>
 }
 <div class="radar-details">
   <div class="map">
-    <radar-map [radar]="radar" (openBlipDetails)="openBlipDetailsModal($event)"/>
+    <radar-map [radar]="radar()" (openBlipDetails)="openBlipDetailsModal($event)"/>
   </div>
-  @for (quadrant of radar?.quadrants; track $index) {
+  @for (quadrant of radar()?.quadrants; track $index) {
     <div class="panel">
       <radar-blip-list [quadrant]="quadrant"
                        [blips]="getBlipsByQuadrant(quadrant)"

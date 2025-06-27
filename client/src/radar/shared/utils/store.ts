@@ -8,7 +8,7 @@ export type SignalState<STATE> = {
 // Selector is a function that allows callers to select a specific property from the State object
 type Selector<STATE, PROPERTY> = (state: STATE) => PROPERTY;
 
-interface Store<STATE> {
+export interface Store<STATE> {
   select<PROPERTY>(selector: Selector<SignalState<STATE>, PROPERTY>): Signal<PROPERTY>;
   update<PROPERTY extends keyof STATE>(prop: PROPERTY, update: STATE[PROPERTY] | Selector<STATE[PROPERTY], STATE[PROPERTY]>): void
 }

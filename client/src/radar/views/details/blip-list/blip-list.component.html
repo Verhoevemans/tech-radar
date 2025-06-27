@@ -10,7 +10,7 @@
         <div (mouseenter)="onBlipHover(blip.id)"
              (mouseleave)="onBlipHover(undefined)"
              (click)="onBlipClick(blip)"
-             [class]="blip.id === higlightedBlipId ? 'highlight' : ''">
+             [class]="blip.id === higlightedBlipId() ? 'highlight' : ''">
           {{ blip.name }}
         </div>
       }
