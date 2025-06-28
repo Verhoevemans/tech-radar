@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { Radar } from '../../shared/models/radar.model';
+import { Vote } from '../../shared/models/vote.model';
 import { createStore, Store } from '../../shared/utils/store';
 
 export type Status = 'loading' | 'success' | 'error';
@@ -8,7 +9,8 @@ export type Status = 'loading' | 'success' | 'error';
 interface RadarDetailsState {
   highlightedBlipId: string | undefined,
   radar: Radar | undefined,
-  status: Status
+  status: Status,
+  votes: Vote[]
 }
 
 @Injectable({
@@ -18,6 +20,7 @@ export class RadarDetailsStore {
   public readonly state: Store<RadarDetailsState> = createStore({
     highlightedBlipId: undefined,
     radar: undefined,
-    status: 'success'
+    status: 'success',
+    votes: []
   });
 }

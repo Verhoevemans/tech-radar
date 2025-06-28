@@ -1,10 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, map, Observable, tap } from 'rxjs';
+import { map, Observable, tap } from 'rxjs';
 import { webSocket, WebSocketSubject } from 'rxjs/webSocket';
 
 import { Blip, BlipAPIResponse, Ring } from '../../../shared/models/blip.model';
-import { VotingEvent, VotingResults } from '../../../shared/models/vote.model';
+import { VotingEvent } from '../../../shared/models/vote.model';
 import { RadarDetailsStore } from '../radar-details.store';
 
 @Injectable({
@@ -12,8 +12,6 @@ import { RadarDetailsStore } from '../radar-details.store';
 })
 export class BlipVotesService {
   private votingConnection: WebSocketSubject<VotingEvent> | undefined;
-  // TODO: VotingResults is State!! So make Signal here...
-  private votingResults = new BehaviorSubject<VotingResults>({ votes: [] });
 
   constructor(private readonly httpClient: HttpClient,
               private readonly store: RadarDetailsStore) {}
@@ -23,14 +21,10 @@ export class BlipVotesService {
     return this.votingConnection.pipe(
       tap(event => {
         if ((event.type === 'start' || event.type === 'vote') && event.votes) {
-          this.votingResults.next({ votes: event.votes });
+          this.store.state.update('votes', event.votes);
         }
       })
     );
-  }
-
-  public getVotingResults(): BehaviorSubject<VotingResults> {
-    return this.votingResults;
   }
 
   public saveVotesForBlip(result: Ring, votes: (Ring | undefined)[], blipId: string): Observable<Blip> {

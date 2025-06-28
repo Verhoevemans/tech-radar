@@ -28,9 +28,3 @@ export interface VotingEventVote extends VotingEventBase {
   vote?: Ring;
   votes?: Vote[];
 }
-
-export interface VotingResults {
-  votes: Vote[];
-}
-
-
