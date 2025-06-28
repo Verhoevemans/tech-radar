@@ -54,6 +54,9 @@ class BlipController {
 
         try {
             radar = await Radar.findOne({ url: req.params.radarName });
+            if (!radar) {
+                throw new Error('No Radar found with given ID');
+            }
         } catch (error) {
             console.log('failed to find Radar', error);
             return res.status(404).json({

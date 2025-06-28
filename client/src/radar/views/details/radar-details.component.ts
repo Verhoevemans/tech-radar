@@ -40,6 +40,7 @@ export class RadarDetailsComponent implements OnInit, OnDestroy {
 
   public status: Signal<Status> = this.store.state.select(state => state.status());
   public radar: Signal<Radar | undefined> = this.store.state.select(state => state.radar());
+  public radarUrl: Signal<string> = this.store.state.select(state => state.radarUrl());
 
   public get headerTitle(): string {
     return this.name.toUpperCase();
@@ -51,6 +52,7 @@ export class RadarDetailsComponent implements OnInit, OnDestroy {
                      private readonly store: RadarDetailsStore) {}
 
   public ngOnInit(): void {
+    this.store.state.update('radarUrl', this.name.toLowerCase());
     this.getRadarDetails();
     this.setupVotingSessionConnection();
   }
@@ -59,13 +61,9 @@ export class RadarDetailsComponent implements OnInit, OnDestroy {
     this.blipVotesService.stopVotingSession();
   }
 
-  public getBlipsByQuadrant(quadrant: string): Blip[] {
-    return this.radar()?.blips.filter(blip => blip.quadrant === quadrant) || [];
-  }
-
   public openBlipDetailsModal(blip: Blip, edit = false): void {
     this.modalService.openModal(BlipDetailsComponent as Component, 'Blip Details', {
-      data: { blip, edit },
+      data: { blip, edit, radarUrl: this.radarUrl() },
       onClose: this.getRadarDetails.bind(this)
     });
   }
@@ -91,7 +89,7 @@ export class RadarDetailsComponent implements OnInit, OnDestroy {
         if (event.type === 'start') {
           const blip = this.radar()?.blips.find(blip => blip.id === event.blipId);
           this.modalService.openModal(BlipVotesComponent as Component, `Vote position for: ${blip?.name}`, {
-            data: event.blipId
+            data: { blipId: event.blipId, radarUrl: this.radarUrl() }
           });
         } else if (event.type === 'vote') {
           // TODO: listen to event type STOP

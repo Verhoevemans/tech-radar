@@ -28,10 +28,12 @@ export class BlipVotesComponent implements OnDestroy {
   public activeTab: Tab = 'vote';
   public blipId: string;
   public tabs = ['vote', 'result'];
+  public radarUrl: string;
 
   public constructor(@Inject(MODAL_DATA) public modalData: ModalData,
                      private readonly blipVotesService: BlipVotesService) {
-    this.blipId = modalData.data;
+    this.blipId = modalData.data.blipId;
+    this.radarUrl = modalData.data.radarUrl;
   }
 
   public ngOnDestroy(): void {
@@ -39,7 +41,7 @@ export class BlipVotesComponent implements OnDestroy {
   }
 
   public saveVoteResults(result: Ring, votes: Vote[]): void {
-    this.blipVotesService.saveVotesForBlip(result, votes, this.blipId).subscribe({
+    this.blipVotesService.saveVotesForBlip(result, votes, this.radarUrl, this.blipId).subscribe({
       next: (blip) => {
         console.log('API call successfull', blip);
       }

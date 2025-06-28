@@ -27,12 +27,11 @@ export class BlipVotesService {
     );
   }
 
-  public saveVotesForBlip(result: Ring, votes: (Ring | undefined)[], blipId: string): Observable<Blip> {
-    const radarName = this.store.state.select(state => state.radar()).name;
+  public saveVotesForBlip(result: Ring, votes: (Ring | undefined)[], radarUrl: string, blipId: string): Observable<Blip> {
     const votingResult = { result, votes };
 
     return this.httpClient
-      .put<BlipAPIResponse>(`api/radars/${radarName}/votes/blips/${blipId}`, { votingResult })
+      .put<BlipAPIResponse>(`api/radars/${radarUrl}/votes/blips/${blipId}`, { votingResult })
       .pipe(
         map(response => response.data)
       );

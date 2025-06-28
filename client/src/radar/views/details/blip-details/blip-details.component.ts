@@ -26,6 +26,7 @@ export class BlipDetailsComponent {
   public edit: boolean;
   public error: string | undefined;
   public loading = false;
+  public radarUrl: string;
 
   private modalCloseCallback: () => void;
 
@@ -35,6 +36,7 @@ export class BlipDetailsComponent {
                      private readonly blipVotesService: BlipVotesService) {
     this.blip = modalData.data.blip;
     this.edit = modalData.data.edit;
+    this.radarUrl = modalData.data.radarUrl;
     this.modalCloseCallback = modalData.onClose!;
   }
 
@@ -44,7 +46,7 @@ export class BlipDetailsComponent {
       ? this.blipDetailsService.updateBlip.bind(this.blipDetailsService)
       : this.blipDetailsService.createBlip.bind(this.blipDetailsService);
 
-    apiRequest(blip).subscribe({
+    apiRequest(blip, this.radarUrl).subscribe({
       next: (blip) => {
         console.log('blip was saved', blip);
         this.modalCloseCallback();

@@ -3,7 +3,7 @@
   <radar-button label="+" [type]="'icon'" (clicked)="onBlipAdd()"/>
 </div>
 <div class="blip-list">
-  @for (blips of blipsPerRing; track $index) {
+  @for (blips of blipsPerRing(); track $index) {
     @if (blips.length > 0) {
       <h4 class="blip-list__header">{{ rings[$index] }}</h4>
       @for (blip of blips; track $index) {

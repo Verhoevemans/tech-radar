@@ -9,6 +9,7 @@ export type Status = 'loading' | 'success' | 'error';
 interface RadarDetailsState {
   highlightedBlipId: string | undefined,
   radar: Radar | undefined,
+  radarUrl: string,
   status: Status,
   votes: Vote[]
 }
@@ -20,6 +21,7 @@ export class RadarDetailsStore {
   public readonly state: Store<RadarDetailsState> = createStore({
     highlightedBlipId: undefined,
     radar: undefined,
+    radarUrl: '',
     status: 'success',
     votes: []
   });
