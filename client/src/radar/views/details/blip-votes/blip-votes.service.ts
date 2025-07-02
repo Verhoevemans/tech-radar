@@ -20,7 +20,7 @@ export class BlipVotesService {
     this.votingConnection = webSocket(`ws://localhost:3000/api/radars/${radarName}/votes`);
     return this.votingConnection.pipe(
       tap(event => {
-        if ((event.type === 'start' || event.type === 'vote') && event.votes) {
+        if (event.votes) {
           this.store.state.update('votes', event.votes);
         }
       })

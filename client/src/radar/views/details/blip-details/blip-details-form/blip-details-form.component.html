@@ -5,7 +5,7 @@
   <radar-select [control]="ringControl" [label]="'Radar position'" [options]="rings" [readonly]="!edit"/>
   <radar-input [control]="linkControl" [label]="'Resource Url'" [readonly]="!edit"/>
 </form>
-<div class="form-footer">
+<div class="blip-details-form__footer">
   @if (edit) {
     @if (blip.id) {
       <radar-button label="Cancel" (clicked)="cancelEdit()" [type]="'primary'"/>

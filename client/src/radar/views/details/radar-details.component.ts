@@ -91,9 +91,9 @@ export class RadarDetailsComponent implements OnInit, OnDestroy {
           this.modalService.openModal(BlipVotesComponent as Component, `Vote position for: ${blip?.name}`, {
             data: { blipId: event.blipId, radarUrl: this.radarUrl() }
           });
-        } else if (event.type === 'vote') {
-          // TODO: listen to event type STOP
-          console.log('A Vote was cast!', event.vote);
+        } else if (event.type === 'stop') {
+          this.modalService.closeModal();
+          this.getRadarDetails();
         }
       },
       error: (error: string) => {

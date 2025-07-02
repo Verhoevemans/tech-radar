@@ -3,9 +3,11 @@
 :host {
   display: block;
 
-  .form-footer {
-    display: flex;
-    justify-content: space-evenly;
-    margin-top: $padding-large;
+  .blip-details-form {
+    &__footer {
+      display: flex;
+      justify-content: space-evenly;
+      margin-top: $padding-large;
+    }
   }
 }

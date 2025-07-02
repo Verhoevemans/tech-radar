@@ -28,13 +28,13 @@ export type VotingEvent =
 
 export interface VotingEventBase {
     type: VotingEventType;
-    blipId: string;
     participants: number;
     votes: (Ring | undefined)[];
 }
 
 export interface VotingEventStart extends VotingEventBase {
     type: 'start';
+    blipId: string;
 }
 
 export interface VotingEventStop extends VotingEventBase {
@@ -56,4 +56,4 @@ export const VotingResultSchema = new mongoose.Schema<IVotingResult>({
     }
 });
 
-export const VotingResult = mongoose.model<IVotingResult>('VotingResult', VotingResultSchema);
+export default mongoose.model<IVotingResult>('VotingResult', VotingResultSchema);

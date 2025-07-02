@@ -9,6 +9,7 @@ export type VotingEvent =
 
 interface VotingEventBase {
   type: VotingEventType;
+  votes?: Vote[];
 }
 
 export type VotingEventType = 'start' | 'stop' | 'vote';
@@ -16,7 +17,6 @@ export type VotingEventType = 'start' | 'stop' | 'vote';
 export interface VotingEventSessionStart extends VotingEventBase {
   type: 'start';
   blipId: string;
-  votes?: Vote[];
 }
 
 export interface VotingEventSessionStop extends VotingEventBase {
@@ -26,5 +26,4 @@ export interface VotingEventSessionStop extends VotingEventBase {
 export interface VotingEventVote extends VotingEventBase {
   type: 'vote';
   vote?: Ring;
-  votes?: Vote[];
 }

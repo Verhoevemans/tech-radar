@@ -5,6 +5,7 @@ import { ButtonComponent } from '../../../../shared/components/common/button/but
 import { Ring, rings } from '../../../../shared/models/blip.model';
 import { Vote } from '../../../../shared/models/vote.model';
 import { RadarDetailsStore } from '../../radar-details.store';
+import { BlipVotesService } from '../blip-votes.service';
 
 @Component({
   selector: 'radar-blip-votes-results',
@@ -23,7 +24,12 @@ export class BlipVotesResultsComponent {
   protected readonly rings = rings;
   public votes: Signal<Vote[]> = this.store.state.select(state => state.votes());
 
-  public constructor(private readonly store: RadarDetailsStore) {}
+  public constructor(private readonly blipVotesService: BlipVotesService,
+                     private readonly store: RadarDetailsStore) {}
+
+  public cancelVote(): void {
+    this.blipVotesService.stopVotingSession();
+  }
 
   public getVotesForRing(ring: Ring): number {
     return this.votes().filter(vote => vote === ring).length;

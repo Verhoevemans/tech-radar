@@ -3,7 +3,7 @@ import WebSocket from 'ws';
 
 import Blip, { IBlip } from '../blip/blip.model';
 
-import { Session, VotingEvent, VotingEventStart, VotingEventVote, VotingResult } from './votes.model';
+import { Session, VotingEvent, VotingEventStart, VotingEventStop, VotingEventVote } from './votes.model';
 
 class VotesController {
     private sessions:  Session[] = [];
@@ -54,7 +54,7 @@ class VotesController {
                     break;
                 case 'stop':
                 default:
-                    this.handleStopEvent(session);
+                    this.handleStopEvent(data, session);
             }
         });
 
@@ -112,16 +112,30 @@ class VotesController {
     private handleStartEvent(data: VotingEventStart, session: Session): void {
         session.blipId = data.blipId;
 
-        const response = { ...data, participants: session.connections.length };
+        const response = {
+            ...data,
+            participants: session.connections.length,
+            votes: Array.from(session.connections, (_connection) => undefined)
+        };
 
         session.connections.forEach(connection => {
             connection.websocket.send(JSON.stringify(response));
         });
     }
 
-    private handleStopEvent(session: Session): void {
+    private handleStopEvent(data: VotingEventStop, session: Session): void {
         session.blipId = undefined;
-        session.connections.forEach(connection => connection.vote = undefined);
+
+        const response = {
+            ...data,
+            participants: session.connections.length,
+            votes: []
+        };
+
+        session.connections.forEach(connection => {
+            connection.vote = undefined;
+            connection.websocket.send(JSON.stringify(response));
+        });
     }
 
     private handleVoteEvent(data: VotingEventVote, session: Session, websocket: WebSocket): void {
