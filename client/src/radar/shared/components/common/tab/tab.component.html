@@ -1,8 +1,12 @@
 <div class="radar-tabs">
-  @for (tab of tabOptions; track $index) {
-    <div (click)="onSelect(tab)" class="radar-tabs__tab" [class.active]="activeTab === tab">
-      <h3>{{tab}}</h3>
-    </div>
-  }
+  <div class="radar-tabs__header">
+    @for (tab of tabOptions; track $index) {
+      <div (click)="onSelect(tab)" class="radar-tabs__tab" [class.active]="activeTab === tab">
+        <h3>{{tab}}</h3>
+      </div>
+    }
+  </div>
+  <div class="radar-tabs__content">
+    <ng-content></ng-content>
+  </div>
 </div>
-<ng-content></ng-content>

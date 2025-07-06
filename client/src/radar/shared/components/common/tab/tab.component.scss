@@ -2,36 +2,53 @@
 
 :host {
   display: block;
-  margin-top: -28px;
+  margin-top: -$margin-large;
   min-height: 300px;
 
   .radar-tabs {
-    border-radius: $border-radius-medium $border-radius-medium 0 0;
-    box-shadow: $shadow-down-small;
-    display: flex;
-    margin-bottom: $margin-small;
+    &__content {
+      border-radius: $border-radius-medium;
+      box-shadow: $shadow-up-small;
+      margin-top: -10px;
+      padding: $padding-large;
+    }
 
-    &__tab {
-      border-radius: $border-radius-small $border-radius-small 0 0;
-      cursor: pointer;
+    &__header {
       display: flex;
-      flex-grow: 1;
-      justify-content: center;
-      margin: $margin-medium $margin-medium 0;
 
-      &.active {
-        background-color: $grey-dark;
-        box-shadow: $shadow-up-small;
-        position: relative;
+      .radar-tabs__tab {
+        cursor: pointer;
+        display: flex;
+        flex-grow: 1;
+        justify-content: center;
+        padding-bottom: 10px;
 
-        &::after {
+        &.active {
           background-color: $grey-dark;
-          bottom: -12px;
-          content: "";
-          height: 12px;
-          left: -20px;
-          right: -20px;
-          position: absolute;
+          border-radius: $border-radius-medium $border-radius-medium 0 0;
+          box-shadow: $shadow-up-small;
+          position: relative;
+
+          &::after {
+            background-color: $grey-dark;
+            bottom: -12px;
+            content: "";
+            height: 22px;
+            position: absolute;
+            width: 110%;
+          }
+        }
+      }
+
+      :first-child {
+        &::after {
+          left: 0;
+        }
+      }
+
+      :last-child {
+        &::after {
+          right: 0;
         }
       }
     }

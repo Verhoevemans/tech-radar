@@ -54,7 +54,6 @@ export class RadarDetailsComponent implements OnInit, OnDestroy {
   public ngOnInit(): void {
     this.store.state.update('radarUrl', this.name.toLowerCase());
     this.getRadarDetails();
-    this.setupVotingSessionConnection();
   }
 
   public ngOnDestroy(): void {
@@ -73,6 +72,7 @@ export class RadarDetailsComponent implements OnInit, OnDestroy {
     this.detailsService.getRadarDetails(this.name).subscribe({
       next: (response) => {
         this.store.state.update('radar', response);
+        this.setupVotingSessionConnection();
       },
       error: (_error) => {
         this.store.state.update('status', 'error');

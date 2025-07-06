@@ -74,5 +74,9 @@
         box-shadow: $shadow-down-small;
       }
     }
+
+    &:focus-visible {
+      outline: none;
+    }
   }
 }
