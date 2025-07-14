@@ -10,7 +10,7 @@ import { BlipVotesService } from './blip-votes.service';
 import { BlipVotesFormComponent } from './blip-votes-form/blip-votes-form.component';
 import { BlipVotesResultsComponent } from './blip-votes-results/blip-votes-results.component';
 
-type Tab = 'vote' | 'result';
+type Tab = 'VOTE' | 'RESULTS';
 
 @Component({
   selector: 'radar-blip-votes',
@@ -25,9 +25,9 @@ type Tab = 'vote' | 'result';
   styleUrl: './blip-votes.component.scss'
 })
 export class BlipVotesComponent {
-  public activeTab: Tab = 'vote';
+  public activeTab: Tab = 'VOTE';
   public blipId: string;
-  public tabs = ['vote', 'result'];
+  public tabs = ['VOTE', 'RESULTS'];
   public radarUrl: string;
 
   public constructor(@Inject(MODAL_DATA) public modalData: ModalData,

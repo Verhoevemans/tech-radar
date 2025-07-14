@@ -110,6 +110,7 @@ class VotesController {
     }
 
     private handleStartEvent(data: VotingEventStart, session: Session): void {
+        console.log('handleStartEvent()', session.connections.length);
         session.blipId = data.blipId;
 
         const response = {
@@ -124,6 +125,7 @@ class VotesController {
     }
 
     private handleStopEvent(data: VotingEventStop, session: Session): void {
+        console.log('handleStopEvent()', session.connections.length);
         session.blipId = undefined;
 
         const response = {

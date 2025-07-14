@@ -8,11 +8,22 @@
 
     .map {
       grid-row: 1 / span 2;
+      display: flex;
+      flex-direction: column;
     }
 
     .panel {
       background-color: $grey-dark;
       box-shadow: 4px 4px 26px black, inset 2px 2px #4c4e50;
+    }
+
+    .voting-session-message {
+      align-items: center;
+      border-radius: $border-radius-small;
+      box-shadow: $shadow-up-small;
+      display: flex;
+      justify-content: space-between;
+      padding: $padding-small $padding-medium;
     }
   }
 }

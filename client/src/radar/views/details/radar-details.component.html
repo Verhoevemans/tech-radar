@@ -1,12 +1,18 @@
 <radar-header [title]="headerTitle"/>
-@if (status() === 'loading') {
+@if (loadingStatus() === 'loading') {
   <radar-spinner/>
-} @else if (status() === 'error') {
+} @else if (loadingStatus() === 'error') {
   <radar-notification [message]="'Something went wrong when retrieving the Radar Details. Please try again later'"/>
 }
 <div class="radar-details">
   <div class="map">
     <radar-map [radar]="radar()" (openBlipDetails)="openBlipDetailsModal($event)"/>
+    @if (votingSessionBlipId()) {
+      <div class="voting-session-message">
+        <span>A Voting Sesssion is currently active. Click to join the session:</span>
+        <radar-button label="Join Session" (clicked)="openBlipVotesModal()"/>
+      </div>
+    }
   </div>
   @for (quadrant of radar()?.quadrants; track $index) {
     <div class="panel">
