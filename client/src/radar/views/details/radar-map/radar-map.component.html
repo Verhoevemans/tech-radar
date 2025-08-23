@@ -1,37 +1,45 @@
 @if (radar) {
-  <svg width="100%" height="100%" viewBox="-100 -100 200 200">
-    <g>
-      <circle r="98" cx="0" cy="0" stroke="black" fill="none"></circle>
-      <text font-family="Tahoma" font-size="0.5em" x="0" y="-82">Hold</text>
-      <circle r="76" cx="0" cy="0" stroke="black" fill="none"></circle>
-      <text font-family="Tahoma" font-size="0.5em" x="0" y="-57">Assess</text>
-      <circle r="54" cx="0" cy="0" stroke="black" fill="none"></circle>
-      <text font-family="Tahoma" font-size="0.5em" x="0" y="-32">Trial</text>
-      <circle r="32" cx="0" cy="0" stroke="black" fill="none"></circle>
-      <text font-family="Tahoma" font-size="0.5em" x="0" y="-7">Adopt</text>
-      <line x1="-100" y1="0" x2="100" y2="0" stroke="black"></line>
-      <line x1="0" y1="-100" x2="0" y2="100" stroke="black"></line>
-      <polyline points="-100,0 100,0" fill="black"></polyline>
-    </g>
-    <g>
-      @for (blip of radar.blips; track $index) {
-        <g [attr.transform]="getBlipPosition(blip)">
-          <text [attr.class]="blip.id === higlightedBlipId() ? 'tooltip' : ''"
-                [attr.transform]="'translate(0,-3)'"
-                font-family="Tahoma"
-                font-size="0.3em">
-            {{blip.name}}
-          </text>
-          <circle r="2"
-                  stroke="black"
-                  fill="white"
-                  [attr.class]="blip.id === higlightedBlipId() ? 'highlight' : ''"
-                  (click)="onBlipClick(blip)"
-                  (mouseenter)="onBlipHover(blip.id)"
-                  (mouseleave)="onBlipHover(undefined)">
-          </circle>
-        </g>
-      }
-    </g>
-  </svg>
+  <div class="radar-map">
+    <svg width="100%" height="100%" viewBox="-110 -110 220 220">
+      <filter id="shadow">
+        <feDropShadow dx="-2" dy="-2" stdDeviation="1" flood-color="#4c4e50"/>
+        <feDropShadow dx="3" dy="3" stdDeviation="3" flood-color="black"/>
+      </filter>
+      <g>
+        <circle class="radar-map__background" r="97" cx="-0.5" cy="-0.5" filter="url(#shadow)"></circle>
+        <circle class="radar-map__line" r="100" cx="0" cy="0" fill="none"></circle>
+        <text font-family="Tahoma" font-size="0.5em" x="0" y="-82">Hold</text>
+        <circle r="76" cx="0" cy="0" class="radar-map__line" fill="none"></circle>
+        <text font-family="Tahoma" font-size="0.5em" x="0" y="-57">Assess</text>
+        <circle r="54" cx="0" cy="0" class="radar-map__line" fill="none"></circle>
+        <text font-family="Tahoma" font-size="0.5em" x="0" y="-32">Trial</text>
+        <circle r="32" cx="0" cy="0" class="radar-map__line" fill="none"></circle>
+        <text font-family="Tahoma" font-size="0.5em" x="0" y="-7">Adopt</text>
+        <line x1="-100" y1="0" x2="100" y2="0" class="radar-map__line"></line>
+        <line x1="0" y1="-100" x2="0" y2="100" class="radar-map__line"></line>
+        <polyline points="-100,0 100,0" fill="black"></polyline>
+      </g>
+      <g>
+        @for (blip of radar.blips; track $index) {
+          <g [attr.transform]="getBlipPosition(blip)">
+            <circle r="1.7"
+                    class="radar-map__blip"
+                    (click)="onBlipClick(blip)"
+                    (mouseenter)="onBlipHover(blip.id)"
+                    (mouseleave)="onBlipHover(undefined)">
+            </circle>
+            <circle r="4"
+                    [attr.class]="blip.id === higlightedBlipId() ? 'radar-map__highlight highlighted' : 'radar-map__highlight'">
+            </circle>
+            <text [attr.class]="blip.id === higlightedBlipId() ? 'tooltip' : ''"
+                  [attr.transform]="'translate(0,-3)'"
+                  font-family="Tahoma"
+                  font-size="0.3em">
+              {{blip.name}}
+            </text>
+          </g>
+        }
+      </g>
+    </svg>
+  </div>
 }

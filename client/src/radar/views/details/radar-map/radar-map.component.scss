@@ -1,21 +1,45 @@
 @import 'base-variables';
 
 :host {
-  display: flex;
-  height: calc(100% - (2 * $padding-large));
-  justify-content: center;
-  padding: $padding-large;
+  display: block;
+  height: 100%;
+
+  .radar-map {
+    display: flex;
+    height: calc(100% - (2 * $padding-large));
+    justify-content: center;
+    padding: $padding-large;
+
+    &__background {
+      fill: $grey-dark;
+    }
+
+    &__blip {
+      fill: $yellow;
+      stroke: none;
+    }
+
+    &__highlight {
+      fill: none;
+      stroke: none;
+
+      &.highlighted {
+        stroke: $yellow;
+      }
+    }
+
+    &__line {
+      stroke: #4c4e50;
+      stroke-width: 0.5px;
+    }
+  }
 
   text {
     display: none;
+    fill: $white-light;
 
     &.tooltip {
       display: block;
     }
-  }
-
-  circle.highlight {
-    fill: antiquewhite;
-    stroke: burlywood;
   }
 }

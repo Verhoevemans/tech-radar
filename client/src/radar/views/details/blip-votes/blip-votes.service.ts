@@ -18,6 +18,7 @@ export class BlipVotesService {
 
   public createVotingConnection(radarName: string): Observable<VotingEvent> {
     this.votingConnection = webSocket(`ws://localhost:3000/api/radars/${radarName}/votes`);
+
     return this.votingConnection.pipe(
       tap(event => {
         if (event.votes) {
