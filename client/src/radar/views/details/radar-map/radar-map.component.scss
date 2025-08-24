@@ -15,8 +15,13 @@
     }
 
     &__blip {
+      cursor: pointer;
       fill: $yellow;
       stroke: none;
+    }
+
+    &__blips {
+      animation: appear 0.6s linear;
     }
 
     &__highlight {
@@ -25,6 +30,7 @@
 
       &.highlighted {
         stroke: $yellow;
+        animation: appear 0.2s linear;
       }
     }
 
@@ -41,5 +47,13 @@
     &.tooltip {
       display: block;
     }
+  }
+
+  @keyframes appear {
+    0%   { clip-path:polygon(50% 50%,50% 0,50% 0,50% 0,50% 0,50% 0, 50% 0) }
+    25%  { clip-path:polygon(50% 50%,50% 0,100% 0,100% 50%,100% 50%,100% 50%,100% 50%) }
+    50%  { clip-path:polygon(50% 50%,50% 0,100% 0,100% 100%,50% 100%,50% 100%,50% 100%) }
+    75%  { clip-path:polygon(50% 50%,50% 0,100% 0,100% 100%,0 100%,0 50%,0 50%) }
+    100% { clip-path:polygon(50% 50%,50% 0,100% 0,100% 100%,0 100%,0 0,50% 0) }
   }
 }

@@ -1,16 +1,17 @@
-<div class="list-title">
+<div class="radar-blip-list__title">
   <h3>{{ quadrant }}</h3>
   <radar-button label="+" [type]="'icon'" (clicked)="onBlipAdd()"/>
 </div>
-<div class="blip-list">
+<div class="radar-blip-list__list">
   @for (blips of blipsPerRing(); track $index) {
     @if (blips.length > 0) {
-      <h4 class="blip-list__header">{{ rings[$index] }}</h4>
+      <h4 class="radar-blip-list__header">{{ rings[$index] }}</h4>
       @for (blip of blips; track $index) {
         <div (mouseenter)="onBlipHover(blip.id)"
              (mouseleave)="onBlipHover(undefined)"
              (click)="onBlipClick(blip)"
-             [class]="blip.id === higlightedBlipId() ? 'highlight' : ''">
+             class="radar-blip-list__blip"
+             [class]="blip.id === higlightedBlipId() ? 'highlighted' : ''">
           {{ blip.name }}
         </div>
       }

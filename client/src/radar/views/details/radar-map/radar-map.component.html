@@ -19,7 +19,7 @@
         <line x1="0" y1="-100" x2="0" y2="100" class="radar-map__line"></line>
         <polyline points="-100,0 100,0" fill="black"></polyline>
       </g>
-      <g>
+      <g class="radar-map__blips">
         @for (blip of radar.blips; track $index) {
           <g [attr.transform]="getBlipPosition(blip)">
             <circle r="1.7"
