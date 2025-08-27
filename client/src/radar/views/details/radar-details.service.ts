@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 
+import { environment } from '../../../environments/environment';
 import { Radar, RadarAPIResponse } from '../../shared/models/radar.model';
 
 @Injectable({
@@ -12,7 +13,7 @@ export class RadarDetailsService {
 
   public getRadarDetails(radarName: string): Observable<Radar> {
     return this.httpClient
-      .get<RadarAPIResponse>(`api/radars/${radarName}`)
+      .get<RadarAPIResponse>(`${environment.apiUrl}/api/radars/${radarName}`)
       .pipe(
         map(response => response.data)
       );

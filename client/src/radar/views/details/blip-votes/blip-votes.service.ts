@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { map, Observable, tap } from 'rxjs';
 import { webSocket, WebSocketSubject } from 'rxjs/webSocket';
 
+import { environment } from '../../../../environments/environment';
 import { Blip, BlipAPIResponse, Ring } from '../../../shared/models/blip.model';
 import { VotingEvent } from '../../../shared/models/vote.model';
 import { RadarDetailsStore } from '../radar-details.store';
@@ -17,7 +18,7 @@ export class BlipVotesService {
               private readonly store: RadarDetailsStore) {}
 
   public createVotingConnection(radarName: string): Observable<VotingEvent> {
-    this.votingConnection = webSocket(`ws://localhost:3000/api/radars/${radarName}/votes`);
+    this.votingConnection = webSocket(`${environment.websocketUrl}/api/radars/${radarName}/votes`);
 
     return this.votingConnection.pipe(
       tap(event => {
@@ -32,7 +33,7 @@ export class BlipVotesService {
     const votingResult = { result, votes };
 
     return this.httpClient
-      .put<BlipAPIResponse>(`api/radars/${radarUrl}/votes/blips/${blipId}`, { votingResult })
+      .put<BlipAPIResponse>(`${environment.apiUrl}/api/radars/${radarUrl}/votes/blips/${blipId}`, { votingResult })
       .pipe(
         map(response => response.data)
       );
