@@ -1,3 +1,11 @@
+<div>
+  <h3>
+    Voting for Blip: {{votingSessionBlipName()?.name}}
+  </h3>
+  <h3>
+    Number of active voters: {{votes().length}}
+  </h3>
+</div>
 @for (ring of rings; track $index) {
   <div class="blip-votes-results__score">
     <h3>{{ring}}:</h3>

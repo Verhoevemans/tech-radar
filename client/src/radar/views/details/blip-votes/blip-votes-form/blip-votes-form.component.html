@@ -1,3 +1,8 @@
+<div>
+  <h3>
+    Voting for Blip: {{votingSessionBlipName()?.name}}
+  </h3>
+</div>
 <div class="blip-votes-form__options">
   @for (ring of rings; track $index) {
     <radar-button [label]="ring"

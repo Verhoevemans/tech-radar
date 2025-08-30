@@ -74,9 +74,7 @@ export class RadarDetailsComponent implements OnInit, OnDestroy {
   }
 
   public openBlipVotesModal(): void {
-    const blip = this.radar()?.blips.find(blip => blip.id === this.votingSessionBlipId());
-    const title = `Vote position for${blip ? ': ' + blip.name : ' Blip'}`;
-    this.modalService.openModal(BlipVotesComponent as Component, title, {
+    this.modalService.openModal(BlipVotesComponent as Component, 'Voting for Blip position', {
       data: { blipId: this.votingSessionBlipId(), radarUrl: this.radarUrl() }
     });
   }
