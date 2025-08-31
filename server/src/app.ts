@@ -19,12 +19,20 @@ async function createApp() {
 
     app.use(bodyParser.json());
 
+    console.log('Client urls:', process.env.CLIENT_URLS);
+
     app.use((req, res, next) => {
         const allowedOrigins = process.env.CLIENT_URLS?.split(' ');
         const origin = req.headers.origin;
 
+        console.log('allowedOrigins:', allowedOrigins);
+        console.log('origin:', origin);
+
         if (origin && allowedOrigins?.includes(origin)) {
+            console.log('client urls recognized!');
             res.header("Access-Control-Allow-Origin", origin);
+        } else {
+            console.log('client urls not recognized...');
         }
 
         res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
