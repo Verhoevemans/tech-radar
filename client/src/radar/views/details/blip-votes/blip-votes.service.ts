@@ -44,6 +44,7 @@ export class BlipVotesService {
   }
 
   public startVotingSession(blipId: string): void {
+    this.store.state.update('votingSessionStartedByUser', true);
     this.votingConnection && this.votingConnection.next({ type: 'start', blipId });
   }
 

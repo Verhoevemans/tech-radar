@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 
+import { Ring } from '../../shared/models/blip.model';
 import { Radar } from '../../shared/models/radar.model';
 import { Vote } from '../../shared/models/vote.model';
 import { createStore, Store } from '../../shared/utils/store';
@@ -12,6 +13,8 @@ interface RadarDetailsState {
   radarUrl: string,
   loadingStatus: LoadingStatus,
   votingSessionBlipId: string | undefined,
+  votingSessionSelectedRing: Ring | undefined,
+  votingSessionStartedByUser: boolean,
   votes: Vote[]
 }
 
@@ -25,6 +28,8 @@ export class RadarDetailsStore {
     radarUrl: '',
     loadingStatus: 'success',
     votingSessionBlipId: undefined,
+    votingSessionSelectedRing: undefined,
+    votingSessionStartedByUser: false,
     votes: []
   });
 }

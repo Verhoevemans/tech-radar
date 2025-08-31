@@ -1,4 +1,4 @@
-<radar-tab [tabOptions]="tabs" (tabSelected)="setActiveTab($event)">
+<radar-tab [tabOptions]="tabs" [activeTab]="activeTab" (tabSelected)="setActiveTab($event)">
   @if (activeTab === 'VOTE') {
     <radar-blip-votes-form/>
   } @else if (activeTab === 'RESULTS') {

@@ -16,22 +16,22 @@ import { BlipVotesService } from '../blip-votes.service';
   styleUrl: './blip-votes-form.component.scss'
 })
 export class BlipVotesFormComponent {
+  protected readonly rings = rings;
+
   public radar: Signal<Radar | undefined> = this.store.state.select(state => state.radar());
   public votingSessionBlipId: Signal<string | undefined> = this.store.state.select(state => state.votingSessionBlipId());
   public votingSessionBlipName: Signal<Blip | undefined> = computed(() => this.radar()?.blips.find(blip => blip.id === this.votingSessionBlipId()));
-
-  protected readonly rings = rings;
-  public selectedRing: Ring | undefined;
+  public votingSessionSelectedRing: Signal<Ring | undefined> = this.store.state.select(state => state.votingSessionSelectedRing());
 
   public constructor(private readonly blipVotesService: BlipVotesService,
                      private readonly store: RadarDetailsStore) {}
 
   public onVote(ring: Ring): void {
-    if (ring === this.selectedRing) {
-      this.selectedRing = undefined;
+    if (ring === this.votingSessionSelectedRing()) {
+      this.store.state.update('votingSessionSelectedRing', undefined);
     } else {
-      this.selectedRing = ring;
+      this.store.state.update('votingSessionSelectedRing', ring);
     }
-    this.blipVotesService.sendVote(this.selectedRing);
+    this.blipVotesService.sendVote(this.votingSessionSelectedRing());
   }
 }
