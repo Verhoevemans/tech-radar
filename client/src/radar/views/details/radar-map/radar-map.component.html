@@ -29,13 +29,13 @@
               {{blip.name}}
             </text>
             <circle r="1.7"
-                    class="radar-map__blip"
+                    [attr.class]="getBlipClass(blip)"
                     (click)="onBlipClick(blip)"
                     (mouseenter)="onBlipHover(blip.id)"
                     (mouseleave)="onBlipHover(undefined)">
             </circle>
             <circle r="4"
-                    [attr.class]="blip.id === higlightedBlipId() ? 'radar-map__highlight highlighted' : 'radar-map__highlight'">
+                    [attr.class]="getHighlightClass(blip)">
             </circle>
           </g>
         }

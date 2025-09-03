@@ -29,9 +29,8 @@ const BlipSchema = new mongoose.Schema<IBlip>({
     },
     ring: {
         type: String,
-        required: [true, 'Blip Ring is required'],
         validate: [
-            (ring: Ring) => rings.includes(ring),
+            (ring: Ring) => !ring || rings.includes(ring),
             'Given value for Ring is of unknown type, must be "hold", "assess", "trial" or "adopt"'
         ]
     },

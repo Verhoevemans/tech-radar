@@ -6,7 +6,7 @@ export interface Blip {
   id: string,
   description?: string,
   quadrant: string,
-  ring: Ring,
+  ring?: Ring,
   link?: string
 }
 

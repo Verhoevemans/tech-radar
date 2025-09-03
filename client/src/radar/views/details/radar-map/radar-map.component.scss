@@ -18,6 +18,10 @@
       cursor: pointer;
       fill: $yellow;
       stroke: none;
+
+      &.uncategorized {
+        fill: $grey;
+      }
     }
 
     &__blips {
@@ -31,6 +35,10 @@
       &.highlighted {
         stroke: $yellow;
         animation: appear 0.2s linear;
+
+        &.uncategorized {
+          stroke: $grey;
+        }
       }
     }
 

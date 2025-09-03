@@ -87,7 +87,7 @@ export class BlipDetailsFormComponent implements OnInit {
       id: new FormControl(this.blip.id),
       description: new FormControl(this.blip.description),
       quadrant: new FormControl(this.blip.quadrant, Validators.required),
-      ring: new FormControl(this.blip.ring, Validators.required),
+      ring: new FormControl(this.blip.ring),
       link: new FormControl(this.blip.link)
     });
   }

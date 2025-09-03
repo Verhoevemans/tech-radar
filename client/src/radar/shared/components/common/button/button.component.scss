@@ -38,7 +38,7 @@
 
     &--secondary {
       background-color: $yellow;
-      box-shadow: 4px 4px 26px black;
+      box-shadow: $shadow-secondary-down-medium;
       color: $grey-dark;
       position: relative;
 
@@ -46,15 +46,9 @@
         background-color: color.scale($yellow, $lightness: 7%);
       }
 
-      &:active::after {
-        border-radius: $border-radius-medium;
+      &:active {
+        transform: translate(0, 2px);
         box-shadow: $shadow-secondary-down-small;
-        content: '';
-        height: 90%;
-        left: 2px;
-        position: absolute;
-        top: 2px;
-        width: 98%;
       }
     }
 

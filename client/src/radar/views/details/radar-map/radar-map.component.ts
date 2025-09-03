@@ -29,6 +29,15 @@ export class RadarMapComponent implements OnChanges {
     }
   }
 
+  public getBlipClass(blip: Blip): string {
+    let blipClass = 'radar-map__blip';
+    if (!blip.ring) {
+      blipClass = blipClass.concat(' uncategorized');
+    }
+
+    return blipClass;
+  }
+
   public getBlipPosition(blip: Blip): string {
     const blipPosition = this.blipPositions.get(blip.id);
     if (blipPosition) {
@@ -36,6 +45,18 @@ export class RadarMapComponent implements OnChanges {
     } else {
       return 'scale(0)';
     }
+  }
+
+  public getHighlightClass(blip: Blip): string {
+    let highlightClass = 'radar-map__highlight';
+    if (blip.id === this.higlightedBlipId()) {
+      highlightClass = highlightClass.concat(' highlighted');
+    }
+    if (!blip.ring) {
+      highlightClass = highlightClass.concat(' uncategorized');
+    }
+
+    return highlightClass;
   }
 
   public onBlipHover(id: string | undefined): void {
@@ -49,8 +70,8 @@ export class RadarMapComponent implements OnChanges {
   private setBlipPositions(): void {
     this.radar?.blips.forEach((blip) => {
       const radius = this.getBlipPositionRadius(blip.ring);
-      const angle = this.getBlipPositionAngle(blip.quadrant);
-      if (radius !== undefined && angle !== undefined) {
+      const angle = this.getBlipPositionAngle(blip.quadrant, blip.ring);
+      if (angle !== undefined) {
         const x = radius * Math.sin(angle);
         const y = radius * Math.cos(angle);
         this.blipPositions.set(blip.id, { x, y });
@@ -58,23 +79,32 @@ export class RadarMapComponent implements OnChanges {
     })
   }
 
-  private getBlipPositionAngle(quadrant: string): number | undefined {
+  private getBlipPositionAngle(quadrant: string, ring?: Ring): number | undefined {
+    let randomAngleBase;
+    if (ring) {
+      // Set random angle between 0 and 80 degrees
+      randomAngleBase = Math.random() * 80;
+    } else {
+      // Set random angle between 30 and 50 degrees
+      randomAngleBase = (Math.random() * 20) + 30;
+    }
+
     switch (this.radar?.quadrants.indexOf(quadrant)) {
       case 0:
-        return (Math.random() * 80 + 185) * Math.PI / 180;
+        return (randomAngleBase + 185) * Math.PI / 180;
       case 1:
-        return (Math.random() * 80 + 95) * Math.PI / 180;
+        return (randomAngleBase + 95) * Math.PI / 180;
       case 2:
-        return (Math.random() * 80 + 275) * Math.PI / 180;
+        return (randomAngleBase + 275) * Math.PI / 180;
       case 3:
-        return (Math.random() * 80 + 5) * Math.PI / 180;
+        return (randomAngleBase + 5) * Math.PI / 180;
       default:
         console.error(`Cannot determine position of Blip with unknown quadrant: ${quadrant}`);
         return undefined;
     }
   }
 
-  private getBlipPositionRadius(ring: Ring): number| undefined {
+  private getBlipPositionRadius(ring?: Ring): number {
     switch (ring) {
       case 'adopt':
         return Math.floor(Math.random() * 29) + 3;
@@ -84,9 +114,10 @@ export class RadarMapComponent implements OnChanges {
         return Math.floor(Math.random() * 19) + 57;
       case 'hold':
         return Math.floor(Math.random() * 19) + 79;
+      case undefined:
       default:
-        console.error(`Cannot determine position of Blip with unknown Ring value: ${ring}`);
-        return undefined;
+        // If Ring is undefined, radius will be higher than 105 and Blip will be positioned outside of Radar map
+        return Math.floor(Math.random() * 25) + 105;
     }
   }
 }

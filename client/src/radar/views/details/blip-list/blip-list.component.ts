@@ -25,11 +25,17 @@ export class BlipListComponent {
 
   public higlightedBlipId: Signal<string | undefined> = this.store.state.select(state => state.highlightedBlipId());
   public radar: Signal<Radar | undefined> = this.store.state.select(state => state.radar());
+
+  public blipsForQuadrant: Signal<Blip[]> = computed(() => {
+    return this.radar()?.blips.filter(blip => blip.quadrant === this.quadrant) || [];
+  });
   public blipsPerRing: Signal<Blip[][]> = computed(() => {
-    const blipsForQuadrant = this.radar()?.blips.filter(blip => blip.quadrant === this.quadrant) || [];
     return this.rings.map(ring => {
-      return blipsForQuadrant.filter(blip => blip.ring === ring) || [];
+      return this.blipsForQuadrant().filter(blip => blip.ring === ring) || [];
     });
+  });
+  public blipsWithoutRing: Signal<Blip[]> = computed(() => {
+    return this.blipsForQuadrant().filter(blip => !blip.ring);
   });
 
   public constructor(private readonly store: RadarDetailsStore) {}

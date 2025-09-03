@@ -28,6 +28,12 @@
         background-color: $yellow;
         color: $black;
         font-weight: bold;
+        padding-left: 2px;
+
+        &.uncategorized {
+          background-color: $grey;
+          color: $white-light;
+        }
       }
     }
 

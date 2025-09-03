@@ -2,7 +2,7 @@
 $black: #000;
 //$grey-dark: #2e3136;
 $grey-dark: #232323;
-$grey: #3b3b3b;
+$grey: #47494b;
 $grey-light: #595e67;
 $grey-lighter: #868c98;
 $white-light: #e3e2e2;
@@ -36,7 +36,8 @@ $shadow-up-small--light: 4px 4px 8px $black, -1px -1px 5px $grey-lighter;
 $shadow-up-medium: 5px 5px 3px $black, -2px -2px 3px $grey-light;
 $shadow-up-large: 8px 8px 8px $black, -4px -4px 4px $grey-light;
 
-$shadow-secondary-down-small: inset 2px 2px 7px #825504, inset -2px -4px 7px #fff1a4;
+$shadow-secondary-down-small: 4px 2px 2px $black;
+$shadow-secondary-down-medium: 6px 4px 4px $black;
 
 // Screen sizes
 $screen-width-xs: 480px;
