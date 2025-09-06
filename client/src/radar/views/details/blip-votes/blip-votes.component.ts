@@ -3,8 +3,7 @@ import { Component, Inject, OnDestroy, Signal } from '@angular/core';
 import { ButtonComponent } from '../../../shared/components/common/button/button.component';
 import { TabComponent } from '../../../shared/components/common/tab/tab.component';
 import { MODAL_DATA, ModalData } from '../../../shared/components/core/modal/modal.model';
-import { Vote } from '../../../shared/models/vote.model';
-import { Ring } from '../../../shared/models/blip.model';
+import { VotingResult } from '../../../shared/models/vote.model';
 import { RadarDetailsStore } from '../radar-details.store';
 
 import { BlipVotesService } from './blip-votes.service';
@@ -45,8 +44,8 @@ export class BlipVotesComponent implements OnDestroy {
     this.store.state.update('votingSessionStartedByUser', false);
   }
 
-  public saveVoteResults(result: Ring, votes: Vote[]): void {
-    this.blipVotesService.saveVotesForBlip(result, votes, this.radarUrl, this.blipId).subscribe({
+  public saveVoteResults(votingResult: VotingResult): void {
+    this.blipVotesService.saveVotesForBlip(votingResult, this.radarUrl, this.blipId).subscribe({
       next: (_blip) => {
         this.blipVotesService.stopVotingSession();
       }

@@ -13,6 +13,7 @@
     <radar-button label=">" [type]="'icon'" (clicked)="selectResult(ring)"/>
   </div>
 }
+<radar-textarea [label]="'Comment (optional) on why this result was selected:'" [control]="comment"/>
 <div class="blip-votes-results__footer">
   <radar-button label="Cancel" (clicked)="cancelVote()" [type]="'primary'"/>
 </div>

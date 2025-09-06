@@ -5,7 +5,7 @@ import { webSocket, WebSocketSubject } from 'rxjs/webSocket';
 
 import { environment } from '../../../../environments/environment';
 import { Blip, BlipAPIResponse, Ring } from '../../../shared/models/blip.model';
-import { VotingEvent } from '../../../shared/models/vote.model';
+import { VotingEvent, VotingResult } from '../../../shared/models/vote.model';
 import { RadarDetailsStore } from '../radar-details.store';
 
 @Injectable({
@@ -29,9 +29,7 @@ export class BlipVotesService {
     );
   }
 
-  public saveVotesForBlip(result: Ring, votes: (Ring | undefined)[], radarUrl: string, blipId: string): Observable<Blip> {
-    const votingResult = { result, votes };
-
+  public saveVotesForBlip(votingResult: VotingResult, radarUrl: string, blipId: string): Observable<Blip> {
     return this.httpClient
       .put<BlipAPIResponse>(`${environment.apiUrl}/api/radars/${radarUrl}/votes/blips/${blipId}`, { votingResult })
       .pipe(

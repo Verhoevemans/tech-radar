@@ -16,6 +16,7 @@ export interface Session {
 
 export interface IVotingResult {
     votes: (Ring | undefined)[];
+    comment?: string;
     result: Ring;
 }
 
@@ -49,6 +50,9 @@ export interface VotingEventVote extends VotingEventBase {
 export const VotingResultSchema = new mongoose.Schema<IVotingResult>({
     votes: {
         type: [String]
+    },
+    comment: {
+        type: String
     },
     result: {
         type: String,

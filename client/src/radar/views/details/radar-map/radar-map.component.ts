@@ -80,24 +80,19 @@ export class RadarMapComponent implements OnChanges {
   }
 
   private getBlipPositionAngle(quadrant: string, ring?: Ring): number | undefined {
-    let randomAngleBase;
-    if (ring) {
-      // Set random angle between 0 and 80 degrees
-      randomAngleBase = Math.random() * 80;
-    } else {
-      // Set random angle between 30 and 50 degrees
-      randomAngleBase = (Math.random() * 20) + 30;
-    }
+    const randomAngle: number = ring
+      ? Math.random() * 80 // Set random angle between 0 and 80 degrees
+      : (Math.random() * 20) + 30; // Set random angle between 30 and 50 degrees
 
     switch (this.radar?.quadrants.indexOf(quadrant)) {
       case 0:
-        return (randomAngleBase + 185) * Math.PI / 180;
+        return (randomAngle + 185) * Math.PI / 180;
       case 1:
-        return (randomAngleBase + 95) * Math.PI / 180;
+        return (randomAngle + 95) * Math.PI / 180;
       case 2:
-        return (randomAngleBase + 275) * Math.PI / 180;
+        return (randomAngle + 275) * Math.PI / 180;
       case 3:
-        return (randomAngleBase + 5) * Math.PI / 180;
+        return (randomAngle + 5) * Math.PI / 180;
       default:
         console.error(`Cannot determine position of Blip with unknown quadrant: ${quadrant}`);
         return undefined;

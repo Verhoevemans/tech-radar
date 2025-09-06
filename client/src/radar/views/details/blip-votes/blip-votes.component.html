@@ -2,6 +2,6 @@
   @if (activeTab === 'VOTE') {
     <radar-blip-votes-form/>
   } @else if (activeTab === 'RESULTS') {
-    <radar-blip-votes-results (onSelectResult)="saveVoteResults($event.result, $event.votes)"/>
+    <radar-blip-votes-results (onSelectResult)="saveVoteResults($event)"/>
   }
 </radar-tab>

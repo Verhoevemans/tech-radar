@@ -2,6 +2,12 @@ import { Ring } from './blip.model';
 
 export type Vote = Ring | undefined;
 
+export interface VotingResult {
+  votes: Vote[];
+  result: Ring;
+  comment?: string;
+}
+
 export type VotingEvent =
   | VotingEventSessionStart
   | VotingEventSessionStop
