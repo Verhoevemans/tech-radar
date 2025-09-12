@@ -5,6 +5,7 @@ import { IBlip } from '../blip/blip.model';
 export interface IRadar {
     name: string;
     url: string;
+    description: string;
     quadrants: string[];
     blips: IBlip[];
 }
@@ -18,6 +19,9 @@ const RadarSchema = new mongoose.Schema<IRadar>({
         type: String,
         required: [true, 'Missing property Url'],
         unique: true
+    },
+    description: {
+        type: String
     },
     quadrants: {
         type: [String],

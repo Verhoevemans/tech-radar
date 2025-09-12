@@ -38,6 +38,7 @@ class RadarController {
                     .replace(/[^a-z0-9 -]/g, '')
                     .trim()
                     .replace(/\s+/g, '-'),
+                description: req.body.description,
                 quadrants: req.body.quadrants
             });
         } catch (error) {

@@ -11,9 +11,9 @@ import { Radar, RadarAPIResponse } from '../../../../shared/models/radar.model';
 export class CreateRadarFormService {
   constructor(private readonly httpClient: HttpClient) {}
 
-  public createRadar(name: string, quadrants: string[]): Observable<Radar> {
+  public createRadar(name: string, quadrants: string[], description?: string): Observable<Radar> {
     return this.httpClient
-      .post<RadarAPIResponse>(`${environment.apiUrl}/api/radars`, { name, quadrants })
+      .post<RadarAPIResponse>(`${environment.apiUrl}/api/radars`, { name, quadrants, description })
       .pipe(
         map(response => response.data)
       );

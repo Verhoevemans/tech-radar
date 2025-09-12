@@ -3,6 +3,7 @@
   @for (quadrant of quadrants.controls; track quadrant; let i = $index) {
     <radar-input id="quadrant-{{ i }}" [control]="getQuadrantControl(i)" [label]="'Quadrant ' + (i + 1)"/>
   }
+  <radar-textarea [control]="descriptionControl" [label]="'Radar Description'"/>
 </form>
 @if (loading) {
   <radar-spinner type="save"/>

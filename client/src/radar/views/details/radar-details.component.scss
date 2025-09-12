@@ -6,13 +6,17 @@
     grid-gap: $margin-medium;
     grid-template: 1fr 1fr / 2fr 1fr 1fr;
 
-    .map {
+    &__description {
+      text-align: center;
+    }
+
+    &__map {
       grid-row: 1 / span 2;
       display: flex;
       flex-direction: column;
     }
 
-    .panel {
+    &__panel {
       background-color: $grey-dark;
       box-shadow: 4px 4px 26px black, inset 2px 2px #4c4e50;
     }
