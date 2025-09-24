@@ -5,7 +5,7 @@
   <radar-notification [message]="'Something went wrong when retrieving the Radar Details. Please try again later'"/>
 }
 <div class="radar-details">
-  <div class="radar-details__map">
+  <div class="radar-details__panel radar-details__map">
     <radar-map [radar]="radar()" (openBlipDetails)="openBlipDetailsModal($event)"/>
     @if (radar()?.description) {
       <p class="radar-details__description">{{radar()?.description}}</p>
