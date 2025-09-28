@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnChanges, Output, Signal, SimpleChanges } from '@angular/core';
 
-import { Blip, Ring } from '../../../shared/models/blip.model';
+import { Blip, BlipPosition, Ring } from '../../../shared/models/blip.model';
 import { Radar } from '../../../shared/models/radar.model';
 import { RadarDetailsStore } from '../radar-details.store';
 
@@ -17,7 +17,7 @@ export class RadarMapComponent implements OnChanges {
   @Output()
   public openBlipDetails = new EventEmitter<Blip>();
 
-  public blipPositions = new Map<string, { x: number, y: number }>();
+  public blipPositions = new Map<string, BlipPosition>();
   public higlightedBlipId: Signal<string | undefined> = this.store.state.select(state => state.highlightedBlipId());
 
   constructor(private readonly store: RadarDetailsStore) {}
@@ -69,14 +69,38 @@ export class RadarMapComponent implements OnChanges {
 
   private setBlipPositions(): void {
     this.radar?.blips.forEach((blip) => {
-      const radius = this.getBlipPositionRadius(blip.ring);
-      const angle = this.getBlipPositionAngle(blip.quadrant, blip.ring);
-      if (angle !== undefined) {
-        const x = radius * Math.sin(angle);
-        const y = radius * Math.cos(angle);
-        this.blipPositions.set(blip.id, { x, y });
+      const blipPosition = this.calculateBlipPosition(blip);
+      if (blipPosition) {
+        this.blipPositions.set(blip.id, blipPosition);
       }
     })
+  }
+
+  private calculateBlipPosition(blip: Blip): BlipPosition | undefined {
+    const radius = this.getBlipPositionRadius(blip.ring);
+    const angle = this.getBlipPositionAngle(blip.quadrant, blip.ring);
+
+    if (angle !== undefined) {
+      const x = Math.floor(radius * Math.sin(angle));
+      const y = Math.floor(radius * Math.cos(angle));
+
+      if (!this.isDuplicateBlipPosition(x, y)) {
+        return { x, y };
+      } else {
+        return this.calculateBlipPosition(blip);
+      }
+    } else {
+      return undefined;
+    }
+  }
+
+  private isDuplicateBlipPosition(x: number, y: number): boolean {
+    const coordinates = Array.from(this.blipPositions.values());
+    return coordinates.some(coordinate => {
+      return coordinate.x && coordinate.y
+        && (x === coordinate.x - 2 || x === coordinate.x - 1 || x === coordinate.x || x === coordinate.x + 1 || x === coordinate.x + 2)
+        && (y === coordinate.y - 2 || y === coordinate.y - 1 || y === coordinate.y || y === coordinate.y + 1 || y === coordinate.y + 2);
+    });
   }
 
   private getBlipPositionAngle(quadrant: string, ring?: Ring): number | undefined {

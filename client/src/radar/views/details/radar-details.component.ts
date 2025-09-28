@@ -62,6 +62,7 @@ export class RadarDetailsComponent implements OnInit, OnDestroy {
   }
 
   public ngOnDestroy(): void {
+    this.store.state.update('radar', undefined);
     this.onDestroy$.next();
     this.onDestroy$.complete();
   }
