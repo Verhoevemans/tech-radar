@@ -1,4 +1,4 @@
-import { Component, computed, EventEmitter, Output, Signal } from '@angular/core';
+import { Component, computed, EventEmitter, inject, Output, Signal } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
 import { BarComponent } from '../../../../shared/components/common/bar/bar.component';
@@ -22,6 +22,9 @@ import { BlipVotesService } from '../blip-votes.service';
   styleUrl: './blip-votes-results.component.scss'
 })
 export class BlipVotesResultsComponent {
+  private readonly blipVotesService: BlipVotesService = inject(BlipVotesService);
+  private readonly store: RadarDetailsStore = inject(RadarDetailsStore);
+
   @Output()
   public onSelectResult = new EventEmitter<VotingResult>();
 
@@ -33,9 +36,6 @@ export class BlipVotesResultsComponent {
   public votingSessionBlipName: Signal<Blip | undefined> = computed(() => this.radar()?.blips.find(blip => blip.id === this.votingSessionBlipId()));
 
   protected readonly rings = rings;
-
-  public constructor(private readonly blipVotesService: BlipVotesService,
-                     private readonly store: RadarDetailsStore) {}
 
   public cancelVote(): void {
     this.blipVotesService.stopVotingSession();

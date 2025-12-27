@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnChanges, Output, Signal, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, inject, Input, OnChanges, Output, Signal, SimpleChanges } from '@angular/core';
 
 import { Blip, BlipPosition, Ring } from '../../../shared/models/blip.model';
 import { Radar } from '../../../shared/models/radar.model';
@@ -11,6 +11,8 @@ import { RadarDetailsStore } from '../radar-details.store';
   styleUrl: './radar-map.component.scss'
 })
 export class RadarMapComponent implements OnChanges {
+  private readonly store: RadarDetailsStore = inject(RadarDetailsStore);
+
   @Input({ required: true })
   public radar: Radar | undefined;
 
@@ -19,8 +21,6 @@ export class RadarMapComponent implements OnChanges {
 
   public blipPositions = new Map<string, BlipPosition>();
   public higlightedBlipId: Signal<string | undefined> = this.store.state.select(state => state.highlightedBlipId());
-
-  constructor(private readonly store: RadarDetailsStore) {}
 
   // TODO: should radar be a Signal instead of an input??
   public ngOnChanges(changes: SimpleChanges): void {

@@ -1,5 +1,5 @@
 import { NgComponentOutlet } from '@angular/common';
-import { Component, ElementRef, Injector, OnInit, Type, ViewChild } from '@angular/core';
+import { Component, ElementRef, inject, Injector, OnInit, Type, ViewChild } from '@angular/core';
 
 import { ButtonComponent } from '../../common/button/button.component';
 
@@ -17,6 +17,8 @@ import { ModalService } from './modal.service';
   styleUrl: './modal.component.scss'
 })
 export class ModalComponent implements OnInit {
+  private readonly modalService: ModalService = inject(ModalService);
+
   @ViewChild('dialog', { static: true })
   public dialog!: ElementRef<HTMLDialogElement>;
 
@@ -24,8 +26,6 @@ export class ModalComponent implements OnInit {
   public title!: string;
 
   private modalComponent: Component | undefined;
-
-  constructor(private readonly modalService: ModalService) {}
 
   public ngOnInit() {
     this.modalService.openModal$.subscribe(({ component, title, data }) => {

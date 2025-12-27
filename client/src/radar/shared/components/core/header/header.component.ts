@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -9,10 +9,10 @@ import { Router } from '@angular/router';
   styleUrl: './header.component.scss'
 })
 export class HeaderComponent {
+  private readonly router: Router = inject(Router);
+
   @Input()
   public title: string | undefined;
-
-  public constructor(private readonly router: Router) {}
 
   public toHome(): void {
     this.router.navigate(['']);

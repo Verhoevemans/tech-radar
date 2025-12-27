@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, inject, Inject } from '@angular/core';
 
 import { NotificationComponent } from '../../../shared/components/common/notification/notification.component';
 import { SpinnerComponent } from '../../../shared/components/common/spinner/spinner.component';
@@ -22,23 +22,18 @@ import { BlipDetailsService } from './blip-details.service';
   styleUrl: './blip-details.component.scss'
 })
 export class BlipDetailsComponent {
-  public blip: Blip;
-  public edit: boolean;
+  private readonly blipDetailsService: BlipDetailsService = inject(BlipDetailsService);
+  private readonly blipVotesService: BlipVotesService = inject(BlipVotesService);
+  private readonly modalService: ModalService = inject(ModalService);
+  public modalData: ModalData = inject(MODAL_DATA);
+
+  public blip: Blip = this.modalData.data.blip;
+  public edit: boolean = this.modalData.data.edit;
   public error: string | undefined;
   public loading = false;
-  public radarUrl: string;
+  public radarUrl: string = this.modalData.data.radarUrl;
 
-  private modalCloseCallback: () => void;
-
-  public constructor(private readonly blipDetailsService: BlipDetailsService,
-                     @Inject(MODAL_DATA) public modalData: ModalData,
-                     private readonly modalService: ModalService,
-                     private readonly blipVotesService: BlipVotesService) {
-    this.blip = modalData.data.blip;
-    this.edit = modalData.data.edit;
-    this.radarUrl = modalData.data.radarUrl;
-    this.modalCloseCallback = modalData.onClose!;
-  }
+  private modalCloseCallback: () => void = this.modalData.onClose!;
 
   public saveBlip(blip: Blip): void {
     this.loading = true;

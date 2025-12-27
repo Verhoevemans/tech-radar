@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 
 import { environment } from '../../../../environments/environment';
@@ -9,7 +9,7 @@ import { Radar, RadarsAPIResponse } from '../../../shared/models/radar.model';
   providedIn: 'root'
 })
 export class SelectRadarService {
-  constructor(private readonly httpClient: HttpClient) {}
+  private readonly httpClient: HttpClient = inject(HttpClient);
 
   public getRadars(): Observable<Radar[]> {
     return this.httpClient

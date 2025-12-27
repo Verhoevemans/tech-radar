@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -26,6 +26,10 @@ import { CreateRadarFormService } from './create-radar-form.service';
   styleUrl: './create-radar-form.component.scss'
 })
 export class CreateRadarFormComponent implements OnInit {
+  private readonly createRadarFormService: CreateRadarFormService = inject(CreateRadarFormService);
+  private readonly modalService: ModalService = inject(ModalService);
+  private readonly router: Router = inject(Router);
+
   public error: string | undefined;
   public loading = false;
   public radarForm!: FormGroup;
@@ -41,10 +45,6 @@ export class CreateRadarFormComponent implements OnInit {
   public get quadrants(): FormArray {
     return this.radarForm.get('quadrants') as FormArray;
   }
-
-  constructor(private readonly createRadarFormService: CreateRadarFormService,
-              private readonly modalService: ModalService,
-              private readonly router: Router) {}
 
   public ngOnInit(): void {
     this.initializeForm();

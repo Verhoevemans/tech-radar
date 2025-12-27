@@ -1,4 +1,4 @@
-import { Component, computed, EventEmitter, Input, Output, Signal } from '@angular/core';
+import { Component, computed, EventEmitter, inject, Input, Output, Signal } from '@angular/core';
 
 import { ButtonComponent } from '../../../shared/components/common/button/button.component';
 import { Blip, rings } from '../../../shared/models/blip.model';
@@ -15,6 +15,8 @@ import { RadarDetailsStore } from '../radar-details.store';
   styleUrl: './blip-list.component.scss'
 })
 export class BlipListComponent {
+  private readonly store: RadarDetailsStore = inject(RadarDetailsStore);
+
   @Input({ required: true })
   public quadrant!: string;
 
@@ -37,8 +39,6 @@ export class BlipListComponent {
   public blipsWithoutRing: Signal<Blip[]> = computed(() => {
     return this.blipsForQuadrant().filter(blip => !blip.ring);
   });
-
-  public constructor(private readonly store: RadarDetailsStore) {}
 
   public onBlipHover(id: string | undefined): void {
     this.store.state.update('highlightedBlipId', id);

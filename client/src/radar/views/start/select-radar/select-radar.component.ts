@@ -1,7 +1,6 @@
-import { Component, OnInit, Signal } from '@angular/core';
+import { Component, inject, OnInit, Signal } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { ButtonComponent } from '../../../shared/components/common/button/button.component';
 import { NotificationComponent } from '../../../shared/components/common/notification/notification.component';
 import { SpinnerComponent } from '../../../shared/components/common/spinner/spinner.component';
 import { TileComponent } from '../../../shared/components/common/tile/tile.component';
@@ -14,7 +13,6 @@ import { SelectRadarService } from './select-radar.service';
   selector: 'radar-select-radar',
   standalone: true,
   imports: [
-    ButtonComponent,
     NotificationComponent,
     SpinnerComponent,
     TileComponent
@@ -23,12 +21,12 @@ import { SelectRadarService } from './select-radar.service';
   styleUrl: './select-radar.component.scss'
 })
 export class SelectRadarComponent implements OnInit {
+  private readonly selectRadarService: SelectRadarService = inject(SelectRadarService);
+  private readonly store: StartStore = inject(StartStore);
+  private readonly router: Router = inject(Router);
+
   public status: Signal<Status> = this.store.state.select(state => state.status());
   public radars: Signal<Radar[]> = this.store.state.select(state => state.radars());
-
-  public constructor(private readonly selectRadarService: SelectRadarService,
-                     private readonly store: StartStore,
-                     private readonly router: Router) {}
 
   public ngOnInit(): void {
     this.store.state.update('status', 'loading');

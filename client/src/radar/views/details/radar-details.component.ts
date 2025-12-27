@@ -1,8 +1,7 @@
-import { Component, Input, OnDestroy, OnInit, Signal } from '@angular/core';
+import { Component, inject, Input, OnDestroy, OnInit, Signal } from '@angular/core';
 import { Subject, takeUntil } from 'rxjs';
 
 import { ButtonComponent } from '../../shared/components/common/button/button.component';
-import { InputComponent } from '../../shared/components/common/input/input.component';
 import { NotificationComponent } from '../../shared/components/common/notification/notification.component';
 import { SpinnerComponent } from '../../shared/components/common/spinner/spinner.component';
 import { HeaderComponent } from '../../shared/components/core/header/header.component';
@@ -23,11 +22,9 @@ import { RadarMapComponent } from './radar-map/radar-map.component';
   selector: 'radar-details',
   standalone: true,
   imports: [
-    BlipDetailsComponent,
     BlipListComponent,
     ButtonComponent,
     HeaderComponent,
-    InputComponent,
     NotificationComponent,
     RadarMapComponent,
     SpinnerComponent
@@ -36,6 +33,11 @@ import { RadarMapComponent } from './radar-map/radar-map.component';
   styleUrl: './radar-details.component.scss'
 })
 export class RadarDetailsComponent implements OnInit, OnDestroy {
+  private readonly blipVotesService: BlipVotesService = inject(BlipVotesService);
+  private readonly detailsService: RadarDetailsService = inject(RadarDetailsService);
+  private readonly modalService: ModalService = inject(ModalService);
+  private readonly store: RadarDetailsStore = inject(RadarDetailsStore);
+
   @Input()
   public name!: string;
 
@@ -49,11 +51,6 @@ export class RadarDetailsComponent implements OnInit, OnDestroy {
   public get headerTitle(): string {
     return this.name.toUpperCase();
   }
-
-  public constructor(private readonly blipVotesService: BlipVotesService,
-                     private readonly detailsService: RadarDetailsService,
-                     private readonly modalService: ModalService,
-                     private readonly store: RadarDetailsStore) {}
 
   public ngOnInit(): void {
     this.store.state.update('radarUrl', this.name.toLowerCase());

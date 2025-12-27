@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { map, Observable, tap } from 'rxjs';
 import { webSocket, WebSocketSubject } from 'rxjs/webSocket';
 
@@ -12,10 +12,10 @@ import { RadarDetailsStore } from '../radar-details.store';
   providedIn: 'root'
 })
 export class BlipVotesService {
-  private votingConnection: WebSocketSubject<VotingEvent> | undefined;
+  private readonly httpClient: HttpClient = inject(HttpClient);
+  private readonly store: RadarDetailsStore = inject(RadarDetailsStore);
 
-  constructor(private readonly httpClient: HttpClient,
-              private readonly store: RadarDetailsStore) {}
+  private votingConnection: WebSocketSubject<VotingEvent> | undefined;
 
   public createVotingConnection(radarName: string): Observable<VotingEvent> {
     this.votingConnection = webSocket(`${environment.websocketUrl}/api/radars/${radarName}/votes`);
