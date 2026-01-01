@@ -1,13 +1,13 @@
 <form [formGroup]="blipForm">
-  <radar-input [control]="nameControl" [label]="'Blip name'" [readonly]="!edit"/>
-  <radar-textarea [control]="descriptionControl" [label]="'Description'" [readonly]="!edit"/>
-  <radar-input [control]="quadrantControl" [label]="'Quadrant'" [readonly]="!edit"/>
-  <radar-select [control]="ringControl" [label]="'Radar position'" [options]="rings" [readonly]="!edit"/>
-  <radar-input [control]="linkControl" [label]="'Resource Url'" [readonly]="!edit"/>
+  <radar-input [control]="nameControl" [label]="'Blip name'" [readonly]="!edit()"/>
+  <radar-textarea [control]="descriptionControl" [label]="'Description'" [readonly]="!edit()"/>
+  <radar-input [control]="quadrantControl" [label]="'Quadrant'" [readonly]="!edit()"/>
+  <radar-select [control]="ringControl" [label]="'Radar position'" [options]="rings" [readonly]="!edit()"/>
+  <radar-input [control]="linkControl" [label]="'Resource Url'" [readonly]="!edit()"/>
 </form>
 <div class="blip-details-form__footer">
-  @if (edit) {
-    @if (blip.id) {
+  @if (edit()) {
+    @if (blip().id) {
       <radar-button label="Cancel" (clicked)="cancelEdit()" [type]="'primary'"/>
     }
     <radar-button label="Save" (clicked)="submitForm()" [type]="'secondary'"/>

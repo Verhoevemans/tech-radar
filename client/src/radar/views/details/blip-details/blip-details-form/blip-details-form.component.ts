@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, input, model, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 import { ButtonComponent } from '../../../../shared/components/common/button/button.component';
@@ -21,11 +21,8 @@ import { Blip, rings } from '../../../../shared/models/blip.model';
   styleUrl: './blip-details-form.component.scss'
 })
 export class BlipDetailsFormComponent implements OnInit {
-  @Input({ required: true })
-  public blip!: Blip;
-
-  @Input()
-  public edit = false;
+  public blip = input.required<Blip>();
+  public edit = model<boolean>(false);
 
   @Output()
   private onVote = new EventEmitter<Blip>();
@@ -62,11 +59,11 @@ export class BlipDetailsFormComponent implements OnInit {
   }
 
   public cancelEdit(): void {
-    this.edit = false;
+    this.edit.set(false);
   }
 
   public editForm(): void {
-    this.edit = true;
+    this.edit.set(true);
   }
 
   public startVote(): void {
@@ -83,12 +80,12 @@ export class BlipDetailsFormComponent implements OnInit {
 
   private initializeForm(): void {
     this.blipForm = new FormGroup({
-      name: new FormControl(this.blip.name, Validators.required),
-      id: new FormControl(this.blip.id),
-      description: new FormControl(this.blip.description),
-      quadrant: new FormControl(this.blip.quadrant, Validators.required),
-      ring: new FormControl(this.blip.ring),
-      link: new FormControl(this.blip.link)
+      name: new FormControl(this.blip().name, Validators.required),
+      id: new FormControl(this.blip().id),
+      description: new FormControl(this.blip().description),
+      quadrant: new FormControl(this.blip().quadrant, Validators.required),
+      ring: new FormControl(this.blip().ring),
+      link: new FormControl(this.blip().link)
     });
   }
 }

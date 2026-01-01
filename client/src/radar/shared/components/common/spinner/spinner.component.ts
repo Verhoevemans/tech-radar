@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, input } from '@angular/core';
 
 export type SpinnerType = 'load' | 'save';
 
@@ -10,11 +10,10 @@ export type SpinnerType = 'load' | 'save';
   styleUrl: './spinner.component.scss'
 })
 export class SpinnerComponent {
-  @Input()
-  public type: SpinnerType = 'load';
+  public type = input<SpinnerType>('load');
 
   public get message(): string {
-    switch (this.type) {
+    switch (this.type()) {
       case 'save':
         return 'Saving Data...';
       case 'load':

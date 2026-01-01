@@ -1,4 +1,4 @@
-@if (radar) {
+@if (radar()) {
   <div class="radar-map">
     <svg width="100%" height="100%" viewBox="-110 -110 220 220">
       <filter id="shadow">
@@ -20,7 +20,7 @@
         <polyline points="-100,0 100,0" fill="black"></polyline>
       </g>
       <g class="radar-map__blips">
-        @for (blip of radar.blips; track $index) {
+        @for (blip of radar()?.blips; track $index) {
           <g [attr.transform]="getBlipPosition(blip)">
             <text [attr.class]="blip.id === higlightedBlipId() ? 'tooltip' : ''"
                   [attr.transform]="'translate(0,-3)'"

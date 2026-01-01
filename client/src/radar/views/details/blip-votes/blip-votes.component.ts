@@ -1,6 +1,5 @@
-import { Component, inject, Inject, OnDestroy, Signal } from '@angular/core';
+import { Component, inject, OnDestroy, Signal } from '@angular/core';
 
-import { ButtonComponent } from '../../../shared/components/common/button/button.component';
 import { TabComponent } from '../../../shared/components/common/tab/tab.component';
 import { MODAL_DATA, ModalData } from '../../../shared/components/core/modal/modal.model';
 import { VotingResult } from '../../../shared/models/vote.model';
@@ -18,7 +17,6 @@ type Tab = 'VOTE' | 'RESULTS';
   imports: [
     BlipVotesFormComponent,
     BlipVotesResultsComponent,
-    ButtonComponent,
     TabComponent
   ],
   templateUrl: './blip-votes.component.html',
@@ -49,7 +47,7 @@ export class BlipVotesComponent implements OnDestroy {
     });
   }
 
-  public setActiveTab(tab: Tab) {
+  public setActiveTab(tab: Tab): void {
     this.activeTab = tab;
   }
 }

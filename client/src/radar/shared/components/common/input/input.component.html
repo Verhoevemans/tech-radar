@@ -1,9 +1,9 @@
-<label for="radar-input">{{label}}</label>
+<label for="radar-input">{{label()}}</label>
 <input type="text"
-       [formControl]="control"
+       [formControl]="control()"
        id="radar-input"
        class="radar-input"
-       [readonly]="readonly">
-@if (control.touched && control.invalid) {
+       [readonly]="readonly()">
+@if (control().touched && control().invalid) {
   <span class="error">This field is required</span>
 }

@@ -1,7 +1,7 @@
 <div class="radar-tabs">
   <div class="radar-tabs__header">
-    @for (tab of tabOptions; track $index) {
-      <div (click)="onSelect(tab)" class="radar-tabs__tab" [class.active]="activeTab === tab">
+    @for (tab of tabOptions(); track $index) {
+      <div (click)="onSelect(tab)" class="radar-tabs__tab" [class.active]="activeTab() === tab">
         <h3>{{tab}}</h3>
       </div>
     }

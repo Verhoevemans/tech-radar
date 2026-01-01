@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
@@ -11,12 +11,7 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
   styleUrl: './input.component.scss'
 })
 export class InputComponent {
-  @Input({ required: true })
-  public control!: FormControl;
-
-  @Input({ required: true })
-  public label!: string;
-
-  @Input()
-  public readonly = false;
+  public control = input.required<FormControl>();
+  public label = input.required<string>();
+  public readonly = input(false);
 }

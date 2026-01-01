@@ -1,4 +1,4 @@
-import { Component, EventEmitter, inject, Input, OnChanges, Output, Signal, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, inject, input, OnChanges, Output, Signal, SimpleChanges } from '@angular/core';
 
 import { Blip, BlipPosition, Ring } from '../../../shared/models/blip.model';
 import { Radar } from '../../../shared/models/radar.model';
@@ -13,8 +13,7 @@ import { RadarDetailsStore } from '../radar-details.store';
 export class RadarMapComponent implements OnChanges {
   private readonly store: RadarDetailsStore = inject(RadarDetailsStore);
 
-  @Input({ required: true })
-  public radar: Radar | undefined;
+  public radar = input.required<Radar | undefined>();
 
   @Output()
   public openBlipDetails = new EventEmitter<Blip>();
@@ -68,7 +67,7 @@ export class RadarMapComponent implements OnChanges {
   }
 
   private setBlipPositions(): void {
-    this.radar?.blips.forEach((blip) => {
+    this.radar()?.blips.forEach((blip) => {
       const blipPosition = this.calculateBlipPosition(blip);
       if (blipPosition) {
         this.blipPositions.set(blip.id, blipPosition);
@@ -108,7 +107,7 @@ export class RadarMapComponent implements OnChanges {
       ? Math.random() * 80 // Set random angle between 0 and 80 degrees
       : (Math.random() * 20) + 30; // Set random angle between 30 and 50 degrees
 
-    switch (this.radar?.quadrants.indexOf(quadrant)) {
+    switch (this.radar()?.quadrants.indexOf(quadrant)) {
       case 0:
         return (randomAngle + 185) * Math.PI / 180;
       case 1:

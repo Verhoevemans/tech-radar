@@ -1,10 +1,10 @@
-<label for="radar-textarea">{{label}}</label>
+<label for="radar-textarea">{{label()}}</label>
 <textarea id="radar-textarea"
-          [formControl]="control"
+          [formControl]="control()"
           class="radar-textarea"
           rows="4"
-          [readonly]="readonly">
+          [readonly]="readonly()">
 </textarea>
-@if (control.touched && control.invalid) {
+@if (control().touched && control().invalid) {
   <span class="error">This field is required</span>
 }

@@ -1,4 +1,4 @@
-import { Component, inject, Input, OnDestroy, OnInit, Signal } from '@angular/core';
+import { Component, inject, input, OnDestroy, OnInit, Signal } from '@angular/core';
 import { Subject, takeUntil } from 'rxjs';
 
 import { ButtonComponent } from '../../shared/components/common/button/button.component';
@@ -38,8 +38,7 @@ export class RadarDetailsComponent implements OnInit, OnDestroy {
   private readonly modalService: ModalService = inject(ModalService);
   private readonly store: RadarDetailsStore = inject(RadarDetailsStore);
 
-  @Input()
-  public name!: string;
+  public name = input.required<string>();
 
   public loadingStatus: Signal<LoadingStatus> = this.store.state.select(state => state.loadingStatus());
   public votingSessionBlipId: Signal<string | undefined> = this.store.state.select(state => state.votingSessionBlipId());
@@ -49,11 +48,11 @@ export class RadarDetailsComponent implements OnInit, OnDestroy {
   public onDestroy$ = new Subject<void>();
 
   public get headerTitle(): string {
-    return this.name.toUpperCase();
+    return this.name().toUpperCase();
   }
 
   public ngOnInit(): void {
-    this.store.state.update('radarUrl', this.name.toLowerCase());
+    this.store.state.update('radarUrl', this.name().toLowerCase());
     this.getRadarDetails();
     this.setupVotingSessionConnection();
   }
@@ -79,7 +78,7 @@ export class RadarDetailsComponent implements OnInit, OnDestroy {
 
   private getRadarDetails(): void {
     this.store.state.update('loadingStatus', 'loading');
-    this.detailsService.getRadarDetails(this.name).subscribe({
+    this.detailsService.getRadarDetails(this.name()).subscribe({
       next: (response) => {
         this.store.state.update('radar', response);
       },
@@ -93,7 +92,7 @@ export class RadarDetailsComponent implements OnInit, OnDestroy {
   }
 
   private setupVotingSessionConnection(): void {
-    this.blipVotesService.createVotingConnection(this.name)
+    this.blipVotesService.createVotingConnection(this.name())
       .pipe(
         takeUntil(this.onDestroy$)
       ).subscribe({

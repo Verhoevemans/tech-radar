@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, input, Output } from '@angular/core';
 
 @Component({
   selector: 'radar-tile',
@@ -8,11 +8,8 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrl: './tile.component.scss'
 })
 export class TileComponent {
-  @Input({ required: true })
-  public title!: string;
-
-  @Input()
-  public subText: string | undefined;
+  public title = input.required<string>();
+  public subText = input<string>();
 
   @Output()
   public clicked = new EventEmitter<void>();

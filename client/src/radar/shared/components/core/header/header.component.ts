@@ -1,4 +1,4 @@
-import { Component, inject, Input } from '@angular/core';
+import { Component, inject, input } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -11,8 +11,7 @@ import { Router } from '@angular/router';
 export class HeaderComponent {
   private readonly router: Router = inject(Router);
 
-  @Input()
-  public title: string | undefined;
+  public title = input<string>();
 
   public toHome(): void {
     this.router.navigate(['']);

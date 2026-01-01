@@ -1,11 +1,11 @@
 <button class="radar-button"
         (click)="onClick()"
         [class]="[typeClass, sizeClass]"
-        [class.active]="isActive">
-  @if (type === 'icon') {
+        [class.active]="isActive()">
+  @if (type() === 'icon') {
     <!-- TODO: show Icon based on label name -->
-    {{ label }}
+    {{ label() }}
   } @else {
-    {{ label }}
+    {{ label() }}
   }
 </button>

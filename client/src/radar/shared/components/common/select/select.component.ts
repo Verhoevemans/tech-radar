@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 
 import { rings } from '../../../models/blip.model';
@@ -13,17 +13,10 @@ import { rings } from '../../../models/blip.model';
   styleUrl: './select.component.scss'
 })
 export class SelectComponent {
-  @Input({ required: true })
-  public control!: FormControl;
-
-  @Input({ required: true })
-  public label!: string;
-
-  @Input({ required: true })
-  public options!: string[];
-
-  @Input()
-  public readonly = false;
+  public control = input.required<FormControl>();
+  public label = input.required<string>();
+  public options = input.required<string[]>();
+  public readonly = input(false);
 
   public showOptions = false;
 
@@ -34,13 +27,13 @@ export class SelectComponent {
   }
 
   public openOptions(): void {
-    if (!this.readonly) {
+    if (!this.readonly()) {
       this.showOptions = true;
     }
   }
 
   public selectOption(option: string): void {
-    this.control.patchValue(option);
+    this.control().patchValue(option);
     this.closeOptions();
   }
 }

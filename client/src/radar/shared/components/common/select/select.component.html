@@ -1,17 +1,17 @@
-<label for="radar-select">{{label}}</label>
+<label for="radar-select">{{label()}}</label>
 <input id="radar-select"
-       [formControl]="control"
+       [formControl]="control()"
        class="radar-select__selection"
-       [class.read-only]="readonly"
+       [class.read-only]="readonly()"
        readonly
        (click)="openOptions()">
 <span class="radar-select__arrow"
       [class.radar-select__arrow--down]="showOptions"
-      [class.read-only]="readonly">
+      [class.read-only]="readonly()">
 </span>
 <div class="radar-select__dropdown" [class.radar-select__dropdown--open]="showOptions">
   <div class="radar-select__dropdown--option-list">
-    @for (option of options; track $index) {
+    @for (option of options(); track $index) {
       <div class="radar-select__dropdown--option" (click)="selectOption(option)">
         {{option}}
       </div>
@@ -19,6 +19,6 @@
   </div>
   <div class="radar-select__dropdown--click-mask" (click)="closeOptions()"></div>
 </div>
-@if (control.touched && control.invalid) {
+@if (control().touched && control().invalid) {
   <span class="error">This field is required</span>
 }

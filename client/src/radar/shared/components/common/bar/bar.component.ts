@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, input } from '@angular/core';
 
 @Component({
   selector: 'radar-bar',
@@ -8,13 +8,11 @@ import { Component, Input } from '@angular/core';
   styleUrl: './bar.component.scss'
 })
 export class BarComponent {
-  @Input({ required: true })
-  public total!: number;
+  public total = input.required<number>();
 
-  @Input({ required: true })
-  public value!: number;
+  public value = input.required<number>();
 
   public getValueWidth(): string {
-    return `${(this.value / this.total) * 100}%`;
+    return `${(this.value() / this.total()) * 100}%`;
   }
 }

@@ -1,6 +1,6 @@
 <h1>
   <span class="header__home" (click)="toHome()">TECHNOLOGY RADAR</span>
-  @if (title) {
-    <span> | {{ title }}</span>
+  @if (title()) {
+    <span> | {{ title() }}</span>
   }
 </h1>

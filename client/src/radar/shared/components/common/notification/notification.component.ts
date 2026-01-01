@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, input } from '@angular/core';
 
 export type NotificationType = 'warning' | 'error' | 'info';
 
@@ -10,9 +10,6 @@ export type NotificationType = 'warning' | 'error' | 'info';
   styleUrl: './notification.component.scss'
 })
 export class NotificationComponent {
-  @Input({ required: true })
-  public message!: string;
-
-  @Input()
-  public type: NotificationType = 'info';
+  public message = input.required<string>();
+  public type = input<NotificationType>('info');
 }

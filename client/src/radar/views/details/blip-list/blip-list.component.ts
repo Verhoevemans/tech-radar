@@ -1,4 +1,4 @@
-import { Component, computed, EventEmitter, inject, Input, Output, Signal } from '@angular/core';
+import { Component, computed, EventEmitter, inject, input, Output, Signal } from '@angular/core';
 
 import { ButtonComponent } from '../../../shared/components/common/button/button.component';
 import { Blip, rings } from '../../../shared/models/blip.model';
@@ -17,8 +17,7 @@ import { RadarDetailsStore } from '../radar-details.store';
 export class BlipListComponent {
   private readonly store: RadarDetailsStore = inject(RadarDetailsStore);
 
-  @Input({ required: true })
-  public quadrant!: string;
+  public quadrant = input.required<string>();
 
   @Output()
   public openBlipDetails = new EventEmitter<{ blip: Blip, edit: boolean }>();
@@ -29,7 +28,7 @@ export class BlipListComponent {
   public radar: Signal<Radar | undefined> = this.store.state.select(state => state.radar());
 
   public blipsForQuadrant: Signal<Blip[]> = computed(() => {
-    return this.radar()?.blips.filter(blip => blip.quadrant === this.quadrant) || [];
+    return this.radar()?.blips.filter(blip => blip.quadrant === this.quadrant()) || [];
   });
   public blipsPerRing: Signal<Blip[][]> = computed(() => {
     return this.rings.map(ring => {
@@ -49,7 +48,7 @@ export class BlipListComponent {
   }
 
   public onBlipAdd(): void {
-    const blip = { quadrant: this.quadrant } as Blip;
+    const blip = { quadrant: this.quadrant() } as Blip;
     this.openBlipDetails.emit({ blip, edit: true });
   }
 }
