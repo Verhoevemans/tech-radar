@@ -6,7 +6,6 @@ import { RadarDetailsStore } from '../radar-details.store';
 
 @Component({
   selector: 'radar-map',
-  standalone: true,
   templateUrl: './radar-map.component.html',
   styleUrl: './radar-map.component.scss'
 })
