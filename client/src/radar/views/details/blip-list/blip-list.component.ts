@@ -6,13 +6,12 @@ import { Radar } from '../../../shared/models/radar.model';
 import { RadarDetailsStore } from '../radar-details.store';
 
 @Component({
-  selector: 'radar-blip-list',
-  standalone: true,
-  imports: [
-    ButtonComponent
-  ],
-  templateUrl: './blip-list.component.html',
-  styleUrl: './blip-list.component.scss'
+    selector: 'radar-blip-list',
+    imports: [
+        ButtonComponent
+    ],
+    templateUrl: './blip-list.component.html',
+    styleUrl: './blip-list.component.scss'
 })
 export class BlipListComponent {
   private readonly store: RadarDetailsStore = inject(RadarDetailsStore);

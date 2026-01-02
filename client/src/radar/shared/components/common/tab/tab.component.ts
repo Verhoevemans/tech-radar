@@ -1,11 +1,10 @@
 import { Component, EventEmitter, input, model, OnInit, Output } from '@angular/core';
 
 @Component({
-  selector: 'radar-tab',
-  standalone: true,
-  imports: [],
-  templateUrl: './tab.component.html',
-  styleUrl: './tab.component.scss'
+    selector: 'radar-tab',
+    imports: [],
+    templateUrl: './tab.component.html',
+    styleUrl: './tab.component.scss'
 })
 export class TabComponent implements OnInit {
   // TODO: find correct Generic typing instead of any (also in the EventEmitter)

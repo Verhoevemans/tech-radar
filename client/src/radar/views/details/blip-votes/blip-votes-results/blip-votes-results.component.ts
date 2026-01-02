@@ -11,15 +11,14 @@ import { RadarDetailsStore } from '../../radar-details.store';
 import { BlipVotesService } from '../blip-votes.service';
 
 @Component({
-  selector: 'radar-blip-votes-results',
-  standalone: true,
-  imports: [
-    BarComponent,
-    ButtonComponent,
-    TextareaComponent
-  ],
-  templateUrl: './blip-votes-results.component.html',
-  styleUrl: './blip-votes-results.component.scss'
+    selector: 'radar-blip-votes-results',
+    imports: [
+        BarComponent,
+        ButtonComponent,
+        TextareaComponent
+    ],
+    templateUrl: './blip-votes-results.component.html',
+    styleUrl: './blip-votes-results.component.scss'
 })
 export class BlipVotesResultsComponent {
   private readonly blipVotesService: BlipVotesService = inject(BlipVotesService);

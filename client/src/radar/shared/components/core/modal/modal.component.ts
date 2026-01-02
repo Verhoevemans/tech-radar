@@ -7,14 +7,13 @@ import { MODAL_DATA } from './modal.model';
 import { ModalService } from './modal.service';
 
 @Component({
-  selector: 'radar-modal',
-  standalone: true,
-  imports: [
-    NgComponentOutlet,
-    ButtonComponent
-  ],
-  templateUrl: './modal.component.html',
-  styleUrl: './modal.component.scss'
+    selector: 'radar-modal',
+    imports: [
+        NgComponentOutlet,
+        ButtonComponent
+    ],
+    templateUrl: './modal.component.html',
+    styleUrl: './modal.component.scss'
 })
 export class ModalComponent implements OnInit {
   private readonly modalService: ModalService = inject(ModalService);

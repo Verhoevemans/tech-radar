@@ -7,16 +7,15 @@ import { CreateRadarComponent } from './create-radar/create-radar.component';
 import { SelectRadarComponent } from './select-radar/select-radar.component';
 
 @Component({
-  selector: 'radar-start',
-  standalone: true,
-  imports: [
-    ButtonComponent,
-    CreateRadarComponent,
-    HeaderComponent,
-    SelectRadarComponent
-  ],
-  templateUrl: './start.component.html',
-  styleUrl: './start.component.scss'
+    selector: 'radar-start',
+    imports: [
+        ButtonComponent,
+        CreateRadarComponent,
+        HeaderComponent,
+        SelectRadarComponent
+    ],
+    templateUrl: './start.component.html',
+    styleUrl: './start.component.scss'
 })
 export class StartComponent {
 

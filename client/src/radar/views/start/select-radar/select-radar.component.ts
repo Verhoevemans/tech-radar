@@ -10,15 +10,14 @@ import { StartStore, Status } from '../start.store';
 import { SelectRadarService } from './select-radar.service';
 
 @Component({
-  selector: 'radar-select-radar',
-  standalone: true,
-  imports: [
-    NotificationComponent,
-    SpinnerComponent,
-    TileComponent
-  ],
-  templateUrl: './select-radar.component.html',
-  styleUrl: './select-radar.component.scss'
+    selector: 'radar-select-radar',
+    imports: [
+        NotificationComponent,
+        SpinnerComponent,
+        TileComponent
+    ],
+    templateUrl: './select-radar.component.html',
+    styleUrl: './select-radar.component.scss'
 })
 export class SelectRadarComponent implements OnInit {
   private readonly selectRadarService: SelectRadarService = inject(SelectRadarService);

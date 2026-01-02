@@ -6,13 +6,12 @@ import { ModalService } from '../../../shared/components/core/modal/modal.servic
 import { CreateRadarFormComponent } from './create-radar-form/create-radar-form.component';
 
 @Component({
-  selector: 'radar-create-radar',
-  standalone: true,
-  imports: [
-    ButtonComponent
-  ],
-  templateUrl: './create-radar.component.html',
-  styleUrl: './create-radar.component.scss'
+    selector: 'radar-create-radar',
+    imports: [
+        ButtonComponent
+    ],
+    templateUrl: './create-radar.component.html',
+    styleUrl: './create-radar.component.scss'
 })
 export class CreateRadarComponent {
   private readonly modalService: ModalService = inject(ModalService);

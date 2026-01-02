@@ -12,15 +12,14 @@ import { BlipVotesResultsComponent } from './blip-votes-results/blip-votes-resul
 type Tab = 'VOTE' | 'RESULTS';
 
 @Component({
-  selector: 'radar-blip-votes',
-  standalone: true,
-  imports: [
-    BlipVotesFormComponent,
-    BlipVotesResultsComponent,
-    TabComponent
-  ],
-  templateUrl: './blip-votes.component.html',
-  styleUrl: './blip-votes.component.scss'
+    selector: 'radar-blip-votes',
+    imports: [
+        BlipVotesFormComponent,
+        BlipVotesResultsComponent,
+        TabComponent
+    ],
+    templateUrl: './blip-votes.component.html',
+    styleUrl: './blip-votes.component.scss'
 })
 export class BlipVotesComponent implements OnDestroy {
   private readonly blipVotesService: BlipVotesService = inject(BlipVotesService);

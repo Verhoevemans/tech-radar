@@ -4,13 +4,12 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { rings } from '../../../models/blip.model';
 
 @Component({
-  selector: 'radar-select',
-  standalone: true,
-  imports: [
-    ReactiveFormsModule
-  ],
-  templateUrl: './select.component.html',
-  styleUrl: './select.component.scss'
+    selector: 'radar-select',
+    imports: [
+        ReactiveFormsModule
+    ],
+    templateUrl: './select.component.html',
+    styleUrl: './select.component.scss'
 })
 export class SelectComponent {
   public control = input.required<FormControl>();

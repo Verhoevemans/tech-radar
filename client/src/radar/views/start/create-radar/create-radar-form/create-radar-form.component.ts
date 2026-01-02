@@ -12,18 +12,17 @@ import { ModalService } from '../../../../shared/components/core/modal/modal.ser
 import { CreateRadarFormService } from './create-radar-form.service';
 
 @Component({
-  selector: 'radar-create-form',
-  standalone: true,
-  imports: [
-    ButtonComponent,
-    ReactiveFormsModule,
-    NotificationComponent,
-    SpinnerComponent,
-    InputComponent,
-    TextareaComponent
-  ],
-  templateUrl: './create-radar-form.component.html',
-  styleUrl: './create-radar-form.component.scss'
+    selector: 'radar-create-form',
+    imports: [
+        ButtonComponent,
+        ReactiveFormsModule,
+        NotificationComponent,
+        SpinnerComponent,
+        InputComponent,
+        TextareaComponent
+    ],
+    templateUrl: './create-radar-form.component.html',
+    styleUrl: './create-radar-form.component.scss'
 })
 export class CreateRadarFormComponent implements OnInit {
   private readonly createRadarFormService: CreateRadarFormService = inject(CreateRadarFormService);

@@ -4,11 +4,10 @@ type ButtonType = 'primary' | 'secondary' | 'icon';
 type ButtonSize = 'small' | 'medium' | 'large';
 
 @Component({
-  selector: 'radar-button',
-  standalone: true,
-  imports: [],
-  templateUrl: './button.component.html',
-  styleUrl: './button.component.scss'
+    selector: 'radar-button',
+    imports: [],
+    templateUrl: './button.component.html',
+    styleUrl: './button.component.scss'
 })
 export class ButtonComponent {
   public label = input.required<string>();

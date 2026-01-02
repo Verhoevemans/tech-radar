@@ -11,15 +11,14 @@ import { BlipDetailsFormComponent } from './blip-details-form/blip-details-form.
 import { BlipDetailsService } from './blip-details.service';
 
 @Component({
-  selector: 'radar-blip-details',
-  standalone: true,
-  imports: [
-    BlipDetailsFormComponent,
-    NotificationComponent,
-    SpinnerComponent
-  ],
-  templateUrl: './blip-details.component.html',
-  styleUrl: './blip-details.component.scss'
+    selector: 'radar-blip-details',
+    imports: [
+        BlipDetailsFormComponent,
+        NotificationComponent,
+        SpinnerComponent
+    ],
+    templateUrl: './blip-details.component.html',
+    styleUrl: './blip-details.component.scss'
 })
 export class BlipDetailsComponent {
   private readonly blipDetailsService: BlipDetailsService = inject(BlipDetailsService);

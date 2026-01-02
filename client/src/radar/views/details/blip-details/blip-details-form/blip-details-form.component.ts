@@ -8,17 +8,16 @@ import { TextareaComponent } from '../../../../shared/components/common/textarea
 import { Blip, rings } from '../../../../shared/models/blip.model';
 
 @Component({
-  selector: 'radar-blip-details-form',
-  standalone: true,
-  imports: [
-    ReactiveFormsModule,
-    ButtonComponent,
-    InputComponent,
-    TextareaComponent,
-    SelectComponent
-  ],
-  templateUrl: './blip-details-form.component.html',
-  styleUrl: './blip-details-form.component.scss'
+    selector: 'radar-blip-details-form',
+    imports: [
+        ReactiveFormsModule,
+        ButtonComponent,
+        InputComponent,
+        TextareaComponent,
+        SelectComponent
+    ],
+    templateUrl: './blip-details-form.component.html',
+    styleUrl: './blip-details-form.component.scss'
 })
 export class BlipDetailsFormComponent implements OnInit {
   public blip = input.required<Blip>();

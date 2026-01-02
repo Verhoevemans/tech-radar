@@ -19,18 +19,17 @@ import { RadarDetailsStore, LoadingStatus } from './radar-details.store';
 import { RadarMapComponent } from './radar-map/radar-map.component';
 
 @Component({
-  selector: 'radar-details',
-  standalone: true,
-  imports: [
-    BlipListComponent,
-    ButtonComponent,
-    HeaderComponent,
-    NotificationComponent,
-    RadarMapComponent,
-    SpinnerComponent
-  ],
-  templateUrl: './radar-details.component.html',
-  styleUrl: './radar-details.component.scss'
+    selector: 'radar-details',
+    imports: [
+        BlipListComponent,
+        ButtonComponent,
+        HeaderComponent,
+        NotificationComponent,
+        RadarMapComponent,
+        SpinnerComponent
+    ],
+    templateUrl: './radar-details.component.html',
+    styleUrl: './radar-details.component.scss'
 })
 export class RadarDetailsComponent implements OnInit, OnDestroy {
   private readonly blipVotesService: BlipVotesService = inject(BlipVotesService);
