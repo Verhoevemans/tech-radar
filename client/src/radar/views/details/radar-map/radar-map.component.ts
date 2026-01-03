@@ -1,11 +1,10 @@
 import {
   Component,
+  effect,
   inject,
   input,
-  OnChanges,
   output,
-  Signal,
-  SimpleChanges
+  Signal
 } from '@angular/core';
 
 import { Blip, BlipPosition, Ring } from '../../../shared/models/blip.model';
@@ -17,7 +16,7 @@ import { RadarDetailsStore } from '../radar-details.store';
   templateUrl: './radar-map.component.html',
   styleUrl: './radar-map.component.scss'
 })
-export class RadarMapComponent implements OnChanges {
+export class RadarMapComponent {
   private readonly store: RadarDetailsStore = inject(RadarDetailsStore);
 
   public radar = input.required<Radar | undefined>();
@@ -26,11 +25,10 @@ export class RadarMapComponent implements OnChanges {
   public blipPositions = new Map<string, BlipPosition>();
   public higlightedBlipId: Signal<string | undefined> = this.store.state.select(state => state.highlightedBlipId());
 
-  // TODO: should radar be a Signal instead of an input??
-  public ngOnChanges(changes: SimpleChanges): void {
-    if (changes['radar'].currentValue) {
-      this.setBlipPositions();
-    }
+  constructor() {
+    effect(() => {
+      this.setBlipPositions(this.radar()?.blips || []);
+    });
   }
 
   public getBlipClass(blip: Blip): string {
@@ -71,8 +69,8 @@ export class RadarMapComponent implements OnChanges {
     this.openBlipDetails.emit(blip);
   }
 
-  private setBlipPositions(): void {
-    this.radar()?.blips.forEach((blip) => {
+  private setBlipPositions(blips: Blip[]): void {
+    blips.forEach((blip) => {
       const blipPosition = this.calculateBlipPosition(blip);
       if (blipPosition) {
         this.blipPositions.set(blip.id, blipPosition);
