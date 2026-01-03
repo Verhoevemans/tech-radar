@@ -1,4 +1,4 @@
-import { Component, EventEmitter, input, model, OnInit, Output } from '@angular/core';
+import { Component, input, model, OnInit, output } from '@angular/core';
 
 @Component({
     selector: 'radar-tab',
@@ -10,9 +10,7 @@ export class TabComponent implements OnInit {
   // TODO: find correct Generic typing instead of any (also in the EventEmitter)
   public tabOptions = input.required<any[]>();
   public activeTab = model<any>();
-
-  @Output()
-  public tabSelected = new EventEmitter<any>();
+  public tabSelected = output<any>();
 
   public ngOnInit(): void {
     if (!this.activeTab()) {

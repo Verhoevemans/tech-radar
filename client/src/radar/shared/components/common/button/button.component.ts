@@ -1,4 +1,4 @@
-import { Component, EventEmitter, input, Output } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 
 type ButtonType = 'primary' | 'secondary' | 'icon';
 type ButtonSize = 'small' | 'medium' | 'large';
@@ -14,9 +14,7 @@ export class ButtonComponent {
   public type = input<ButtonType>('primary');
   public size = input<ButtonSize>('medium');
   public isActive = input<boolean>(false);
-
-  @Output()
-  public clicked = new EventEmitter<void>();
+  public clicked = output<void>();
 
   public get typeClass(): string {
     return `radar-button--${this.type()}`;

@@ -1,4 +1,4 @@
-import { Component, computed, EventEmitter, inject, Output, Signal } from '@angular/core';
+import { Component, computed, inject, output, Signal } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
 import { BarComponent } from '../../../../shared/components/common/bar/bar.component';
@@ -23,9 +23,7 @@ import { BlipVotesService } from '../blip-votes.service';
 export class BlipVotesResultsComponent {
   private readonly blipVotesService: BlipVotesService = inject(BlipVotesService);
   private readonly store: RadarDetailsStore = inject(RadarDetailsStore);
-
-  @Output()
-  public onSelectResult = new EventEmitter<VotingResult>();
+  public onSelectResult = output<VotingResult>();
 
   public comment = new FormControl('');
 

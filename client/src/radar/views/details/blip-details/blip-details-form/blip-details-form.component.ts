@@ -1,4 +1,4 @@
-import { Component, EventEmitter, input, model, OnInit, Output } from '@angular/core';
+import { Component, input, model, OnInit, output } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 import { ButtonComponent } from '../../../../shared/components/common/button/button.component';
@@ -22,12 +22,8 @@ import { Blip, rings } from '../../../../shared/models/blip.model';
 export class BlipDetailsFormComponent implements OnInit {
   public blip = input.required<Blip>();
   public edit = model<boolean>(false);
-
-  @Output()
-  private onVote = new EventEmitter<Blip>();
-
-  @Output()
-  private onSubmit = new EventEmitter<Blip>();
+  public onVote = output<Blip>();
+  public onSubmit = output<Blip>();
 
   public blipForm!: FormGroup;
 
@@ -66,7 +62,7 @@ export class BlipDetailsFormComponent implements OnInit {
   }
 
   public startVote(): void {
-    this.onVote.next(this.blipForm.value);
+    this.onVote.emit(this.blipForm.value);
   }
 
   public submitForm(): void {

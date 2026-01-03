@@ -1,4 +1,12 @@
-import { Component, EventEmitter, inject, input, OnChanges, Output, Signal, SimpleChanges } from '@angular/core';
+import {
+  Component,
+  inject,
+  input,
+  OnChanges,
+  output,
+  Signal,
+  SimpleChanges
+} from '@angular/core';
 
 import { Blip, BlipPosition, Ring } from '../../../shared/models/blip.model';
 import { Radar } from '../../../shared/models/radar.model';
@@ -13,9 +21,7 @@ export class RadarMapComponent implements OnChanges {
   private readonly store: RadarDetailsStore = inject(RadarDetailsStore);
 
   public radar = input.required<Radar | undefined>();
-
-  @Output()
-  public openBlipDetails = new EventEmitter<Blip>();
+  public openBlipDetails = output<Blip>();
 
   public blipPositions = new Map<string, BlipPosition>();
   public higlightedBlipId: Signal<string | undefined> = this.store.state.select(state => state.highlightedBlipId());

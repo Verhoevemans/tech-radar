@@ -1,4 +1,4 @@
-import { Component, computed, EventEmitter, inject, input, Output, Signal } from '@angular/core';
+import { Component, computed, inject, input, output, Signal } from '@angular/core';
 
 import { ButtonComponent } from '../../../shared/components/common/button/button.component';
 import { Blip, rings } from '../../../shared/models/blip.model';
@@ -17,9 +17,7 @@ export class BlipListComponent {
   private readonly store: RadarDetailsStore = inject(RadarDetailsStore);
 
   public quadrant = input.required<string>();
-
-  @Output()
-  public openBlipDetails = new EventEmitter<{ blip: Blip, edit: boolean }>();
+  public openBlipDetails = output<{ blip: Blip, edit: boolean }>();
 
   public rings = rings;
 
